@@ -3,14 +3,19 @@ import Navbar from "../componentes/Navbar";
 import Boton from "../componentes/Boton";
 import '../index.css';
 import CuadroPrincipal from "../componentes/CuadroPrincipal";
+import { useSelector, useDispatch } from 'react-redux';
+import translations from '../redux/translations.js';
+import { Link } from "react-router-dom";
 
 function Main(){
+    const language = useSelector(state => state.language.language);
+
     return (
         <div>
             <Navbar enlaceHeader={"/"}/>
             <div className="contenerBotonesMainPage">
-                <CuadroPrincipal titulo="Ingresos" cantidad={500}/>
-                <CuadroPrincipal titulo="Gastos" cantidad={200}/>
+                <CuadroPrincipal titulo={translations[language].ingresos} cantidad={500}/>
+                <CuadroPrincipal titulo={translations[language].gastos} cantidad={200}/>
                 <Boton contenido="Ingresos vs Gastos este mes" clase="Btn BtnBlue"/>
                 <Boton contenido="Ingresos vs Gastos por año" clase="Btn BtnBlue"/>
                 <Boton contenido="Gestionar Gastos Recurrentes" clase="Btn BtnBlue"/>

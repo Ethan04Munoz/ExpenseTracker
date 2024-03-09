@@ -36,7 +36,7 @@ function Modal(props){
                             <Switch onChangeProp={cambiarIdioma}/> 
                             {translations[language].ingles}
                         </div>
-                        <div>Moneda</div>
+                        <div>{translations[language].moneda}</div>
                         <div className='selectContainer'>
                             <select className='selectConfig' value={currentSymbol} onChange={handleChangeCurrency}>
                                 {Object.entries(monetarySymbols).map(([key, symbol]) => (

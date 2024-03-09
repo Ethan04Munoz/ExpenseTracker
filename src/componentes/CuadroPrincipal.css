@@ -3,7 +3,13 @@
     min-height: 20vh;
     padding: 2rem;
     border: 1px solid #74747485;
-    border-radius: 1rem
+    border-radius: 1rem;
+    transition: 0.2s;
+}
+
+.cuadroPrincipal:hover{
+    background: #383838;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 3px 9px;
 }
 
 .cuadroPrincipal h2{
@@ -13,4 +19,8 @@
 .cuadroPrincipal p{
     text-align: right;
     font-size: 1.5rem;
+}
+
+.urlCuadroPrincipal{
+    color: #ffffff;
 }

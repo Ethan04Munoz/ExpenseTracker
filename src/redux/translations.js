@@ -5,6 +5,9 @@ const translations = {
         idioma: `Idioma`,
         espanol: `Español`,
         ingles: `Ingles`,
+        ingresos: `Ingresos`,
+        gastos: `Gastos`, 
+        moneda: `Moneda`,
     },
     en: {
         tituloPrincipalNavbar: `My expense tracker`,
@@ -12,7 +15,10 @@ const translations = {
         idioma: `Language`,
         espanol: `Spanish`,
         ingles: `English`,
+        ingresos: `Income`,
+        gastos: `Expenses`, 
+        moneda: `Currency`,
     },
 }
-
+    
 export default translations; 
