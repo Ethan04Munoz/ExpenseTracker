@@ -1,0 +1,7 @@
+.cuadroPrincipal{
+    margin-top: 1rem;
+    min-height: 20vh;
+    padding: 2rem;
+    border: 1px solid #74747485;
+    border-radius: 1rem
+}

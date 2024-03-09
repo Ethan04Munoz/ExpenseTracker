@@ -4,7 +4,6 @@ import './Switch.css'
 const Switch = ({ onSelectionChange, onChangeProp, instantSalesParametro }) => {
   const [instantSales, setInstantSales] = useState(instantSalesParametro || false);
 
-  // Si initialValue cambia, actualiza el estado instantSales
   useEffect(() => {
     setInstantSales(instantSalesParametro);
   }, [instantSalesParametro]);
