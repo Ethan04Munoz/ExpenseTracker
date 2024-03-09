@@ -35,7 +35,7 @@ function Modal(props){
                         <div>{translations[language].idioma}</div>
                             <div className='gridInterruptor'>
                                 {translations[language].espanol}
-                                <Switch tipoSlider="sliderColores" onChangeProp={cambiarIdioma}/> 
+                                <Switch onChangeProp={cambiarIdioma}/> 
                                 {translations[language].ingles}
                             </div>
                         <div></div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Switch.css'
 
-const Switch = ({ tipoSlider, onSelectionChange, onChangeProp, instantSalesParametro }) => {
+const Switch = ({ onSelectionChange, onChangeProp, instantSalesParametro }) => {
   const [instantSales, setInstantSales] = useState(instantSalesParametro || false);
 
   // Si initialValue cambia, actualiza el estado instantSales
@@ -19,15 +19,7 @@ const Switch = ({ tipoSlider, onSelectionChange, onChangeProp, instantSalesParam
     onChangeProp && onChangeProp(event);
   };
 
-  const [claseSlider, setClaseSlider] = useState('slider round');
-  useEffect(() => {
-    console.log("Tipo de slider: ", tipoSlider)
-    if(tipoSlider=="bandera"){
-      setClaseSlider("slider sliderBandera round")
-    }else{
-      setClaseSlider("slider sliderColores round")
-    }
-  }, [tipoSlider])
+  const [claseSlider, setClaseSlider] = useState('slider sliderColores round');
 
   return (
     <div className="instant-sales-container">
