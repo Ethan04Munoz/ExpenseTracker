@@ -1,0 +1,48 @@
+.Btn{
+    width: 100%;
+    margin-top: 0.8rem;
+    padding: 0.5rem;
+}
+
+.BtnDark{
+    background: #1e1e1e;
+    color: #e4e4e4;
+    filter: drop-shadow(0 0 0.5rem #646cffaa);
+    border: 1px solid transparent;
+    transition: 0.2s;
+}
+
+.BtnDark:hover{
+    background: #5d60a1;
+}
+
+.BtnBlue{
+    background: #1c76bb;
+    color: #e4e4e4;
+    border: 1px solid transparent;
+    transition: 0.2s;
+}
+
+.BtnBlue:hover{
+    background: #0069b8;
+    filter: drop-shadow(0 0 0.2rem #498fe0bb);
+}
+
+.BtnDis{
+    background: #424242;
+    color: #797979;
+    border: 1px solid transparent;
+}
+/*
+.BtnGreen{
+    background: #1e1e1e;
+    color: #e4e4e4;
+    filter: drop-shadow(0 0 0.2rem #28a745);
+    border: 1px solid transparent;
+    border-radius: 5px 5px 5px 5px;
+    transition: 0.2s;
+}
+
+.BtnGreen:hover{
+    background: #487e54;
+}*/
