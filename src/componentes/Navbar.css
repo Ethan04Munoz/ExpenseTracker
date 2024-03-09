@@ -1,0 +1,50 @@
+.gridNavBar{
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 25% 70% 5%;
+    justify-content: center;
+    align-items: center;
+    background: #2b2b2b;
+}
+
+.gridNavBar img{
+    height: 100%; 
+    width: 100%;
+    align-self: center;
+    transition: all 0.2s;
+}
+
+.gridNavBar img:hover{
+    background: #353535;
+}
+
+Link{
+    height: 100%;
+}
+
+.titleNavbar{
+    height: 100%;
+    display: grid;
+    align-items: center;
+    transition: all 0.3s;
+    color: #f3f3f3;
+}
+
+.titleNavbar:hover{
+    background: #353535;
+    text-shadow: 0px 3px 5px #585858;
+}
+
+.titleNavbar h1{
+    font-size: 7vh;
+    font-weight: 650;
+    text-align: center;
+
+}
+
+@media (max-width: 968px) {
+    .gridNavBar{
+        display: grid;
+        grid-template-columns: 50% 25% 25%;
+    }
+}
