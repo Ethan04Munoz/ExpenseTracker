@@ -1,5 +1,5 @@
 .gridNavBar{
-    width: 100vw;
+    width: 99vw;
     display: grid;
     grid-template-columns: 25% 68% 7%;
     justify-content: center;
@@ -35,7 +35,7 @@ Link{
 }
 
 .titleNavbar h1{
-    font-size: 7vh;
+    font-size: 5vh;
     font-weight: 650;
     text-align: center;
 
