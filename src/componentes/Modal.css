@@ -152,6 +152,16 @@ Color morado cool:
     grid-template-columns: 20% 60% 20%;
 }
 
+.selectContainer{
+    width: 100%;
+}
+
+.selectConfig{
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    width: 100%;
+}
+
 @media (max-width: 968px) {
     .modal-content, .modalAdv {
         background-color: #1e252e;

@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux'; 
 import './Switch.css'
 
-const Switch = ({ onSelectionChange, onChangeProp, instantSalesParametro }) => {
-  const [instantSales, setInstantSales] = useState(instantSalesParametro || false);
+const Switch = ({ onSelectionChange, onChangeProp }) => {
+  const idiomaParametro = useSelector(state => state.language.language);
+  const [activadoDesactivado, setActivadoDesactivado] = useState(false);
 
   useEffect(() => {
-    setInstantSales(instantSalesParametro);
-  }, [instantSalesParametro]);
+    console.log("Instant sales: ", idiomaParametro)
+    if(idiomaParametro=="es")
+      setActivadoDesactivado(false);
+    if(idiomaParametro=="en")
+      setActivadoDesactivado(true);
+  }, [idiomaParametro]);
   
   const handleOptionChange = () => {
-    setInstantSales(!instantSales);
-    onSelectionChange && onSelectionChange(!instantSales ? 'si' : 'no');
+    setActivadoDesactivado(!activadoDesactivado);
+    onSelectionChange && onSelectionChange(!activadoDesactivado ? 'es' : 'en');
   };
 
   const handleOnChange = (event) => {
@@ -25,7 +31,7 @@ const Switch = ({ onSelectionChange, onChangeProp, instantSalesParametro }) => {
       <label className="switch">
         <input
           type="checkbox"
-          checked={instantSales}
+          checked={activadoDesactivado}
           onChange={handleOnChange}
         />
         <span className={claseSlider}></span>
