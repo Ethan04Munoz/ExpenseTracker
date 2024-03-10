@@ -18,18 +18,18 @@
         function guardarCategoriaIngresos(e){
             setNuevaCategoria(e.target.value);
         }
-        function guardarCategoriaIngresosLS(){
+        function guardarCategoriaLS(){
             let categorias = obtenerCategoriasLS();
             if(categorias == null || categorias == undefined){
                 categorias = [nuevaCategoria];
             }else{
-                categorias = JSON.parse(categorias);
                 categorias.push(nuevaCategoria);
             }
             categorias = JSON.stringify(categorias);
             localStorage.setItem('categoriasIngresos', categorias)
             toast.success('¡La categoría fue añadida con éxito!');
             setNuevaCategoria('');
+            obtenerCategoriasLS();
         }
 
         useEffect(() => {
@@ -47,7 +47,7 @@
                     <h1>Añadir una categoria a mis Ingresos</h1>
                     <p>Nombre de la categoria:</p> 
                     <input className="input" type="text" name="" id="" placeholder="Ejemplo: Rendimientos portafolio" value={nuevaCategoria} onChange={guardarCategoriaIngresos}/>
-                    <Boton contenido="Añadir" clase="Btn BtnBlue" onClick={guardarCategoriaIngresosLS}/>
+                    <Boton contenido="Añadir" clase="Btn BtnBlue" onClick={guardarCategoriaLS}/>
                 </form>
 
                 <div className="formulario">

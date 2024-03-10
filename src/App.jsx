@@ -4,6 +4,7 @@ import './App.css';
 import Main from "./Paginas/Main";
 import Ingresos from "./Paginas/Ingresos";
 import AddCategoriaIngresos from "./Paginas/AddCategoriaIngresos";
+import AddCategoriaGastos from "./Paginas/AddCategoriaGastos";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Main/>}/>
         <Route path="/ingresos" element={<Ingresos/>}/>
         <Route path="/nuevacategoriaingresos" element={<AddCategoriaIngresos/>}/>
+        <Route path="/nuevacategoriagastos" element={<AddCategoriaGastos/>}/>
       </Routes>
     </BrowserRouter>
   )
