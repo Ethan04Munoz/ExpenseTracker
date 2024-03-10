@@ -5,6 +5,7 @@ import Main from "./Paginas/Main";
 import Ingresos from "./Paginas/Ingresos";
 import AddCategoriaIngresos from "./Paginas/AddCategoriaIngresos";
 import AddCategoriaGastos from "./Paginas/AddCategoriaGastos";
+import Gastos from "./Paginas/Gastos";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main/>}/>
         <Route path="/ingresos" element={<Ingresos/>}/>
+        <Route path="/gastos" element={<Gastos/>}/>
         <Route path="/nuevacategoriaingresos" element={<AddCategoriaIngresos/>}/>
         <Route path="/nuevacategoriagastos" element={<AddCategoriaGastos/>}/>
       </Routes>
