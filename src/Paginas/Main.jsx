@@ -14,7 +14,7 @@ function Main(){
         <div>
             <Navbar enlaceHeader={"/"}/>
             <div className="contenerBotonesMainPage">
-                <CuadroPrincipal titulo={translations[language].ingresos} cantidad={500}/>
+                <CuadroPrincipal titulo={translations[language].ingresos} cantidad={500} url={"ingresos"}/>
                 <CuadroPrincipal titulo={translations[language].gastos} cantidad={200}/>
                 <Boton contenido="Ingresos vs Gastos este mes" clase="Btn BtnBlue"/>
                 <Boton contenido="Ingresos vs Gastos por año" clase="Btn BtnBlue"/>
