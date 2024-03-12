@@ -1,0 +1,32 @@
+.containerGastos .claseImpar{
+    background: #5a1a1a; /* Un rojo oscuro, casi borgoña, que se ve bien en fondos oscuros */
+    color: #f2e6e6; /* Un color casi blanco con un toque de rojo para el texto, asegurando buena legibilidad */
+    padding: 1rem;
+}
+
+.containerGastos .clasePar{
+    background: #7a1f2e; /* Un tono de rojo más vivo pero aún oscuro, para diferenciar entre filas impares y pares */
+    color: #f2e6e6; /* Manteniendo el mismo color de texto para consistencia */
+    padding: 1rem;
+}
+
+.containerGastos {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    margin-left: 30vw;
+    box-sizing: border-box;
+    font-size: 3vh;
+    margin-bottom: 5vh;
+    border-radius: 2rem;
+}
+  
+.fila-titulos, .clasePar, .claseImpar {
+    display: flex;
+    justify-content: space-between;
+}
+  
+.fila-titulos div, .clasePar div, .claseImpar div {
+    flex: 1;
+    text-align: center;
+}

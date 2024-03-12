@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../componentes/Navbar";
 import '../index.css';
+import './Gastos.css';
 import { Link } from "react-router-dom";
 import Boton from "../componentes/Boton";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from 'react-redux';
+import { obtenerFechaActualFormatoDDMMYYYY } from "../FuncionesGlobales.js";
 
 function Gastos(){
     const [categoriasLS, setCategoriasLS] = useState([]);
     const [gastos, setGastos] = useState([]);
     const [gasto, setGasto] = useState('');
     const [cantidad, setCantidad] = useState(0);
+
+    const currentSymbol = useSelector((state) => state.currency.currencySymbol);
+
     function obtenerCategoriasLS(){
         const categoriasLSprov = localStorage.getItem('categoriasGastos');
         const categorias = categoriasLSprov ? JSON.parse(categoriasLSprov) : [];
@@ -37,15 +43,16 @@ function Gastos(){
     function guardarGastoLS(){
         let gastosSubir = obtenerGastosLS();
         if(gastosSubir == null || gastosSubir == undefined || gastosSubir.length == 0){
-            gastosSubir = [{gasto: gasto, cantidad: cantidad}];
+            gastosSubir = [{gasto: gasto, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY()}];
         }else{
-            gastosSubir.push({gasto: gasto, cantidad: cantidad});
+            gastosSubir.push({gasto: gasto, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY()});
         }
         console.log("Gastos subir: ", gastosSubir)
         gastosSubir = JSON.stringify(gastosSubir);
         localStorage.setItem('gastos', gastosSubir)
         setGasto('');
         toast.success('¡El gasto fue añadido con éxito!');
+        obtenerGastosLS();
     }
 
     function guardarGastosRecurrentesLS(){
@@ -54,6 +61,7 @@ function Gastos(){
 
     useEffect(() => {
         obtenerCategoriasLS();
+        obtenerGastosLS();
     }, [])
 
     return (
@@ -80,6 +88,22 @@ function Gastos(){
                 <label htmlFor="checkIngresoRecurrente">Es un gasto recurrente</label>
                 <Boton contenido="Añadir" clase="Btn BtnBlue" onClick={guardarGastoLS}/>
             </form>
+
+            <div className="containerGastos">
+                <div className="fila-titulos claseImpar">
+                    <div>Gasto</div>
+                    <div>Cantidad</div>
+                    <div>Fecha</div>
+                </div>
+                {gastos.map((gastoElement, index) => (
+                    <div key={index} className={index % 2 === 0 ? 'clasePar' : 'claseImpar'}>
+                    <div>{gastoElement.gasto}</div>
+                    <div>{currentSymbol}{gastoElement.cantidad}</div>
+                    <div>{gastoElement.fecha}</div>
+                    </div>
+                ))}
+            </div>
+
         </div>
     )
 }
