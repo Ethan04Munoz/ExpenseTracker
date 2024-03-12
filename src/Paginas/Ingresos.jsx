@@ -5,12 +5,18 @@ import { Link } from "react-router-dom";
 import Boton from "../componentes/Boton";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './Ingresos.css';
+import { useSelector } from 'react-redux';
+import { obtenerFechaActualFormatoDDMMYYYY } from "../FuncionesGlobales.js";
 
 function Ingresos(){
     const [categoriasLS, setCategoriasLS] = useState([]);
     const [ingresos, setIngresos] = useState([]);
     const [ingreso, setIngreso] = useState('');
     const [cantidad, setCantidad] = useState(0);
+
+    const currentSymbol = useSelector((state) => state.currency.currencySymbol);
+
     function obtenerCategoriasLS(){
         const categoriasLSprov = localStorage.getItem('categoriasIngresos');
         const categorias = categoriasLSprov ? JSON.parse(categoriasLSprov) : [];
@@ -37,15 +43,16 @@ function Ingresos(){
     function guardarIngresosLS(){
         let gastosSubir = obtenerIngresosLS();
         if(gastosSubir == null || gastosSubir == undefined || gastosSubir.length == 0){
-            gastosSubir = [{ingreso: ingreso, cantidad: cantidad}];
+            gastosSubir = [{ingreso: ingreso, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY()}];
         }else{
-            gastosSubir.push({ingreso: ingreso, cantidad: cantidad});
+            gastosSubir.push({ingreso: ingreso, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY()});
         }
         console.log("Gastos subir: ", gastosSubir)
         gastosSubir = JSON.stringify(gastosSubir);
         localStorage.setItem('ingresos', gastosSubir)
         setIngreso('');
         toast.success('¡El ingreso fue añadido con éxito!');
+        obtenerIngresosLS();
     }
 
     function guardarGastosRecurrentesLS(){
@@ -54,6 +61,7 @@ function Ingresos(){
 
     useEffect(() => {
         obtenerCategoriasLS();
+        obtenerIngresosLS();
     }, [])
 
     return (
@@ -80,6 +88,21 @@ function Ingresos(){
                 <label htmlFor="checkIngresoRecurrente">Es un gasto recurrente</label>
                 <Boton contenido="Añadir" clase="Btn BtnBlue" onClick={guardarIngresosLS}/>
             </form>
+
+            <div className="containerIngresos">
+                <div className="fila-titulos claseImpar">
+                    <div>Ingreso</div>
+                    <div>Cantidad</div>
+                    <div>Fecha</div>
+                </div>
+                {ingresos.map((ingresoElement, index) => (
+                    <div key={index} className={index % 2 === 0 ? 'clasePar' : 'claseImpar'}>
+                    <div>{ingresoElement.ingreso}</div>
+                    <div>{currentSymbol}{ingresoElement.cantidad}</div>
+                    <div>{ingresoElement.fecha}</div>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
