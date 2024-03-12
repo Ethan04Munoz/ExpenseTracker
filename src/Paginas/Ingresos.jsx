@@ -26,7 +26,6 @@ function Ingresos(){
 
     function obtenerIngresosLS(){
         let gastosProv = localStorage.getItem('ingresos');
-        console.log("Gastos desde localStorage: ", gastosProv)
         gastosProv = gastosProv ? JSON.parse(gastosProv) : [];
         setIngresos(gastosProv);
         return gastosProv;
