@@ -6,7 +6,7 @@ import CuadroPrincipal from "../componentes/CuadroPrincipal";
 import { useSelector, useDispatch } from 'react-redux';
 import translations from '../redux/translations.js';
 import { Link } from "react-router-dom";
-import { obtenerMontoTotalIngresosMesEspecificoLS } from "../FuncionesGlobalesLS.js";
+import { obtenerMontoTotalGastosMesEspecificoLS, obtenerMontoTotalIngresosMesEspecificoLS } from "../FuncionesGlobalesLS.js";
 import { obtenerMesActual } from "../FuncionesGlobales.js";
 
 function Main(){
@@ -14,6 +14,7 @@ function Main(){
 
     const [mesActual, setMesActual] = useState(0);
     const [montoTotalIngresos, setMontoTotalIngresos] = useState(0);
+    const [montoTotalGastos, setMontoTotalGastos] = useState(0);
 
     useEffect(() => {
         setMesActual(obtenerMesActual());
@@ -21,6 +22,7 @@ function Main(){
 
     useEffect(() => {
         setMontoTotalIngresos(obtenerMontoTotalIngresosMesEspecificoLS(mesActual));
+        setMontoTotalGastos(obtenerMontoTotalGastosMesEspecificoLS(mesActual))
     }, [mesActual])
 
     return (
@@ -28,7 +30,7 @@ function Main(){
             <Navbar enlaceHeader={"/"}/>
             <div className="contenerBotonesMainPage">
                 <CuadroPrincipal titulo={translations[language].ingresos} cantidad={montoTotalIngresos} url={"ingresos"}/>
-                <CuadroPrincipal titulo={translations[language].gastos} cantidad={200} url={"gastos"}/>
+                <CuadroPrincipal titulo={translations[language].gastos} cantidad={montoTotalGastos} url={"gastos"}/>
                 <Boton contenido="Ingresos vs Gastos este mes" clase="Btn BtnBlue"/>
                 <Boton contenido="Ingresos vs Gastos por año" clase="Btn BtnBlue"/>
                 <Boton contenido="Gestionar Gastos Recurrentes" clase="Btn BtnBlue"/>
