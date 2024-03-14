@@ -88,7 +88,12 @@ function Gastos(){
         }));
 
         setGastoPorCategoria(resultado);
-    }, [ gastos ])
+    }, [ gastos ]);
+
+    
+    useEffect(() => {
+        setCategoria(categoriasLS[0]);
+    }, [categoriasLS]);
 
     return (
         <div className="ingresosPage">
@@ -101,7 +106,7 @@ function Gastos(){
                 <p>Cantidad:</p>
                 <input className="input" type="text" name="" id="" onChange={guardarCantidad} value={cantidad} placeholder="7000"/>
                 <p>Categoría de gasto:</p>
-                <select className='selectConfig' onChange={guardarCategoria}>
+                <select className='selectConfig' value={categoria} onChange={guardarCategoria}>
                 {categoriasLS.map((categoria, index) => (
                     <option value={categoria} key={index}>{categoria}</option>
                 ))}

@@ -90,6 +90,10 @@ function Ingresos(){
         setIngresosPorCategoria(resultado);
     }, [ ingresos ]);
 
+    useEffect(() => {
+        setCategoria(categoriasLS[0]);
+    }, [categoriasLS]);
+
     return (
         <div className="ingresosPage">
             <Navbar enlaceHeader={"/"}/>
@@ -101,7 +105,7 @@ function Ingresos(){
                 <p>Cantidad:</p>
                 <input className="input" type="text" name="" id="" onChange={guardarCantidad} value={cantidad} placeholder="7000"/>
                 <p>Categoría de ingreso:</p>
-                <select className='selectConfig' onChange={guardarCategoria}>
+                <select value={categoria} className='selectConfig' onChange={guardarCategoria}>
                 {categoriasLS.map((categoria, index) => (
                     <option value={categoria} key={index}>{categoria}</option>
                 ))}
