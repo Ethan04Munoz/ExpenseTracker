@@ -8,12 +8,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import './Ingresos.css';
 import { useSelector } from 'react-redux';
 import { obtenerFechaActualFormatoDDMMYYYY } from "../FuncionesGlobales.js";
+import PieChart from "../componentes/PieChart.jsx";
 
 function Ingresos(){
     const [categoriasLS, setCategoriasLS] = useState([]);
     const [ingresos, setIngresos] = useState([]);
     const [ingreso, setIngreso] = useState('');
     const [cantidad, setCantidad] = useState(0);
+    const [categoria, setCategoria] = useState('');
+    const [ingresosPorCategoria, setIngresosPorCategoria] = useState([])
 
     const currentSymbol = useSelector((state) => state.currency.currencySymbol);
 
@@ -39,12 +42,17 @@ function Ingresos(){
         setCantidad(e.target.value);
     }
 
+    function guardarCategoria(e){
+        setCategoria(e.target.value)
+    }
+
+
     function guardarIngresosLS(){
         let gastosSubir = obtenerIngresosLS();
         if(gastosSubir == null || gastosSubir == undefined || gastosSubir.length == 0){
-            gastosSubir = [{ingreso: ingreso, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY()}];
+            gastosSubir = [{ingreso: ingreso, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY(), categoria: categoria}];
         }else{
-            gastosSubir.push({ingreso: ingreso, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY()});
+            gastosSubir.push({ingreso: ingreso, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY(), categoria: categoria});
         }
         console.log("Gastos subir: ", gastosSubir)
         gastosSubir = JSON.stringify(gastosSubir);
@@ -61,7 +69,26 @@ function Ingresos(){
     useEffect(() => {
         obtenerCategoriasLS();
         obtenerIngresosLS();
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        const totalPorCategoria = {};
+
+        ingresos.forEach(ingreso => {
+          if (totalPorCategoria[ingreso.categoria]) {
+            totalPorCategoria[ingreso.categoria] += parseFloat(ingreso.cantidad);
+          } else {
+            totalPorCategoria[ingreso.categoria] = parseFloat(ingreso.cantidad);
+          }
+        });
+        
+        const resultado = Object.keys(totalPorCategoria).map(categoria => ({
+          categoria: categoria,
+          cantidad: totalPorCategoria[categoria]
+        }));
+
+        setIngresosPorCategoria(resultado);
+    }, [ ingresos ]);
 
     return (
         <div className="ingresosPage">
@@ -74,7 +101,7 @@ function Ingresos(){
                 <p>Cantidad:</p>
                 <input className="input" type="text" name="" id="" onChange={guardarCantidad} value={cantidad} placeholder="7000"/>
                 <p>Categoría de ingreso:</p>
-                <select className='selectConfig' >
+                <select className='selectConfig' onChange={guardarCategoria}>
                 {categoriasLS.map((categoria, index) => (
                     <option value={categoria} key={index}>{categoria}</option>
                 ))}
@@ -102,6 +129,11 @@ function Ingresos(){
                     </div>
                 ))}
             </div>
+            {ingresosPorCategoria.length > 0 && (
+                <div className="formulario">
+                    <PieChart data={ingresosPorCategoria}/>
+                </div>
+            )}
         </div>
     )
 }

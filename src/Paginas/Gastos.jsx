@@ -8,12 +8,15 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import { obtenerFechaActualFormatoDDMMYYYY } from "../FuncionesGlobales.js";
+import PieChart from "../componentes/PieChart.jsx";
 
 function Gastos(){
     const [categoriasLS, setCategoriasLS] = useState([]);
     const [gastos, setGastos] = useState([]);
     const [gasto, setGasto] = useState('');
     const [cantidad, setCantidad] = useState(0);
+    const [categoria, setCategoria] = useState('');
+    const [gastoPorCategoria, setGastoPorCategoria] = useState([])
 
     const currentSymbol = useSelector((state) => state.currency.currencySymbol);
 
@@ -40,12 +43,16 @@ function Gastos(){
         setCantidad(e.target.value);
     }
 
+    function guardarCategoria(e){
+        setCategoria(e.target.value)
+    }
+
     function guardarGastoLS(){
         let gastosSubir = obtenerGastosLS();
         if(gastosSubir == null || gastosSubir == undefined || gastosSubir.length == 0){
-            gastosSubir = [{gasto: gasto, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY()}];
+            gastosSubir = [{gasto: gasto, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY(), categoria: categoria}];
         }else{
-            gastosSubir.push({gasto: gasto, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY()});
+            gastosSubir.push({gasto: gasto, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY(), categoria: categoria});
         }
         console.log("Gastos subir: ", gastosSubir)
         gastosSubir = JSON.stringify(gastosSubir);
@@ -64,6 +71,25 @@ function Gastos(){
         obtenerGastosLS();
     }, [])
 
+    useEffect(() => {
+        const totalPorCategoria = {};
+
+        gastos.forEach(gasto => {
+          if (totalPorCategoria[gasto.categoria]) {
+            totalPorCategoria[gasto.categoria] += parseFloat(gasto.cantidad);
+          } else {
+            totalPorCategoria[gasto.categoria] = parseFloat(gasto.cantidad);
+          }
+        });
+        
+        const resultado = Object.keys(totalPorCategoria).map(categoria => ({
+          categoria: categoria,
+          cantidad: totalPorCategoria[categoria]
+        }));
+
+        setGastoPorCategoria(resultado);
+    }, [ gastos ])
+
     return (
         <div className="ingresosPage">
             <Navbar enlaceHeader={"/"}/>
@@ -75,7 +101,7 @@ function Gastos(){
                 <p>Cantidad:</p>
                 <input className="input" type="text" name="" id="" onChange={guardarCantidad} value={cantidad} placeholder="7000"/>
                 <p>Categoría de gasto:</p>
-                <select className='selectConfig' >
+                <select className='selectConfig' onChange={guardarCategoria}>
                 {categoriasLS.map((categoria, index) => (
                     <option value={categoria} key={index}>{categoria}</option>
                 ))}
@@ -103,7 +129,11 @@ function Gastos(){
                     </div>
                 ))}
             </div>
-
+            {gastoPorCategoria.length > 0 && (
+                <div className="formulario">
+                    <PieChart data={gastoPorCategoria}/>
+                </div>
+            )}
         </div>
     )
 }
