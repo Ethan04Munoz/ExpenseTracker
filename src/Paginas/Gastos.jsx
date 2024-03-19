@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import { obtenerFechaActualFormatoDDMMYYYY } from "../FuncionesGlobales.js";
 import PieChart from "../componentes/PieChart.jsx";
+import { obtenerCategoriasGastosLS, obtenerGastosRecurrentesLS, obtenerTodosGastosLS } from "../FuncionesGlobalesLS.js";
 
 function Gastos(){
     const [categoriasLS, setCategoriasLS] = useState([]);
@@ -17,20 +18,16 @@ function Gastos(){
     const [cantidad, setCantidad] = useState(0);
     const [categoria, setCategoria] = useState('');
     const [gastoPorCategoria, setGastoPorCategoria] = useState([])
+    const [gastoRecurrenteBool, setGastoRecurrenteBool] = useState(false);
 
     const currentSymbol = useSelector((state) => state.currency.currencySymbol);
 
     function obtenerCategoriasLS(){
-        const categoriasLSprov = localStorage.getItem('categoriasGastos');
-        const categorias = categoriasLSprov ? JSON.parse(categoriasLSprov) : [];
-        setCategoriasLS(categorias);
-        return categorias;
+        setCategoriasLS(obtenerCategoriasGastosLS());
     }
 
     function obtenerGastosLS(){
-        let gastosProv = localStorage.getItem('gastos');
-        console.log("Gastos desde localStorage: ", gastosProv)
-        gastosProv = gastosProv ? JSON.parse(gastosProv) : [];
+        const gastosProv = obtenerTodosGastosLS();
         setGastos(gastosProv);
         return gastosProv;
     }
@@ -47,16 +44,46 @@ function Gastos(){
         setCategoria(e.target.value)
     }
 
+    function guardarGastoRecurrenteBool(e) {
+        setGastoRecurrenteBool(e.target.checked);
+    };
+
+    useEffect(() => {
+
+    }, [])
+
     function guardarGastoLS(){
         let gastosSubir = obtenerGastosLS();
-        if(gastosSubir == null || gastosSubir == undefined || gastosSubir.length == 0){
-            gastosSubir = [{gasto: gasto, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY(), categoria: categoria}];
-        }else{
-            gastosSubir.push({gasto: gasto, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY(), categoria: categoria});
+        let gastosRenovables = obtenerGastosRecurrentesLS();
+        let objetoGasto = {
+            gasto: gasto, 
+            cantidad: cantidad, 
+            fecha: obtenerFechaActualFormatoDDMMYYYY(), 
+            categoria: categoria
         }
-        console.log("Gastos subir: ", gastosSubir)
+
+        //guardar en gastos
+        if(gastosSubir == null || gastosSubir == undefined || gastosSubir.length == 0){
+            gastosSubir = [objetoGasto];
+        }else{
+            gastosSubir.push(objetoGasto);
+        }
         gastosSubir = JSON.stringify(gastosSubir);
-        localStorage.setItem('gastos', gastosSubir)
+        localStorage.setItem('gastos', gastosSubir);
+
+        //guardar en gastosRenovables
+        if(gastoRecurrenteBool==true){
+            delete objetoGasto.fecha;
+            if(gastosRenovables == null || gastosRenovables == undefined || gastosRenovables.length == 0){
+                gastosRenovables = [objetoGasto];
+            }else{
+                gastosRenovables.push(objetoGasto);
+            }
+        }
+        gastosRenovables = JSON.stringify(gastosRenovables);
+        localStorage.setItem('gastosRecurrentes', gastosRenovables);
+
+        //Reiniciar valores formulario
         setGasto('');
         toast.success('¡El gasto fue añadido con éxito!');
         obtenerGastosLS();
@@ -115,7 +142,7 @@ function Gastos(){
                     <div></div>
                     <Link className="linkMenor" to={"/nuevacategoriagastos"}>Añadir categoría</Link>
                 </div>
-                <input className="checkBoxRecurrente" type="checkbox" name="checkIngresoRecurrente" id="checkIngresoRecurrente" />
+                <input className="checkBoxRecurrente" type="checkbox" name="checkIngresoRecurrente" id="checkIngresoRecurrente" value={gastoRecurrenteBool} onChange={guardarGastoRecurrenteBool}/>
                 <label htmlFor="checkIngresoRecurrente">Es un gasto recurrente</label>
                 <Boton contenido="Añadir" clase="Btn BtnBlue" onClick={guardarGastoLS}/>
             </form>
