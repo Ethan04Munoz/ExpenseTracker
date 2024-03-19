@@ -50,3 +50,21 @@ export function obtenerMontoTotalGastosMesEspecificoLS(mes){
     }, 0); // El 0 inicializa el valor del acumulador
     return sumaTotal;
 }
+
+export function obtenerGastosRecurrentesLS(){
+    let gastosRecurrentesLS = localStorage.getItem('gastosRecurrentes');
+    let gastosRetornables = gastosRecurrentesLS ? JSON.parse(gastosRecurrentesLS) : [];
+    return gastosRetornables;
+}
+
+export function obtenerCategoriasGastosLS(){
+    const categoriasLSprov = localStorage.getItem('categoriasGastos');
+    const categorias = categoriasLSprov ? JSON.parse(categoriasLSprov) : [];
+    return categorias;
+}
+
+export function obtenerTodosGastosLS(){
+    let gastosProv = localStorage.getItem('gastos');
+    gastosProv = gastosProv ? JSON.parse(gastosProv) : [];
+    return gastosProv;
+}
