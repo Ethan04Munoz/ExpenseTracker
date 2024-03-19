@@ -16,5 +16,5 @@ export function obtenerFechaActualFormatoDDMMYYYY() {
 export function obtenerMesActual() {
     const fecha = new Date();
     const mesActual = fecha.getMonth() + 1; // +1 para ajustar a formato común
-    return mesActual;
+    return parseInt(mesActual);
 }
