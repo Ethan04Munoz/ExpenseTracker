@@ -89,10 +89,6 @@ function Gastos(){
         obtenerGastosLS();
     }
 
-    function guardarGastosRecurrentesLS(){
-
-    }
-
     useEffect(() => {
         obtenerCategoriasLS();
         obtenerGastosLS();

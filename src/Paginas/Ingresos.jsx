@@ -9,6 +9,7 @@ import './Ingresos.css';
 import { useSelector } from 'react-redux';
 import { obtenerFechaActualFormatoDDMMYYYY } from "../FuncionesGlobales.js";
 import PieChart from "../componentes/PieChart.jsx";
+import { obtenerCategoriaIngresosLS, obtenerIngresosRecurrentesLS, obtenerTodosIngresosLS } from "../FuncionesGlobalesLS.js";
 
 function Ingresos(){
     const [categoriasLS, setCategoriasLS] = useState([]);
@@ -17,21 +18,18 @@ function Ingresos(){
     const [cantidad, setCantidad] = useState(0);
     const [categoria, setCategoria] = useState('');
     const [ingresosPorCategoria, setIngresosPorCategoria] = useState([])
-
+    const [ingresoRecurrenteBool, setIngresoRecurrenteBool] = useState(false);
+ 
     const currentSymbol = useSelector((state) => state.currency.currencySymbol);
 
     function obtenerCategoriasLS(){
-        const categoriasLSprov = localStorage.getItem('categoriasIngresos');
-        const categorias = categoriasLSprov ? JSON.parse(categoriasLSprov) : [];
-        setCategoriasLS(categorias);
-        return categorias;
+        setCategoriasLS(obtenerCategoriaIngresosLS());
     }
 
     function obtenerIngresosLS(){
-        let gastosProv = localStorage.getItem('ingresos');
-        gastosProv = gastosProv ? JSON.parse(gastosProv) : [];
-        setIngresos(gastosProv);
-        return gastosProv;
+        const ingresosProv = obtenerTodosIngresosLS();
+        setIngresos(ingresosProv);
+        return ingresosProv;
     }
 
     function guardarIngreso(e){
@@ -46,24 +44,45 @@ function Ingresos(){
         setCategoria(e.target.value)
     }
 
+    function guardarIngresoRecurrenteBool(e){
+        setIngresoRecurrenteBool(e.target.checked);
+    }
 
     function guardarIngresosLS(){
         let gastosSubir = obtenerIngresosLS();
+        let ingresosRenovables = obtenerIngresosRecurrentesLS();
+        let objetoGasto = {
+            ingreso: ingreso,
+            cantidad: cantidad,
+            fecha: obtenerFechaActualFormatoDDMMYYYY(), 
+            categoria: categoria
+        }
+
+        //guardar ingresos
         if(gastosSubir == null || gastosSubir == undefined || gastosSubir.length == 0){
             gastosSubir = [{ingreso: ingreso, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY(), categoria: categoria}];
         }else{
             gastosSubir.push({ingreso: ingreso, cantidad: cantidad, fecha: obtenerFechaActualFormatoDDMMYYYY(), categoria: categoria});
         }
-        console.log("Gastos subir: ", gastosSubir)
         gastosSubir = JSON.stringify(gastosSubir);
-        localStorage.setItem('ingresos', gastosSubir)
+        localStorage.setItem('ingresos', gastosSubir);
+
+        //guardar en ingresosRenovables
+        if(ingresoRecurrenteBool==true){
+            delete objetoGasto.fecha;
+            if(ingresosRenovables == null || ingresosRenovables == undefined || ingresosRenovables.length == 0){
+                ingresosRenovables = [objetoGasto];
+            } else {
+                ingresosRenovables.push(objetoGasto);
+            }
+        }
+        ingresosRenovables = JSON.stringify(ingresosRenovables);
+        localStorage.setItem('ingresosRecurrentes', ingresosRenovables);
+
+        //Reiniciar valores formulario
         setIngreso('');
         toast.success('¡El ingreso fue añadido con éxito!');
         obtenerIngresosLS();
-    }
-
-    function guardarGastosRecurrentesLS(){
-
     }
 
     useEffect(() => {
@@ -114,7 +133,7 @@ function Ingresos(){
                     <div></div>
                     <Link className="linkMenor" to={"/nuevacategoriaingresos"}>Añadir categoría</Link>
                 </div>
-                <input className="checkBoxRecurrente" type="checkbox" name="checkIngresoRecurrente" id="checkIngresoRecurrente" />
+                <input className="checkBoxRecurrente" type="checkbox" name="checkIngresoRecurrente" id="checkIngresoRecurrente" value={ingresoRecurrenteBool} onChange={guardarIngresoRecurrenteBool}/>
                 <label htmlFor="checkIngresoRecurrente">Es un gasto recurrente</label>
                 <Boton contenido="Añadir" clase="Btn BtnBlue" onClick={guardarIngresosLS}/>
             </form>

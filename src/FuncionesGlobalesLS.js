@@ -68,3 +68,21 @@ export function obtenerTodosGastosLS(){
     gastosProv = gastosProv ? JSON.parse(gastosProv) : [];
     return gastosProv;
 }
+
+export function obtenerIngresosRecurrentesLS(){
+    let ingresosRecurrentesLS = localStorage.getItem('ingresosRecurrentes');
+    let ingresosRetornables = ingresosRecurrentesLS ? JSON.parse(ingresosRecurrentesLS) : [];
+    return ingresosRetornables;
+}
+
+export function obtenerCategoriaIngresosLS(){
+    const categoriasLSprov = localStorage.getItem('categoriasIngresos');
+    const categorias = categoriasLSprov ? JSON.parse(categoriasLSprov) : [];
+    return categorias;    
+}
+
+export function obtenerTodosIngresosLS(){
+    let gastosProv = localStorage.getItem('ingresos');
+    gastosProv = gastosProv ? JSON.parse(gastosProv) : [];
+    return gastosProv;
+}
