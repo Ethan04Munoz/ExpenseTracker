@@ -6,6 +6,8 @@ import Ingresos from "./Paginas/Ingresos";
 import AddCategoriaIngresos from "./Paginas/AddCategoriaIngresos";
 import AddCategoriaGastos from "./Paginas/AddCategoriaGastos";
 import Gastos from "./Paginas/Gastos";
+import IngresosEsteAño from "./Paginas/IngresosAño";
+import GastosEsteAño from "./Paginas/GastosAño";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/gastos" element={<Gastos/>}/>
         <Route path="/nuevacategoriaingresos" element={<AddCategoriaIngresos/>}/>
         <Route path="/nuevacategoriagastos" element={<AddCategoriaGastos/>}/>
+        <Route path="/misingresosesteaño" element={<IngresosEsteAño/>}/>
+        <Route path="/misgastosesteaño" element={<GastosEsteAño/>}/>
       </Routes>
     </BrowserRouter>
   )
