@@ -1,6 +1,7 @@
 import React from 'react';
 import { Bar  } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
+import { generarColorPastelAleatorio } from '../FuncionesGlobales';
 
 const processData = ({data}) => {
     const months = [
@@ -32,23 +33,6 @@ const processData = ({data}) => {
       datasets,
     };
 };
-  
-function generarColorPastelAleatorio() {
-    // Generar cada componente de color aleatoriamente,
-    // pero manteniéndolos relativamente altos para un efecto pastel.
-    const base = 127; // Base para asegurar que los colores son claros
-    const mezcla = 128; // Rango de mezcla para generar el pastel
-    
-    // Generar cada componente de color
-    const rojo = Math.floor(Math.random() * mezcla + base);
-    const verde = Math.floor(Math.random() * mezcla + base);
-    const azul = Math.floor(Math.random() * mezcla + base);
-    
-    // Convertir los componentes en una cadena hexadecimal
-    const colorHex = `#${rojo.toString(16).padStart(2, '0')}${verde.toString(16).padStart(2, '0')}${azul.toString(16).padStart(2, '0')}`;
-    console.log("Color barra: ", colorHex)
-    return colorHex;
-}
 
 function Bar12Chart(data){
     const chartData = processData(data);
