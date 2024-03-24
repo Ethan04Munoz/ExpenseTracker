@@ -8,6 +8,9 @@ import AddCategoriaGastos from "./Paginas/AddCategoriaGastos";
 import Gastos from "./Paginas/Gastos";
 import IngresosEsteAño from "./Paginas/IngresosAño";
 import GastosEsteAño from "./Paginas/GastosAño";
+import IvGMensual from "./Paginas/IvGMensual";
+import MyAreaChart from "./Prueba";
+import IvGAnual from "./Paginas/IvGAnual";
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
         <Route path="/nuevacategoriagastos" element={<AddCategoriaGastos/>}/>
         <Route path="/misingresosesteaño" element={<IngresosEsteAño/>}/>
         <Route path="/misgastosesteaño" element={<GastosEsteAño/>}/>
+        <Route path="/ingresosvsgastos" element={<IvGMensual/>}/>
+        <Route path="/ingresosvsgastos/anual" element={<IvGAnual/>}/>
+        <Route path="/prueba" element={<MyAreaChart/>}/>
       </Routes>
     </BrowserRouter>
   )

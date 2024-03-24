@@ -40,8 +40,8 @@ function Main(){
             <div className="contenerBotonesMainPage">
                 <CuadroPrincipal titulo={translations[language].ingresos} cantidad={montoTotalIngresos} url={"ingresos"}/>
                 <CuadroPrincipal titulo={translations[language].gastos} cantidad={montoTotalGastos} url={"gastos"}/>
-                <Boton contenido="Ingresos vs Gastos este mes" clase="Btn BtnBlue"/>
-                <Boton contenido="Ingresos vs Gastos por año" clase="Btn BtnBlue"/>
+                <Boton contenido="Ingresos vs Gastos este mes" clase="Btn BtnBlue" onClick={() => {navigate("/ingresosvsgastos")}}/>
+                <Boton contenido="Ingresos vs Gastos por año" clase="Btn BtnBlue" onClick={() => {navigate("/ingresosvsgastos/anual")}}/>
                 <Boton contenido="Gestionar Gastos Recurrentes" clase="Btn BtnBlue"/>
                 <Boton contenido="Gestionar Ingresos Recurrentes" clase="Btn BtnBlue"/>
                 <Boton contenido="Mis ingresos este año" clase="Btn BtnBlue" onClick={() => {navigate("/misingresosesteaño")}}/>
