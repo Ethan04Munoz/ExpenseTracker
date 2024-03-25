@@ -11,6 +11,8 @@ import GastosEsteAño from "./Paginas/GastosAño";
 import IvGMensual from "./Paginas/IvGMensual";
 import MyAreaChart from "./Prueba";
 import IvGAnual from "./Paginas/IvGAnual";
+import IngresosAnual from "./Paginas/IngresosAnual";
+import GastosAnual from "./Paginas/GastosAnual";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/misgastosesteaño" element={<GastosEsteAño/>}/>
         <Route path="/ingresosvsgastos" element={<IvGMensual/>}/>
         <Route path="/ingresosvsgastos/anual" element={<IvGAnual/>}/>
+        <Route path="/ingresos/anual" element={<IngresosAnual/>}/>
+        <Route path="/gastos/anual" element={<GastosAnual/>}/>
         <Route path="/prueba" element={<MyAreaChart/>}/>
       </Routes>
     </BrowserRouter>

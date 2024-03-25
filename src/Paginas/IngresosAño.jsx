@@ -47,8 +47,7 @@ function IngresosEsteAño(){
         <div className="ingresosEsteAño">
             <Navbar enlaceHeader={"/"}/>
             {ingresos.length > 0 && (
-
-<Bar12Chart data={ingresos}/>
+              <Bar12Chart data={ingresos}/>
             )}
         </div>
     )

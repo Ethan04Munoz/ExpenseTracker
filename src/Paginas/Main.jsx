@@ -46,8 +46,8 @@ function Main(){
                 <Boton contenido="Gestionar Ingresos Recurrentes" clase="Btn BtnBlue"/>
                 <Boton contenido="Mis ingresos este año" clase="Btn BtnBlue" onClick={() => {navigate("/misingresosesteaño")}}/>
                 <Boton contenido="Mis gastos este año" clase="Btn BtnBlue" onClick={() => {navigate("/misgastosesteaño")}}/>
-                <Boton contenido="Ingresos por año" clase="Btn BtnBlue"/>
-                <Boton contenido="Gastos por año" clase="Btn BtnBlue"/>
+                <Boton contenido="Ingresos por año" clase="Btn BtnBlue" onClick={() => {navigate("/ingresos/anual")}}/>
+                <Boton contenido="Gastos por año" clase="Btn BtnBlue" onClick={() => {navigate("/gastos/anual")}}/>
             </div>
         </div>
     )
