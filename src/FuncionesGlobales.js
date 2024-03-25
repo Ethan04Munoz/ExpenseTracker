@@ -1,3 +1,17 @@
+const meses = [
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo', 
+    'Junio', 
+    'Julio',
+    'Agosto', 
+    'Septiembre',
+    'Octubre', 
+    'Noviembre',
+    'Diciembre'
+]
 export function obtenerFechaActualFormatoDDMMYYYY() {
     const fechaActual = new Date();
 
@@ -17,6 +31,16 @@ export function obtenerMesActual() {
     const fecha = new Date();
     const mesActual = fecha.getMonth() + 1; // +1 para ajustar a formato común
     return parseInt(mesActual);
+}
+
+export function obtenerMesLetras(mesNumero){
+    return meses[mesNumero-1];
+}
+
+export function obtenerAnioActual(){
+    const fecha = new Date();
+    const anio = fecha.getFullYear(); // +1 para ajustar a formato común
+    return parseInt(anio);
 }
 
 export function generarColorPastelAleatorio() {
@@ -73,4 +97,3 @@ export function convertirFechaFormatoLegibleADate(fechaStr){
     const partes = fechaStr.split('/'); // Divide la fecha en [DD, MM, YYYY]
     return new Date(partes[2], partes[1] - 1, partes[0]); // Año, mes (0-indexado), día
 };
-  
