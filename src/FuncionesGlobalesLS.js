@@ -12,27 +12,30 @@ export function obtenerGastosLS(){
     return gastos;
 }
 
-export function obtenerIngresosMesEspecificoLS(mes){
-    let ingresosTotales = obtenerIngresosLS();
+export function obtenerIngresosMesEspecificoLS(objFecha) {
+    const { mes, anio } = objFecha;
     const mesFormateado = mes < 10 ? `0${mes}` : `${mes}`;
-    console.log("mes: ", mesFormateado)
-    return ingresosTotales.filter(obj => {
-      // Extrayendo el mes de la propiedad fecha del objeto
-      const mesObjeto = obj.fecha.split('/')[1];
-      // Compara el mes extraído con el mes proporcionado
-      return mesObjeto === mesFormateado;
+    const ingresosTotales = obtenerIngresosLS();
+    const ingresosFiltrados = ingresosTotales.filter(obj => {
+        const mesObjeto = parseInt(obj.fecha.split('/')[1]);
+        const añoObjeto = parseInt(obj.fecha.split('/')[2]);
+        console.log("Mes año: ", mesObjeto, añoObjeto)
+        return mesObjeto === parseInt(mesFormateado) && añoObjeto === parseInt(anio);
     });
+    console.log("Ingresos del mes: ", ingresosFiltrados)
+    return ingresosFiltrados;
 }
 
-export function obtenerGastosMesEspecificoLS(mes){
-    let gastosTotales = obtenerGastosLS();
+export function obtenerGastosMesEspecificoLS(objFecha){
+    const { mes, anio } = objFecha;
     const mesFormateado = mes < 10 ? `0${mes}` : `${mes}`;
-    return gastosTotales.filter(obj => {
-      // Extrayendo el mes de la propiedad fecha del objeto
-      const mesObjeto = obj.fecha.split('/')[1];
-      // Compara el mes extraído con el mes proporcionado
-      return mesObjeto === mesFormateado;
+    const gastosTotales = obtenerGastosLS();
+    const gastosFiltrados = gastosTotales.filter(obj => {
+        const mesObjeto = parseInt(obj.fecha.split('/')[1]);
+        const añoObjeto = parseInt(obj.fecha.split('/')[2]);
+        return mesObjeto === parseInt(mesFormateado) && añoObjeto === parseInt(anio);
     });
+    return gastosFiltrados;
 }
 
 export function obtenerMontoTotalIngresosMesEspecificoLS(mes){
