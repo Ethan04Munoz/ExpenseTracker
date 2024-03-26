@@ -60,3 +60,16 @@ h2{
     margin-left: 20vw;
     margin-top: 2rem;
 }
+
+.fechaActual{
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    font-size: 3vh;
+}
+
+.fechaActual .Btn{
+    margin-top: 0;
+}

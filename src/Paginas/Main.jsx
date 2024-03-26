@@ -9,7 +9,7 @@ import { Link, Navigate } from "react-router-dom";
 import { obtenerMontoTotalGastosMesEspecificoLS, obtenerMontoTotalIngresosMesEspecificoLS } from "../FuncionesGlobalesLS.js";
 import { obtenerAnioActual, obtenerMesActual, obtenerMesLetras } from "../FuncionesGlobales.js";
 import { useNavigate } from 'react-router-dom';
-import ButtonNeonArrow from "../componentes/ButtonNeonArrow.jsx";
+import NeonArrowButton from "../componentes/ButtonNeonArrow.jsx";
 
 function Main(){
     let navigate = useNavigate();
@@ -18,14 +18,14 @@ function Main(){
     const [mesActual, setMesActual] = useState(0);
     const [mesActualTexto, setMesActualTexto] = useState('');
     const [anioActual, setAnioActual] = useState(0);
-    const [fechaRevision, setFechaRevicion] = useState({mes: 0, anio: 0});
+    const [fechaRevision, setFechaRevision] = useState({mes: 0, anio: 0});
     const [montoTotalIngresos, setMontoTotalIngresos] = useState(0);
     const [montoTotalGastos, setMontoTotalGastos] = useState(0);
 
     useEffect(() => {
         setMesActual(obtenerMesActual());
         setAnioActual(obtenerAnioActual());
-        setFechaRevicion({mes: obtenerMesActual(), anio: obtenerAnioActual()});
+        setFechaRevision({mes: obtenerMesActual(), anio: obtenerAnioActual()});
     }, []);
 
     useEffect(() => {
@@ -44,16 +44,45 @@ function Main(){
         //Obtener ingresos para mostrar en pantalla
         setMontoTotalIngresos(obtenerMontoTotalIngresosMesEspecificoLS(fechaRevision));
         setMontoTotalGastos(obtenerMontoTotalGastosMesEspecificoLS(fechaRevision))
-    }, [fechaRevision])
+    }, [fechaRevision]);
+
+    function aumentarMesRevision() {
+        setFechaRevision(fechaActual => {
+            let { mes, anio } = fechaActual;
+        
+            if (mes === 12) {
+                mes = 1;
+                anio += 1;
+            } else {
+                mes += 1;
+            }
+            return { mes, anio };
+        });
+    }
+    
+    function disminuirMesRevision() {
+        setFechaRevision(fechaActual => {
+            let { mes, anio } = fechaActual;
+    
+            if (mes === 1) {
+                mes = 12;
+                anio -= 1;
+            } else {
+                mes -= 1;
+            }
+            return { mes, anio };
+        });
+    }
+    
 
     return (
         <div>
             <Navbar enlaceHeader={"/"}/>
             <div className="contenerBotonesMainPage">
                 <div className="fechaActual">
-                    <ButtonNeonArrow direction="left"/>
-                    {mesActualTexto} de {anioActual}
-                    <ButtonNeonArrow direction="rigth"/>
+                    <Boton contenido={"Mes anterior"} clase="Btn BtnDark" onClick={disminuirMesRevision}/>
+                    {obtenerMesLetras(fechaRevision.mes)} de {fechaRevision.anio}
+                    <Boton contenido={"Mes siguiente"} clase="Btn BtnDark" onClick={aumentarMesRevision}/>              
                 </div>
                 <CuadroPrincipal titulo={translations[language].ingresos} cantidad={montoTotalIngresos} url={"ingresos"}/>
                 <CuadroPrincipal titulo={translations[language].gastos} cantidad={montoTotalGastos} url={"gastos"}/>
