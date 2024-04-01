@@ -10,6 +10,7 @@ import { obtenerMontoTotalGastosMesEspecificoLS, obtenerMontoTotalIngresosMesEsp
 import { obtenerAnioActual, obtenerMesActual, obtenerMesLetras } from "../FuncionesGlobales.js";
 import { useNavigate } from 'react-router-dom';
 import NeonArrowButton from "../componentes/ButtonNeonArrow.jsx";
+import ShinyDivider from "../componentes/ShinyDivider.jsx";
 
 function Main(){
     let navigate = useNavigate();
@@ -84,8 +85,10 @@ function Main(){
                     {obtenerMesLetras(fechaRevision.mes)} de {fechaRevision.anio}
                     <Boton contenido={"Mes siguiente"} clase="Btn BtnDark" onClick={aumentarMesRevision}/>              
                 </div>
+                <ShinyDivider/>
                 <CuadroPrincipal titulo={translations[language].ingresos} cantidad={montoTotalIngresos} url={"ingresos"}/>
                 <CuadroPrincipal titulo={translations[language].gastos} cantidad={montoTotalGastos} url={"gastos"}/>
+                <ShinyDivider/>
                 <Boton contenido="Ingresos vs Gastos este mes" clase="Btn BtnBlue" onClick={() => {navigate("/ingresosvsgastos")}}/>
                 <Boton contenido="Ingresos vs Gastos por año" clase="Btn BtnBlue" onClick={() => {navigate("/ingresosvsgastos/anual")}}/>
                 <Boton contenido="Gestionar Gastos Recurrentes" clase="Btn BtnBlue"/>
@@ -94,6 +97,8 @@ function Main(){
                 <Boton contenido="Mis gastos este año" clase="Btn BtnBlue" onClick={() => {navigate("/misgastosesteaño")}}/>
                 <Boton contenido="Ingresos por año" clase="Btn BtnBlue" onClick={() => {navigate("/ingresos/anual")}}/>
                 <Boton contenido="Gastos por año" clase="Btn BtnBlue" onClick={() => {navigate("/gastos/anual")}}/>
+                <ShinyDivider/>
+                <div className="espacio"></div>
             </div>
         </div>
     )
