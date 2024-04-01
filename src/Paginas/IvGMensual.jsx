@@ -3,64 +3,70 @@ import Navbar from "../componentes/Navbar";
 import '../index.css';
 import { Bar } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
-import { generarColorPastelAleatorio, generarDuplaColorPastelBordeRelleno, obtenerMesActual } from "../FuncionesGlobales";
+import { generarColorPastelAleatorio, generarDuplaColorPastelBordeRelleno, obtenerAnioActual, obtenerMesActual } from "../FuncionesGlobales";
 import { obtenerGastosMesEspecificoLS, obtenerIngresosMesEspecificoLS } from "../FuncionesGlobalesLS";
 
 function IvGMensual(){
     const [mesActual, setMesActual] = useState(0);
+    const [anioActual, setAnioActual] = useState(0);
     const [ingresos, setIngresos] = useState([]);
     const [gastos, setGastos] = useState([]);
+    const [data, setData] = useState({labels: [], datasets: []})
 
     useEffect(() => {
-        setMesActual(obtenerMesActual())
+        setMesActual(obtenerMesActual());
+        setAnioActual(obtenerAnioActual());
     }, [])
 
     useEffect(() => {
         // Aquí debes adaptar las funciones para que devuelvan los arrays actualizados
-        setIngresos(obtenerIngresosMesEspecificoLS(mesActual));
-        setGastos(obtenerGastosMesEspecificoLS(mesActual));
+        console.log("Mes actual: ", mesActual, anioActual)
+        setIngresos(obtenerIngresosMesEspecificoLS({mes: mesActual, anio: anioActual}));
+        setGastos(obtenerGastosMesEspecificoLS({mes: mesActual, anio: anioActual}));
     }, [mesActual]);
 
 
-    // Preparar los datos para el gráfico
-    const categoriasIngresos = [...new Set(ingresos.map(item => item.categoria))];
-    const categoriasGastos = [...new Set(gastos.map(item => item.categoria))];
+    useEffect(() => {
+        // Preparar los datos para el gráfico
+        const categoriasIngresos = [...new Set(ingresos.map(item => item.categoria))];
+        const categoriasGastos = [...new Set(gastos.map(item => item.categoria))];
 
-    const dataIngresos = categoriasIngresos.map(cat => 
-        ingresos.filter(ing => ing.categoria === cat).reduce((acc, curr) => acc + parseFloat(curr.cantidad), 0)
-    );
+        const dataIngresos = categoriasIngresos.map(cat => 
+            ingresos.filter(ing => ing.categoria === cat).reduce((acc, curr) => acc + parseFloat(curr.cantidad), 0)
+        );
 
-    const dataGastos = categoriasGastos.map(cat => 
-        gastos.filter(gas => gas.categoria === cat).reduce((acc, curr) => acc + parseFloat(curr.cantidad), 0)
-    );
+        const dataGastos = categoriasGastos.map(cat => 
+            gastos.filter(gas => gas.categoria === cat).reduce((acc, curr) => acc + parseFloat(curr.cantidad), 0)
+        );
 
-    const data = {
-        labels: ['Ingresos', 'Gastos'],
-        datasets: [
-            ...categoriasIngresos.map((categoria, index) => {
-                const { colorRelleno, colorBorde } = generarDuplaColorPastelBordeRelleno();
-                return {
-                    label: categoria,
-                    data: index === 0 ? [dataIngresos[index], null] : [null, dataIngresos[index]],
-                    backgroundColor: colorRelleno,
-                    borderColor: colorBorde,
-                    borderWidth: 1,
-                };
-            }),
-            ...categoriasGastos.map((categoria, index) => {
-                const { colorRelleno, colorBorde } = generarDuplaColorPastelBordeRelleno();
-                return {
-                    label: categoria,
-                    data: index === 0 ? [null, dataGastos[index]] : [null, dataGastos[index]],
-                    backgroundColor: colorRelleno,
-                    borderColor: colorBorde,
-                    borderWidth: 1,
-                };
-            })
-        ],
-    };
+        const data = {
+            labels: ['Ingresos', 'Gastos'],
+            datasets: [
+                ...categoriasIngresos.map((categoria, index) => {
+                    const { colorRelleno, colorBorde } = generarDuplaColorPastelBordeRelleno();
+                    return {
+                        label: categoria,
+                        data: index === 0 ? [dataIngresos[index], null] : [null, dataIngresos[index]],
+                        backgroundColor: colorRelleno,
+                        borderColor: colorBorde,
+                        borderWidth: 1,
+                    };
+                }),
+                ...categoriasGastos.map((categoria, index) => {
+                    const { colorRelleno, colorBorde } = generarDuplaColorPastelBordeRelleno();
+                    return {
+                        label: categoria,
+                        data: index === 0 ? [null, dataGastos[index]] : [null, dataGastos[index]],
+                        backgroundColor: colorRelleno,
+                        borderColor: colorBorde,
+                        borderWidth: 1,
+                    };
+                })
+            ],
+        };
+        setData(data);
+    }, [gastos, ingresos])
     
-
     const options = {
         plugins: { legend: { position: 'top' } }, 
         scales: { 
@@ -68,6 +74,8 @@ function IvGMensual(){
           y: { stacked: true } 
         } 
     };
+
+    console.log("Data: ", data)
 
     return(
         <div className="ivgMensual">
