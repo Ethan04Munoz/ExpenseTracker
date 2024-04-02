@@ -74,6 +74,7 @@ function Gastos(){
         //guardar en gastosRenovables
         if(gastoRecurrenteBool==true){
             delete objetoGasto.fecha;
+            objetoGasto.activo = true;
             if(gastosRenovables == null || gastosRenovables == undefined || gastosRenovables.length == 0){
                 gastosRenovables = [objetoGasto];
             }else{
