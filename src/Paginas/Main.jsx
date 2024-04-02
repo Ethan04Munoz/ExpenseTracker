@@ -6,8 +6,8 @@ import CuadroPrincipal from "../componentes/CuadroPrincipal";
 import { useSelector, useDispatch } from 'react-redux';
 import translations from '../redux/translations.js';
 import { Link, Navigate } from "react-router-dom";
-import { obtenerMontoTotalGastosMesEspecificoLS, obtenerMontoTotalIngresosMesEspecificoLS } from "../FuncionesGlobalesLS.js";
-import { obtenerAnioActual, obtenerMesActual, obtenerMesLetras } from "../FuncionesGlobales.js";
+import { obtenerGastosLS, obtenerGastosRecurrentesLS, obtenerMontoTotalGastosMesEspecificoLS, obtenerMontoTotalIngresosMesEspecificoLS } from "../FuncionesGlobalesLS.js";
+import { obtenerAnioActual, obtenerFechaActualFormatoDDMMYYYY, obtenerMesActual, obtenerMesLetras } from "../FuncionesGlobales.js";
 import { useNavigate } from 'react-router-dom';
 import NeonArrowButton from "../componentes/ButtonNeonArrow.jsx";
 import ShinyDivider from "../componentes/ShinyDivider.jsx";
@@ -34,11 +34,41 @@ function Main(){
     }, [mesActual])
 
     useEffect(() => {
-        //Verificar si ya se añadieron los gastos recurrentes de este mes
-        const ultimaVezGastosRecurrentesAñadidosLS = parseInt(localStorage.getItem('ultimaActualizacionGastosRecurrentes'));
-        //Si la ultima vez que se añadieron los gastos es menor a la fecha actual debe añadir los gastos recurrentes a los gastos
+        //Verificar que no son los valores por defecto
+        if(mesActual > 0 && anioActual > 0){
+            // Verificar si ya se añadieron los gastos recurrentes de este mes
+            const ultimaVezGastosRecurrentesAnadidos = JSON.parse(localStorage.getItem('ultimaActualizacionGastosRecurrentes')) || [];
+            const fechaActual = { mes: obtenerMesActual(), anio: obtenerAnioActual() };
+            const fechaActualYaActualizada = ultimaVezGastosRecurrentesAnadidos.some(fecha =>
+                fecha.mes === fechaActual.mes && fecha.anio === fechaActual.anio
+            );
 
-    }, [mesActual, anioActual])
+            if (!fechaActualYaActualizada) {
+                // Obtener los gastos recurrentes y añadirlos a los gastos
+                const gastosRecurrentes = obtenerGastosRecurrentesLS();
+                const gastosActuales = obtenerGastosLS();
+                let gastosRecurrentesAñadir = [];
+                for(let i = 0; i < gastosRecurrentes.length; i++){
+                    let gastoProv = gastosRecurrentes[i];
+                    //gastos: [{"gasto":"DDLC+","cantidad":"99","categoria":"Videojuegos", "fecha":"01/04/2024"}]
+                    //recurr: [{"gasto":"Music","cantidad":"99","categoria":"Suscripciones","activo":true}]
+                    //Por ende, para convertir un gasto recurrente en gasto hay que añadirle fecha y eliminar el valor de activo
+                    if(JSON.parse(gastoProv.activo) == true){
+                        delete gastoProv.activo;
+                        gastoProv.fecha = obtenerFechaActualFormatoDDMMYYYY();
+                        gastosRecurrentesAñadir.push(gastoProv)
+                    }
+
+                }
+                const nuevosGastos = [...gastosActuales, ...gastosRecurrentesAñadir];
+                localStorage.setItem('gastos', JSON.stringify(nuevosGastos));
+
+                //Añadimos la fecha actual a las fechas de GastosRecurrentesAñadidos
+                ultimaVezGastosRecurrentesAnadidos.push(fechaActual);
+                localStorage.setItem('ultimaActualizacionGastosRecurrentes', JSON.stringify(ultimaVezGastosRecurrentesAnadidos));
+            }
+        }
+    }, [mesActual, anioActual]);
 
     useEffect(() => {
         console.log("Fecha revision: ", fechaRevision)
