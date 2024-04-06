@@ -13,6 +13,8 @@ import MyAreaChart from "./Prueba";
 import IvGAnual from "./Paginas/IvGAnual";
 import IngresosAnual from "./Paginas/IngresosAnual";
 import GastosAnual from "./Paginas/GastosAnual";
+import GestionarIngresosRecurrentes from "./Paginas/GestionarIngresosRecurrentes";
+import GestionarGastosRecurrentes from "./Paginas/GestionarGastosRecurrentes";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
         <Route path="/ingresos/anual" element={<IngresosAnual/>}/>
         <Route path="/gastos/anual" element={<GastosAnual/>}/>
         <Route path="/prueba" element={<MyAreaChart/>}/>
+        <Route path="/gestionaringresos" element={<GestionarIngresosRecurrentes/>}/>
+        <Route path="/gestionargastos" element={<GestionarGastosRecurrentes/>}/>
       </Routes>
     </BrowserRouter>
   )

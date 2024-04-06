@@ -121,8 +121,8 @@ function Main(){
                 <ShinyDivider/>
                 <Boton contenido="Ingresos vs Gastos este mes" clase="Btn BtnBlue" onClick={() => {navigate("/ingresosvsgastos")}}/>
                 <Boton contenido="Ingresos vs Gastos por año" clase="Btn BtnBlue" onClick={() => {navigate("/ingresosvsgastos/anual")}}/>
-                <Boton contenido="Gestionar Gastos Recurrentes" clase="Btn BtnBlue"/>
-                <Boton contenido="Gestionar Ingresos Recurrentes" clase="Btn BtnBlue"/>
+                <Boton contenido="Gestionar Gastos Recurrentes" clase="Btn BtnBlue" onClick={() => {navigate("/gestionargastos")}}/>
+                <Boton contenido="Gestionar Ingresos Recurrentes" clase="Btn BtnBlue" onClick={() => {navigate("/gestionaringresos")}}/>
                 <Boton contenido="Mis ingresos este año" clase="Btn BtnBlue" onClick={() => {navigate("/misingresosesteaño")}}/>
                 <Boton contenido="Mis gastos este año" clase="Btn BtnBlue" onClick={() => {navigate("/misgastosesteaño")}}/>
                 <Boton contenido="Ingresos por año" clase="Btn BtnBlue" onClick={() => {navigate("/ingresos/anual")}}/>
