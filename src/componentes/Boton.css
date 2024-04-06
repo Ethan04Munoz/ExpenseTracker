@@ -31,13 +31,37 @@
     filter: drop-shadow(0 0 0.2rem #498fe0bb);
 }
 
+.BtnRed{
+    background: #bb211c;
+    color: #e4e4e4;
+    border: 1px solid transparent;
+    transition: 0.2s;
+}
+
+.BtnRed:hover{
+    background: #971a15;
+    filter: drop-shadow(0 0 0.2rem #db342e);
+}
+
+.BtnGreen{
+    background: #28a745;
+    color: #e4e4e4;
+    border: 1px solid transparent;
+    transition: 0.2s;
+}
+
+.BtnGreen:hover{
+    background: #1b8032;
+    filter: drop-shadow(0 0 0.2rem #44be61);
+}
+
 .BtnDis{
     background: #424242;
     color: #797979;
     border: 1px solid transparent;
 }
-/*
-.BtnGreen{
+
+.BtnGreenShadow{
     background: #1e1e1e;
     color: #e4e4e4;
     filter: drop-shadow(0 0 0.2rem #28a745);
@@ -48,4 +72,4 @@
 
 .BtnGreen:hover{
     background: #487e54;
-}*/
+}
