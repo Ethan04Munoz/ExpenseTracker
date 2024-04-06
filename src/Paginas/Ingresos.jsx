@@ -70,6 +70,7 @@ function Ingresos(){
         //guardar en ingresosRenovables
         if(ingresoRecurrenteBool==true){
             delete objetoGasto.fecha;
+            objetoGasto.activo = true;
             if(ingresosRenovables == null || ingresosRenovables == undefined || ingresosRenovables.length == 0){
                 ingresosRenovables = [objetoGasto];
             } else {
@@ -134,7 +135,7 @@ function Ingresos(){
                     <Link className="linkMenor" to={"/nuevacategoriaingresos"}>Añadir categoría</Link>
                 </div>
                 <input className="checkBoxRecurrente" type="checkbox" name="checkIngresoRecurrente" id="checkIngresoRecurrente" value={ingresoRecurrenteBool} onChange={guardarIngresoRecurrenteBool}/>
-                <label htmlFor="checkIngresoRecurrente">Es un gasto recurrente</label>
+                <label htmlFor="checkIngresoRecurrente">Es un ingreso recurrente</label>
                 <Boton contenido="Añadir" clase="Btn BtnBlue" onClick={guardarIngresosLS}/>
             </form>
 
