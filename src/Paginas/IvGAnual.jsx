@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
+import translations from '../redux/translations.js';
+import { useSelector, useDispatch } from 'react-redux';
 import { obtenerTodosGastosLS, obtenerTodosIngresosLS } from '../FuncionesGlobalesLS';
 import Navbar from '../componentes/Navbar';
 import { convertirFechaFormatoLegibleADate } from '../FuncionesGlobales';
 
 const IvGAnual = () => {
+    const language = useSelector(state => state.language.language);
+
     const [chartData, setChartData] = useState({
         labels: [],
         datasets: []
@@ -86,7 +90,7 @@ const IvGAnual = () => {
   return(
     <div className="ivgAnual">
         <Navbar enlaceHeader={"/"}/>
-        <h1>Mis ingresos vs gastos a lo largo del tiempo</h1>
+        <h1>{translations[language].ivgAnualBtnMain}</h1>
         {chartData && (
         <Line data={chartData} />
         )}

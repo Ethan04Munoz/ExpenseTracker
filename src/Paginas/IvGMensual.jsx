@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../componentes/Navbar";
 import '../index.css';
 import { Bar } from 'react-chartjs-2';
+import translations from '../redux/translations.js';
+import { useSelector, useDispatch } from 'react-redux';
 import Chart from 'chart.js/auto';
 import { generarColorPastelAleatorio, generarDuplaColorPastelBordeRelleno, obtenerAnioActual, obtenerMesActual } from "../FuncionesGlobales";
 import { obtenerGastosMesEspecificoLS, obtenerIngresosMesEspecificoLS } from "../FuncionesGlobalesLS";
+
 
 function IvGMensual(){
     const [mesActual, setMesActual] = useState(0);
@@ -12,6 +15,8 @@ function IvGMensual(){
     const [ingresos, setIngresos] = useState([]);
     const [gastos, setGastos] = useState([]);
     const [data, setData] = useState({labels: [], datasets: []})
+
+    const language = useSelector(state => state.language.language);
 
     useEffect(() => {
         setMesActual(obtenerMesActual());
@@ -80,7 +85,7 @@ function IvGMensual(){
     return(
         <div className="ivgMensual">
             <Navbar enlaceHeader={"/"}/>
-            <h1>Ingresos vs egresos este mes</h1>
+            <h1>{translations[language].ivgMensualBtnMain}</h1>
             <Bar data={data} options={options} />
         </div>
     )
