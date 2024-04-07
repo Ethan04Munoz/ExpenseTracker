@@ -63,14 +63,14 @@ const IvGAnual = () => {
       labels: años,
       datasets: [
         {
-          label: 'Ingresos',
+          label: translations[language].ingresos,
           data: dataIngresos,
           borderColor: 'rgb(75, 192, 192)',
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
           fill: true,
         },
         {
-          label: 'Gastos',
+          label: translations[language].gastos,
           data: dataGastos,
           borderColor: 'rgb(255, 99, 132)',
           backgroundColor: 'rgba(255, 99, 132, 0.2)',

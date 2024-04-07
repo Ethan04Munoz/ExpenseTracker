@@ -4,8 +4,12 @@ import 'chart.js/auto';
 import { obtenerTodosGastosLS } from '../FuncionesGlobalesLS';
 import Navbar from '../componentes/Navbar';
 import { convertirFechaFormatoLegibleADate } from '../FuncionesGlobales';
+import translations from '../redux/translations.js';
+import { useSelector, useDispatch } from 'react-redux';
 
 const GastosAnual = () => {
+    const language = useSelector(state => state.language.language);
+
     const [chartData, setChartData] = useState({
         labels: [],
         datasets: []
@@ -65,7 +69,7 @@ const GastosAnual = () => {
   return(
     <div className="gastosAnual">
         <Navbar enlaceHeader={"/"}/>
-        <h1>Mis gastos año por año</h1>
+        <h1>{translations[language].gastosXAñoBtnMain}</h1>
         {chartData && (
             <Line data={chartData} />
         )}

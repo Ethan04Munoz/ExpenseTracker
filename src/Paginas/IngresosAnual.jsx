@@ -4,8 +4,12 @@ import 'chart.js/auto';
 import { obtenerTodosIngresosLS } from '../FuncionesGlobalesLS';
 import Navbar from '../componentes/Navbar';
 import { convertirFechaFormatoLegibleADate } from '../FuncionesGlobales';
+import translations from '../redux/translations.js';
+import { useSelector, useDispatch } from 'react-redux';
 
 const IngresosAnual = () => {
+    const language = useSelector(state => state.language.language);
+
     const [chartData, setChartData] = useState({
         labels: [],
         datasets: []
@@ -47,7 +51,7 @@ const IngresosAnual = () => {
       labels: años,
       datasets: [
         {
-          label: 'Ingresos',
+          label: translations[language].ingresos,
           data: dataIngresos,
           borderColor: 'rgb(75, 192, 192)',
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -65,7 +69,7 @@ const IngresosAnual = () => {
   return(
     <div className="ingresosAnual">
         <Navbar enlaceHeader={"/"}/>
-        <h1>Mis ingresos año por año</h1>
+        <h1>{translations[language].ingresosXAñoBtnMain}</h1>
         {chartData && (
             <Line data={chartData} />
         )}
