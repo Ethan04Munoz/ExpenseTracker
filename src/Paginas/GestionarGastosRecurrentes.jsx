@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { obtenerGastosRecurrentesLS, obtenerIngresosRecurrentesLS } from '../FuncionesGlobalesLS';
 import Navbar from '../componentes/Navbar';
 import Boton from '../componentes/Boton';
+import translations from '../redux/translations.js';
+import { useSelector, useDispatch } from 'react-redux';
 
 function GestionarGastosRecurrentes() {
     const [gastosRecurrentes, setGastosRecurrentes] = useState([]);
+
+    const language = useSelector(state => state.language.language);
+
 
     useEffect(() => {
         setGastosRecurrentes(obtenerGastosRecurrentesLS());
@@ -21,15 +26,15 @@ function GestionarGastosRecurrentes() {
         <div className="gestionarGastosRecurrentes">
             <Navbar enlaceHeader={"/"}/>
             <div className="formulario">
-                <h1>Gestionar gastos recurrentes</h1>
+                <h1>{translations[language].gestionarGastosBtnMain}</h1>
                 {gastosRecurrentes.length > 0 ? (
                     <table>
                         <thead>
                             <tr>
-                                <th>Gasto</th>
-                                <th>Cantidad</th>
-                                <th>Categoría</th>
-                                <th>Acciones</th>
+                                <th>{translations[language].tituloTablaGasto}</th>
+                                <th>{translations[language].tituloTablaCantidad}</th>
+                                <th>{translations[language].tituloTablaCategoria}</th>
+                                <th>{translations[language].tituloTablaAcciones}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,7 +45,7 @@ function GestionarGastosRecurrentes() {
                                     <td>{gasto.categoria}</td>
                                     <td className='tdBtn'>
                                         <Boton 
-                                            contenido={gasto.activo ? 'Desactivar' : 'Activar'} 
+                                            contenido={gasto.activo ? translations[language].tituloBtnTablaDesactivar : translations[language].tituloBtnTablaActivar} 
                                             clase={gasto.activo ? 'Btn BtnRed' : 'Btn BtnGreen'}
                                             onClick={() => {toggleGastoActivo(index)}}
                                         />
@@ -50,7 +55,7 @@ function GestionarGastosRecurrentes() {
                         </tbody>
                     </table>
                 ) : (
-                    <p>Parece que no tienes gastos recurrentes. Bien ahí :D!</p>
+                    <p>{translations[language].tablaGestionGastosMensaje}</p>
                 )}
                 
             </div>
