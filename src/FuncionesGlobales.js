@@ -1,4 +1,4 @@
-const meses = [
+const mesesES = [
     'Enero',
     'Febrero',
     'Marzo',
@@ -11,7 +11,23 @@ const meses = [
     'Octubre', 
     'Noviembre',
     'Diciembre'
-]
+];
+
+const mesesEN = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May', 
+    'June', 
+    'July',
+    'August', 
+    'September',
+    'October', 
+    'November',
+    'December'
+];
+
 export function obtenerFechaActualFormatoDDMMYYYY() {
     const fechaActual = new Date();
 
@@ -33,8 +49,9 @@ export function obtenerMesActual() {
     return parseInt(mesActual);
 }
 
-export function obtenerMesLetras(mesNumero){
-    return meses[mesNumero-1];
+export function obtenerMesLetras(mesNumero, idioma) {
+    const meses = idioma === 'es' ? mesesES : mesesEN;
+    return meses[mesNumero - 1];
 }
 
 export function obtenerAnioActual(){
