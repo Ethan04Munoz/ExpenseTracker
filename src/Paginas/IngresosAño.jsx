@@ -3,9 +3,13 @@ import Navbar from "../componentes/Navbar";
 import '../index.css';
 import Bar12Chart from "../componentes/Bar12Chart";
 import { obtenerTodosIngresosLS } from "../FuncionesGlobalesLS";
+import { useSelector, useDispatch } from 'react-redux';
+import translations from '../redux/translations.js';
 
 function IngresosEsteAño(){
     const [ingresos, setIngresos] = useState([]);
+
+    const language = useSelector(state => state.language.language);
 
     function obtenerIngresosLS(){
         const ingresosProv = obtenerTodosIngresosLS();
@@ -46,6 +50,7 @@ function IngresosEsteAño(){
     return (
         <div className="ingresosEsteAño">
             <Navbar enlaceHeader={"/"}/>
+            <h1>{translations[language].ingresosAñoBtnMain}</h1>
             {ingresos.length > 0 && (
               <Bar12Chart data={ingresos}/>
             )}
