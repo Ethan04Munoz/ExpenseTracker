@@ -2,12 +2,12 @@ import React from 'react';
 import { Bar  } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import { generarColorPastelAleatorio } from '../FuncionesGlobales';
+import { mesesEN, mesesES } from '../FuncionesGlobales';
+import { useSelector, useDispatch } from 'react-redux';
+import translations from '../redux/translations.js';
 
 const processData = ({data}) => {
-    const months = [
-      "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-      "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-    ];
+    const language = useSelector(state => state.language.language);
     console.log("Data: ", data, typeof data)
     const categorias = [...new Set(data.map(item => item.categoria))];
     const gastosPorMes = Array(12).fill(null).map(() => ({}));
@@ -29,7 +29,7 @@ const processData = ({data}) => {
     }));
   
     return {
-      labels: months,
+      labels: language == 'es' ? mesesES : mesesEN,
       datasets,
     };
 };
