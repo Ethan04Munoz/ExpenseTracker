@@ -111,22 +111,31 @@ function Main(){
             <Navbar enlaceHeader={"/"}/>
             <div className="contenerBotonesMainPage">
                 <div className="fechaActual">
-                    <Boton contenido={"Mes anterior"} clase="Btn BtnDark" onClick={disminuirMesRevision}/>
-                    {obtenerMesLetras(fechaRevision.mes)} de {fechaRevision.anio}
-                    <Boton contenido={"Mes siguiente"} clase="Btn BtnDark" onClick={aumentarMesRevision}/>              
+                    <Boton contenido={translations[language].botonNavegacionMesPrevio} clase="Btn BtnDark" onClick={disminuirMesRevision}/>
+                    {obtenerMesLetras(fechaRevision.mes, language)} {language=== 'es' ? 'de' : ''} {fechaRevision.anio}
+                    <Boton contenido={translations[language].botonNavegacionMesSiguiente} clase="Btn BtnDark" onClick={aumentarMesRevision}/>              
                 </div>
                 <ShinyDivider/>
                 <CuadroPrincipal titulo={translations[language].ingresos} cantidad={montoTotalIngresos} url={"ingresos"}/>
                 <CuadroPrincipal titulo={translations[language].gastos} cantidad={montoTotalGastos} url={"gastos"}/>
                 <ShinyDivider/>
-                <Boton contenido="Ingresos vs Gastos este mes" clase="Btn BtnBlue" onClick={() => {navigate("/ingresosvsgastos")}}/>
-                <Boton contenido="Ingresos vs Gastos por año" clase="Btn BtnBlue" onClick={() => {navigate("/ingresosvsgastos/anual")}}/>
-                <Boton contenido="Gestionar Gastos Recurrentes" clase="Btn BtnBlue" onClick={() => {navigate("/gestionargastos")}}/>
-                <Boton contenido="Gestionar Ingresos Recurrentes" clase="Btn BtnBlue" onClick={() => {navigate("/gestionaringresos")}}/>
-                <Boton contenido="Mis ingresos este año" clase="Btn BtnBlue" onClick={() => {navigate("/misingresosesteaño")}}/>
-                <Boton contenido="Mis gastos este año" clase="Btn BtnBlue" onClick={() => {navigate("/misgastosesteaño")}}/>
-                <Boton contenido="Ingresos por año" clase="Btn BtnBlue" onClick={() => {navigate("/ingresos/anual")}}/>
-                <Boton contenido="Gastos por año" clase="Btn BtnBlue" onClick={() => {navigate("/gastos/anual")}}/>
+                <h2>{translations[language].graficosTituloMain}</h2>
+
+                <h3>{translations[language].mensualesTituloMain}</h3>
+
+                <Boton contenido={translations[language].ivgMensualBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ingresosvsgastos")}}/>
+                <Boton contenido={translations[language].ingresosAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/misingresosesteaño")}}/>
+                <Boton contenido={translations[language].gastosAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/misgastosesteaño")}}/>
+                
+                <h3>{translations[language].anualesTituloMain}</h3>
+                <Boton contenido={translations[language].ivgAnualBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ingresosvsgastos/anual")}}/>
+                <Boton contenido={translations[language].ingresosXAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ingresos/anual")}}/>
+                <Boton contenido={translations[language].gastosXAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/gastos/anual")}}/>
+                
+                <h2>{translations[language].configuracionTituloMain}</h2>
+                <Boton contenido={translations[language].gestionarGastosBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/gestionargastos")}}/>
+                <Boton contenido={translations[language].gestionarIngresosBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/gestionaringresos")}}/>
+
                 <ShinyDivider/>
                 <div className="espacio"></div>
             </div>
