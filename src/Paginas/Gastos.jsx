@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { obtenerFechaActualFormatoDDMMYYYY } from "../FuncionesGlobales.js";
 import PieChart from "../componentes/PieChart.jsx";
 import { obtenerCategoriasGastosLS, obtenerGastosRecurrentesLS, obtenerTodosGastosLS } from "../FuncionesGlobalesLS.js";
+import PrimeraVez from "../componentes/PrimeraVez.jsx";
 
 function Gastos(){
     const [categoriasLS, setCategoriasLS] = useState([]);
@@ -122,6 +123,7 @@ function Gastos(){
     return (
         <div className="ingresosPage">
             <Navbar enlaceHeader={"/"}/>
+            <PrimeraVez/>
             <ToastContainer position="bottom-left" />
             <form className="formulario" action="">
                 <h1>Añadir un gasto</h1>

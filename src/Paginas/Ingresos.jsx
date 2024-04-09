@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { obtenerFechaActualFormatoDDMMYYYY } from "../FuncionesGlobales.js";
 import PieChart from "../componentes/PieChart.jsx";
 import { obtenerCategoriaIngresosLS, obtenerIngresosRecurrentesLS, obtenerTodosIngresosLS } from "../FuncionesGlobalesLS.js";
+import PrimeraVez from "../componentes/PrimeraVez.jsx";
 
 function Ingresos(){
     const [categoriasLS, setCategoriasLS] = useState([]);
@@ -117,6 +118,7 @@ function Ingresos(){
     return (
         <div className="ingresosPage">
             <Navbar enlaceHeader={"/"}/>
+            <PrimeraVez/>
             <ToastContainer position="bottom-left" />
             <form className="formulario" action="">
                 <h1>Añadir un ingreso</h1>

@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Chart from 'chart.js/auto';
 import { generarColorPastelAleatorio, generarDuplaColorPastelBordeRelleno, obtenerAnioActual, obtenerMesActual } from "../FuncionesGlobales";
 import { obtenerGastosMesEspecificoLS, obtenerIngresosMesEspecificoLS } from "../FuncionesGlobalesLS";
+import PrimeraVez from "../componentes/PrimeraVez.jsx";
 
 
 function IvGMensual(){
@@ -85,6 +86,7 @@ function IvGMensual(){
     return(
         <div className="ivgMensual">
             <Navbar enlaceHeader={"/"}/>
+            <PrimeraVez/>
             <h1>{translations[language].ivgMensualBtnMain}</h1>
             <Bar data={data} options={options} />
         </div>

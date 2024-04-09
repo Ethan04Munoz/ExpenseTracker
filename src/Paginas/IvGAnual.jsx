@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { obtenerTodosGastosLS, obtenerTodosIngresosLS } from '../FuncionesGlobalesLS';
 import Navbar from '../componentes/Navbar';
 import { convertirFechaFormatoLegibleADate } from '../FuncionesGlobales';
+import PrimeraVez from '../componentes/PrimeraVez.jsx';
 
 const IvGAnual = () => {
     const language = useSelector(state => state.language.language);
@@ -90,6 +91,7 @@ const IvGAnual = () => {
   return(
     <div className="ivgAnual">
         <Navbar enlaceHeader={"/"}/>
+        <PrimeraVez/>
         <h1>{translations[language].ivgAnualBtnMain}</h1>
         {chartData && (
         <Line data={chartData} />

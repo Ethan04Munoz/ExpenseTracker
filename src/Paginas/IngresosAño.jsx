@@ -5,6 +5,7 @@ import Bar12Chart from "../componentes/Bar12Chart";
 import { obtenerTodosIngresosLS } from "../FuncionesGlobalesLS";
 import { useSelector, useDispatch } from 'react-redux';
 import translations from '../redux/translations.js';
+import PrimeraVez from "../componentes/PrimeraVez.jsx";
 
 function IngresosEsteAño(){
     const [ingresos, setIngresos] = useState([]);
@@ -50,6 +51,7 @@ function IngresosEsteAño(){
     return (
         <div className="ingresosEsteAño">
             <Navbar enlaceHeader={"/"}/>
+            <PrimeraVez/>
             <h1>{translations[language].ingresosAñoBtnMain}</h1>
             {ingresos.length > 0 && (
               <Bar12Chart data={ingresos}/>

@@ -4,6 +4,7 @@ import Navbar from '../componentes/Navbar';
 import Boton from '../componentes/Boton';
 import translations from '../redux/translations.js';
 import { useSelector, useDispatch } from 'react-redux';
+import PrimeraVez from '../componentes/PrimeraVez.jsx';
 
 function GestionarIngresosRecurrentes() {
     const [ingresosRecurrentes, setIngresosRecurrentes] = useState([]);
@@ -24,6 +25,7 @@ function GestionarIngresosRecurrentes() {
     return (
         <div className="gestionarIngresosRecurrentes">
             <Navbar enlaceHeader={"/"}/>
+            <PrimeraVez/>
             <div className="formulario">
                 <h1>{translations[language].gestionarIngresosBtnMain}</h1>
                 {ingresosRecurrentes.length > 0 ? (

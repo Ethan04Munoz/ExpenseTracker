@@ -6,6 +6,7 @@ import Navbar from '../componentes/Navbar';
 import { convertirFechaFormatoLegibleADate } from '../FuncionesGlobales';
 import translations from '../redux/translations.js';
 import { useSelector, useDispatch } from 'react-redux';
+import PrimeraVez from '../componentes/PrimeraVez.jsx';
 
 const GastosAnual = () => {
     const language = useSelector(state => state.language.language);
@@ -69,6 +70,7 @@ const GastosAnual = () => {
   return(
     <div className="gastosAnual">
         <Navbar enlaceHeader={"/"}/>
+        <PrimeraVez/>
         <h1>{translations[language].gastosXAñoBtnMain}</h1>
         {chartData && (
             <Line data={chartData} />

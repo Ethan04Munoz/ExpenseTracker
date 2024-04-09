@@ -12,6 +12,7 @@ import { obtenerAnioActual, obtenerFechaActualFormatoDDMMYYYY, obtenerMesActual,
 import { useNavigate } from 'react-router-dom';
 import NeonArrowButton from "../componentes/ButtonNeonArrow.jsx";
 import ShinyDivider from "../componentes/ShinyDivider.jsx";
+import PrimeraVez from "../componentes/PrimeraVez.jsx";
 
 function Main(){
     let navigate = useNavigate();
@@ -110,6 +111,7 @@ function Main(){
     return (
         <div>
             <Navbar enlaceHeader={"/"}/>
+            <PrimeraVez/>
             <div className="contenerBotonesMainPage">
                 <div className="fechaActual">
                     <Boton contenido={translations[language].botonNavegacionMesPrevio} clase="Btn BtnDark" onClick={disminuirMesRevision}/>
