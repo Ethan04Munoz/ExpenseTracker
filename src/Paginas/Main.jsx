@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../componentes/Navbar";
 import Boton from "../componentes/Boton";
 import '../index.css';
+import './Main.css';
 import CuadroPrincipal from "../componentes/CuadroPrincipal";
 import { useSelector, useDispatch } from 'react-redux';
 import translations from '../redux/translations.js';
@@ -137,6 +138,15 @@ function Main(){
                 <Boton contenido={translations[language].gestionarIngresosBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/gestionaringresos")}}/>
 
                 <ShinyDivider/>
+                <div className="centrar10">
+                    <div></div>
+                    <a className='github' href="https://github.com/Ethan04Munoz">
+                        <div className=''>
+                            <img src="github-Dark.svg" alt="" />
+                        </div>   
+                    </a>
+                    <div></div>
+                </div>
                 <div className="espacio"></div>
             </div>
         </div>

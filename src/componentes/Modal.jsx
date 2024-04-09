@@ -49,13 +49,11 @@ function Modal(props){
                         <div></div>
                         <div></div>
                         <div></div>
-                    <div></div>
-                            <a className='github' href="https://github.com/Ethan04Munoz">
-                                <div className=''>
-                                        <img src="github-Dark.svg" alt="" />
-                                </div>   
-                            </a>
-
+                        <a className='github' href="https://github.com/Ethan04Munoz">
+                            <div className=''>
+                                    <img src="github-Dark.svg" alt="" />
+                            </div>   
+                        </a>
                     </div>
                 )}
                 {props.onClick && (

@@ -141,3 +141,8 @@ th {
     font-weight: bold;
   }
 }
+
+.centrar10{
+  display: grid;
+  grid-template-columns: 46% 8% 46%;
+}
