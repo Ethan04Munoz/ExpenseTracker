@@ -28,7 +28,7 @@ function Modal(props){
                     </div>
                 ) : null}
                 <h2>{props.tituloModal}</h2>
-                {(props.tituloModal=="Ajustes" || props.tituloModal == "Settings") && (
+                {(props.tituloModal=="Ajustes" || props.tituloModal == "Settings" || props.tituloModal == "Personaliza tu experiencia" || props.tituloModal == "Customize Your Experience") && (
                     <div className='gridConfiguracion'>
                         <div>{translations[language].idioma}</div>
                         <div className='gridInterruptor'>

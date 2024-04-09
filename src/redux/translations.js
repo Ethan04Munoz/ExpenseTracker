@@ -2,6 +2,7 @@ const translations = {
     es: { 
         tituloPrincipalNavbar: `Manejador de gastos`,
         configuracion: `Ajustes`,
+        configuracionFT: `Personaliza tu experiencia`,
         idioma: `Idioma`,
         espanol: `Español`,
         ingles: `Ingles`,
@@ -36,6 +37,7 @@ const translations = {
     en: {
         tituloPrincipalNavbar: `My expense tracker`,
         configuracion: `Settings`,
+        configuracionFT: `Customize Your Experience`,
         idioma: `Language`,
         espanol: `Spanish`,
         ingles: `English`,
