@@ -89,3 +89,9 @@ export function obtenerTodosIngresosLS(){
     gastosProv = gastosProv ? JSON.parse(gastosProv) : [];
     return gastosProv;
 }
+
+export function obtenerPrimeraVezVisitandoSitio(){
+    let primeraVez = localStorage.getItem('primeraVezBool');
+    primeraVez = primeraVez ? JSON.parse(primeraVez) : [];
+    return primeraVez;
+}
