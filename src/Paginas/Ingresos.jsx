@@ -141,20 +141,22 @@ function Ingresos(){
                 <Boton contenido="Añadir" clase="Btn BtnBlue" onClick={guardarIngresosLS}/>
             </form>
 
-            <div className="containerIngresos">
-                <div className="fila-titulos claseImpar">
-                    <div>Ingreso</div>
-                    <div>Cantidad</div>
-                    <div>Fecha</div>
-                </div>
-                {ingresos.map((ingresoElement, index) => (
-                    <div key={index} className={index % 2 === 0 ? 'clasePar' : 'claseImpar'}>
-                    <div>{ingresoElement.ingreso}</div>
-                    <div>{currentSymbol}{ingresoElement.cantidad}</div>
-                    <div>{ingresoElement.fecha}</div>
+            {ingresos.length > 0 && (
+                <div className="containerIngresos">
+                    <div className="fila-titulos claseImpar">
+                        <div>Ingreso</div>
+                        <div>Cantidad</div>
+                        <div>Fecha</div>
                     </div>
-                ))}
-            </div>
+                    {ingresos.map((ingresoElement, index) => (
+                        <div key={index} className={index % 2 === 0 ? 'clasePar' : 'claseImpar'}>
+                        <div>{ingresoElement.ingreso}</div>
+                        <div>{currentSymbol}{ingresoElement.cantidad}</div>
+                        <div>{ingresoElement.fecha}</div>
+                        </div>
+                    ))}
+                </div>
+            )}
             {ingresosPorCategoria.length > 0 && (
                 <div className="formulario">
                     <PieChart data={ingresosPorCategoria}/>
