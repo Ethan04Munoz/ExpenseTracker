@@ -72,8 +72,14 @@ const IngresosAnual = () => {
         <Navbar enlaceHeader={"/"}/>
         <PrimeraVez/>
         <h1>{translations[language].ingresosXAñoBtnMain}</h1>
-        {chartData && (
+        {chartData.datasets.length > 0 ? (
             <Line data={chartData} />
+        ) : (
+            <div className="formulario">
+                <p>
+                    {translations[language].mensajeDataInsuficiente}
+                </p>
+            </div>
         )}
     </div>
   )

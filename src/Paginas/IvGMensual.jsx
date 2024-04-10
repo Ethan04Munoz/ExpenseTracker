@@ -71,7 +71,11 @@ function IvGMensual(){
             ],
         };
         setData(data);
-    }, [gastos, ingresos])
+    }, [gastos, ingresos]);
+
+    useEffect(() => {
+        console.log("Data: ", data)
+    }, [data])
     
     const options = {
         plugins: { legend: { position: 'top' } }, 
@@ -88,7 +92,16 @@ function IvGMensual(){
             <Navbar enlaceHeader={"/"}/>
             <PrimeraVez/>
             <h1>{translations[language].ivgMensualBtnMain}</h1>
-            <Bar data={data} options={options} />
+            {data.datasets.length > 0 ? (
+                <Bar data={data} options={options} />
+            ) : (
+                <div className="formulario">
+                    <p>
+                        {translations[language].mensajeDataInsuficiente}
+                    </p>
+                </div>
+            )}
+
         </div>
     )
 }

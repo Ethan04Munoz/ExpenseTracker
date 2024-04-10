@@ -53,8 +53,14 @@ function IngresosEsteAño(){
             <Navbar enlaceHeader={"/"}/>
             <PrimeraVez/>
             <h1>{translations[language].ingresosAñoBtnMain}</h1>
-            {ingresos.length > 0 && (
-              <Bar12Chart data={ingresos}/>
+            {ingresos.length > 0 ? (
+                <Bar12Chart data={ingresos}/>
+            ) : (
+              <div className="formulario">
+                  <p>
+                      {translations[language].mensajeDataInsuficiente}
+                  </p>
+              </div>
             )}
         </div>
     )

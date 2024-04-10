@@ -52,8 +52,14 @@ function GastosEsteAño(){
             <Navbar enlaceHeader={"/"}/>
             <PrimeraVez/>
             <h1>{translations[language].gastosAñoBtnMain}</h1>
-            {gastos.length > 0 && (
+            {gastos.length > 0 ? (
                 <Bar12Chart data={gastos}/>
+            ) : (
+                <div className="formulario">
+                    <p>
+                        {translations[language].mensajeDataInsuficiente}
+                    </p>
+                </div>
             )}
         </div>
     )

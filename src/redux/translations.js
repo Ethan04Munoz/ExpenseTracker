@@ -33,6 +33,8 @@ const translations = {
         tablaGestionGastosMensaje: `Parece que no tienes gastos recurrentes. Bien ahí :D!`,
         tablaGestionIngresosMensaje: `Parece que no tienes ingresos recurrentes. 
             Pero yo sé que pronto los tendrás, no te desanimes :D!`,
+        mensajeDataInsuficiente: `Parece que no tienes suficiente información como para 
+            que generemos este gráfico`,
     },
     en: {
         tituloPrincipalNavbar: `My expense tracker`,
@@ -69,6 +71,8 @@ const translations = {
             Well done :D!`,
         tablaGestionIngresosMensaje: `It seems like you have no recurring income.
             But i know you will. Never give up :D!`,
+        mensajeDataInsuficiente: `It seems like there's not enough data to generate
+            this graphic`,
     },
 }
     
