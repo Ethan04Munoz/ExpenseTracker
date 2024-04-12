@@ -11,6 +11,7 @@ import { obtenerFechaActualFormatoDDMMYYYY } from "../FuncionesGlobales.js";
 import PieChart from "../componentes/PieChart.jsx";
 import { obtenerCategoriaIngresosLS, obtenerIngresosRecurrentesLS, obtenerTodosIngresosLS } from "../FuncionesGlobalesLS.js";
 import PrimeraVez from "../componentes/PrimeraVez.jsx";
+import GestorAtajos from "../componentes/GestorAtajos.jsx";
 
 function Ingresos(){
     const [categoriasLS, setCategoriasLS] = useState([]);
@@ -119,6 +120,7 @@ function Ingresos(){
         <div className="ingresosPage">
             <Navbar enlaceHeader={"/"}/>
             <PrimeraVez/>
+            <GestorAtajos/>
             <ToastContainer position="bottom-left" />
             <form className="formulario" action="">
                 <h1>Añadir un ingreso</h1>

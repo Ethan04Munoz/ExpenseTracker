@@ -4,6 +4,7 @@ import Boton from "../componentes/Boton";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrimeraVez from "../componentes/PrimeraVez";
+import GestorAtajos from "../componentes/GestorAtajos";
 
 function AddCategoriaGastos(){
     const [nuevaCategoria, setNuevaCategoria] = useState('');
@@ -46,6 +47,7 @@ function AddCategoriaGastos(){
         <div className="addCategoriaGastos">
             <Navbar enlaceHeader={"/"}/>
             <PrimeraVez/>
+            <GestorAtajos/>
             <ToastContainer position="bottom-left" />
             <form className="formulario" action="">
                 <h1>Añadir una categoria a mis Gastos</h1>

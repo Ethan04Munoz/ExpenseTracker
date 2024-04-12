@@ -7,6 +7,7 @@ import { convertirFechaFormatoLegibleADate } from '../FuncionesGlobales';
 import translations from '../redux/translations.js';
 import { useSelector, useDispatch } from 'react-redux';
 import PrimeraVez from '../componentes/PrimeraVez.jsx';
+import GestorAtajos from '../componentes/GestorAtajos.jsx';
 
 const IngresosAnual = () => {
     const language = useSelector(state => state.language.language);
@@ -71,6 +72,7 @@ const IngresosAnual = () => {
     <div className="ingresosAnual">
         <Navbar enlaceHeader={"/"}/>
         <PrimeraVez/>
+        <GestorAtajos/>
         <h1>{translations[language].ingresosXAñoBtnMain}</h1>
         {chartData.datasets.length > 0 ? (
             <Line data={chartData} />

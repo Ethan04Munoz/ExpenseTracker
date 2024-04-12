@@ -8,6 +8,7 @@ import Chart from 'chart.js/auto';
 import { generarColorPastelAleatorio, generarDuplaColorPastelBordeRelleno, obtenerAnioActual, obtenerMesActual } from "../FuncionesGlobales";
 import { obtenerGastosMesEspecificoLS, obtenerIngresosMesEspecificoLS } from "../FuncionesGlobalesLS";
 import PrimeraVez from "../componentes/PrimeraVez.jsx";
+import GestorAtajos from "../componentes/GestorAtajos.jsx";
 
 
 function IvGMensual(){
@@ -91,6 +92,7 @@ function IvGMensual(){
         <div className="ivgMensual">
             <Navbar enlaceHeader={"/"}/>
             <PrimeraVez/>
+            <GestorAtajos/>
             <h1>{translations[language].ivgMensualBtnMain}</h1>
             {data.datasets.length > 0 ? (
                 <Bar data={data} options={options} />

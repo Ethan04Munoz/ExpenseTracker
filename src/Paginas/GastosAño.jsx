@@ -6,6 +6,7 @@ import { obtenerTodosGastosLS, obtenerTodosIngresosLS } from "../FuncionesGlobal
 import { useSelector, useDispatch } from 'react-redux';
 import translations from '../redux/translations.js';
 import PrimeraVez from "../componentes/PrimeraVez.jsx";
+import GestorAtajos from "../componentes/GestorAtajos.jsx";
 
 function GastosEsteAño(){
     const [gastos, setGastos] = useState([]);
@@ -51,6 +52,7 @@ function GastosEsteAño(){
         <div className="gastosEsteAño">
             <Navbar enlaceHeader={"/"}/>
             <PrimeraVez/>
+            <GestorAtajos/>
             <h1>{translations[language].gastosAñoBtnMain}</h1>
             {gastos.length > 0 ? (
                 <Bar12Chart data={gastos}/>

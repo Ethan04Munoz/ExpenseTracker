@@ -7,6 +7,7 @@ import { obtenerTodosGastosLS, obtenerTodosIngresosLS } from '../FuncionesGlobal
 import Navbar from '../componentes/Navbar';
 import { convertirFechaFormatoLegibleADate } from '../FuncionesGlobales';
 import PrimeraVez from '../componentes/PrimeraVez.jsx';
+import GestorAtajos from '../componentes/GestorAtajos.jsx';
 
 const IvGAnual = () => {
     const language = useSelector(state => state.language.language);
@@ -92,6 +93,7 @@ const IvGAnual = () => {
     <div className="ivgAnual">
         <Navbar enlaceHeader={"/"}/>
         <PrimeraVez/>
+        <GestorAtajos/>
         <h1>{translations[language].ivgAnualBtnMain}</h1>
         {chartData.datasets.length > 0 ? (
             <Line data={chartData} />

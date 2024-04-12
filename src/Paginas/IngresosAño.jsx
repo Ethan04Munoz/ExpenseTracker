@@ -6,6 +6,7 @@ import { obtenerTodosIngresosLS } from "../FuncionesGlobalesLS";
 import { useSelector, useDispatch } from 'react-redux';
 import translations from '../redux/translations.js';
 import PrimeraVez from "../componentes/PrimeraVez.jsx";
+import GestorAtajos from "../componentes/GestorAtajos.jsx";
 
 function IngresosEsteAño(){
     const [ingresos, setIngresos] = useState([]);
@@ -52,6 +53,7 @@ function IngresosEsteAño(){
         <div className="ingresosEsteAño">
             <Navbar enlaceHeader={"/"}/>
             <PrimeraVez/>
+            <GestorAtajos/>
             <h1>{translations[language].ingresosAñoBtnMain}</h1>
             {ingresos.length > 0 ? (
                 <Bar12Chart data={ingresos}/>

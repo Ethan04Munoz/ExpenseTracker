@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import NeonArrowButton from "../componentes/ButtonNeonArrow.jsx";
 import ShinyDivider from "../componentes/ShinyDivider.jsx";
 import PrimeraVez from "../componentes/PrimeraVez.jsx";
+import GestorAtajos from "../componentes/GestorAtajos.jsx";
 
 function Main(){
     let navigate = useNavigate();
@@ -112,6 +113,7 @@ function Main(){
         <div>
             <Navbar enlaceHeader={"/"}/>
             <PrimeraVez/>
+            <GestorAtajos/>
             <div className="contenerBotonesMainPage">
                 <div className="fechaActual">
                     <Boton contenido={translations[language].botonNavegacionMesPrevio} clase="Btn BtnDark" onClick={disminuirMesRevision}/>

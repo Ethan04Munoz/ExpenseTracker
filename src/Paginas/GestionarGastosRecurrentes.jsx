@@ -5,6 +5,7 @@ import Boton from '../componentes/Boton';
 import translations from '../redux/translations.js';
 import { useSelector, useDispatch } from 'react-redux';
 import PrimeraVez from '../componentes/PrimeraVez.jsx';
+import GestorAtajos from '../componentes/GestorAtajos.jsx';
 
 function GestionarGastosRecurrentes() {
     const [gastosRecurrentes, setGastosRecurrentes] = useState([]);
@@ -27,6 +28,7 @@ function GestionarGastosRecurrentes() {
         <div className="gestionarGastosRecurrentes">
             <Navbar enlaceHeader={"/"}/>
             <PrimeraVez/>
+            <GestorAtajos/>
             <div className="formulario">
                 <h1>{translations[language].gestionarGastosBtnMain}</h1>
                 {gastosRecurrentes.length > 0 ? (

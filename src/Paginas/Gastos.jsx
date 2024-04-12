@@ -11,6 +11,7 @@ import { obtenerFechaActualFormatoDDMMYYYY } from "../FuncionesGlobales.js";
 import PieChart from "../componentes/PieChart.jsx";
 import { obtenerCategoriasGastosLS, obtenerGastosRecurrentesLS, obtenerTodosGastosLS } from "../FuncionesGlobalesLS.js";
 import PrimeraVez from "../componentes/PrimeraVez.jsx";
+import GestorAtajos from "../componentes/GestorAtajos.jsx";
 
 function Gastos(){
     const [categoriasLS, setCategoriasLS] = useState([]);
@@ -124,6 +125,7 @@ function Gastos(){
         <div className="ingresosPage">
             <Navbar enlaceHeader={"/"}/>
             <PrimeraVez/>
+            <GestorAtajos/>
             <ToastContainer position="bottom-left" />
             <form className="formulario" action="">
                 <h1>Añadir un gasto</h1>
