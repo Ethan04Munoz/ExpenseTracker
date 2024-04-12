@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Modal.css';
 import { useSelector, useDispatch } from 'react-redux';
 import translations from '../redux/translations.js';
@@ -19,6 +19,21 @@ function Modal(props){
     const handleChangeCurrency = (event) => {
           dispatch(setCurrency(event.target.value));
     };
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape') {
+                props.onClickX && props.onClickX();
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [props.onClickX]); 
+
     return(
         <div className="modal">
             <div className='modalAdv'>
