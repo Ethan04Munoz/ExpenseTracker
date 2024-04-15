@@ -43,7 +43,7 @@ import GestorAtajos from "../componentes/GestorAtajos";
         }, [categoriasLS])
         return (
             <div className="addCategoriaIngresos">
-                <Navbar enlaceHeader={"/"}/>
+                <Navbar enlaceHeader={"/ExpenseTracker/"}/>
                 <PrimeraVez/>
                 <GestorAtajos/>
                 <ToastContainer position="bottom-left" />

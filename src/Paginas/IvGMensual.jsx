@@ -90,7 +90,7 @@ function IvGMensual(){
 
     return(
         <div className="ivgMensual">
-            <Navbar enlaceHeader={"/"}/>
+            <Navbar enlaceHeader={"/ExpenseTracker/"}/>
             <PrimeraVez/>
             <GestorAtajos/>
             <h1>{translations[language].ivgMensualBtnMain}</h1>

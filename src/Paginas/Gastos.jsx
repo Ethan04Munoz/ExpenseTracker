@@ -123,7 +123,7 @@ function Gastos(){
 
     return (
         <div className="ingresosPage">
-            <Navbar enlaceHeader={"/"}/>
+            <Navbar enlaceHeader={"/ExpenseTracker/"}/>
             <PrimeraVez/>
             <GestorAtajos/>
             <ToastContainer position="bottom-left" />
@@ -141,7 +141,7 @@ function Gastos(){
                 </select>
                 <div className="contenerLink">
                     <div></div>
-                    <Link className="linkMenor" to={"/nuevacategoriagastos"}>Añadir categoría</Link>
+                    <Link className="linkMenor" to={"/ExpenseTracker/nuevacategoriagastos"}>Añadir categoría</Link>
                 </div>
                 <input className="checkBoxRecurrente" type="checkbox" name="checkIngresoRecurrente" id="checkIngresoRecurrente" value={gastoRecurrenteBool} onChange={guardarGastoRecurrenteBool}/>
                 <label htmlFor="checkIngresoRecurrente">Es un gasto recurrente</label>

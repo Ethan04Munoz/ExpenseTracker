@@ -26,7 +26,7 @@ function GestionarGastosRecurrentes() {
 
     return (
         <div className="gestionarGastosRecurrentes">
-            <Navbar enlaceHeader={"/"}/>
+            <Navbar enlaceHeader={"/ExpenseTracker/"}/>
             <PrimeraVez/>
             <GestorAtajos/>
             <div className="formulario">

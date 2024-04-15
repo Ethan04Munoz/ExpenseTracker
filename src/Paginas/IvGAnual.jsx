@@ -91,7 +91,7 @@ const IvGAnual = () => {
 
   return(
     <div className="ivgAnual">
-        <Navbar enlaceHeader={"/"}/>
+        <Navbar enlaceHeader={"/ExpenseTracker/"}/>
         <PrimeraVez/>
         <GestorAtajos/>
         <h1>{translations[language].ivgAnualBtnMain}</h1>

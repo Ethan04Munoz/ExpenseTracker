@@ -50,7 +50,7 @@ function GastosEsteAño(){
 
     return (
         <div className="gastosEsteAño">
-            <Navbar enlaceHeader={"/"}/>
+            <Navbar enlaceHeader={"/ExpenseTracker/"}/>
             <PrimeraVez/>
             <GestorAtajos/>
             <h1>{translations[language].gastosAñoBtnMain}</h1>

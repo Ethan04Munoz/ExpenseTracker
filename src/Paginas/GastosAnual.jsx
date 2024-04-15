@@ -70,7 +70,7 @@ const GastosAnual = () => {
 
   return(
     <div className="gastosAnual">
-        <Navbar enlaceHeader={"/"}/>
+        <Navbar enlaceHeader={"/ExpenseTracker/"}/>
         <PrimeraVez/>
         <GestorAtajos/>
         <h1>{translations[language].gastosXAñoBtnMain}</h1>

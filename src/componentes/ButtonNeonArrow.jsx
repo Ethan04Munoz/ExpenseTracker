@@ -9,7 +9,6 @@ import './ButtonNeonArrow.css'; // Asegúrate de importar el CSS
 const NeonArrowButton = ({ direction, onClick, textoBtnIzq, textoBtnDer }) => {
   return (
     <button className={`neon-button ${direction}`} onClick={onClick}>
-      {/* Aquí podrías insertar tu ícono de flecha, por ejemplo, usando FontAwesome */}
       {/* <i className="fa fa-arrow-right"></i> */} 
       {direction == "right" ? <p>{textoBtnDer}</p> : <p>{textoBtnIzq}</p>}
       {/*<i class="bi bi-arrow-right-square-fill"></i>*/}

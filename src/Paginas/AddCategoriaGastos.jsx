@@ -45,7 +45,7 @@ function AddCategoriaGastos(){
     }, [categoriasLS])
     return (
         <div className="addCategoriaGastos">
-            <Navbar enlaceHeader={"/"}/>
+            <Navbar enlaceHeader={"/ExpenseTracker/"}/>
             <PrimeraVez/>
             <GestorAtajos/>
             <ToastContainer position="bottom-left" />
