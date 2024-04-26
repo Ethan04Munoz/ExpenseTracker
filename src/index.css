@@ -29,6 +29,11 @@ h1 {
     text-align: center;
 }
 
+h2 {
+  font-size: 2.5em;
+  line-height: 1.1;
+}
+
 h2, h3{
   text-align: center;
 }
@@ -145,4 +150,8 @@ th {
 .centrar10{
   display: grid;
   grid-template-columns: 46% 8% 46%;
+}
+
+li{
+  font-size: 3vh;
 }

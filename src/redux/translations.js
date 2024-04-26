@@ -49,7 +49,15 @@ const translations = {
         formularioIngresosP2: `Cantidad`,
         formularioIngresosP3: `Categoría de ingreso`,
         formularioIngresosCasillas: `Es un ingreso recurrente`,
-        añadirBtn: `Añadir`
+        añadirBtn: `Añadir`,
+        addCategoriaIngresosH1: `Añadir una categoria a mis Ingresos`,
+        addCategoriaIngresosP1: `Nombre de la categoria:`,
+        addCategoriaIngresosPlaceholder: `Ejemplo: Rendimientos portafolio`,
+        addCategoriaIngresosH2: `Tus categorías de Ingresos`,
+        addCategoriaGastosH1: `Añadir una categoria a mis Gastos`,
+        addCategoriaGastosP1: `Nombre de la categoria:`,
+        addCategoriaGastosPlaceholder: `Ejemplo: Gastos del hogar`,
+        addCategoriaGastosH2: `Tus categorías de Gastos`,
     },
     en: {
         tituloPrincipalNavbar: `My expense tracker`,
@@ -103,6 +111,15 @@ const translations = {
         formularioIngresosP3: `Income Category`,
         formularioIngresosCasillas: `It is a recurring income`,
         añadirBtn: `Add`,
+        addCategoriaIngresosH1: `Add a Category to My Income`,
+        addCategoriaIngresosP1: `Category Name:`,
+        addCategoriaIngresosPlaceholder: `Example: Portfolio Returns`,
+        addCategoriaIngresosH2: `Your Income Categories`,
+        addCategoriaGastosH1: `Add a Category to My Expenses`,
+        addCategoriaGastosP1: `Category Name:`,
+        addCategoriaGastosPlaceholder: `Example: Household Expenses`,
+        addCategoriaGastosH2: `Your Expense Categories`,
+
     },
 }
     

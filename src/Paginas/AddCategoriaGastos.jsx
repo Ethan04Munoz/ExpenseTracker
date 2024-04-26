@@ -5,8 +5,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrimeraVez from "../componentes/PrimeraVez";
 import GestorAtajos from "../componentes/GestorAtajos";
+import { useSelector, useDispatch } from 'react-redux';
+import translations from '../redux/translations.js';
 
 function AddCategoriaGastos(){
+    const language = useSelector(state => state.language.language);
+    
     const [nuevaCategoria, setNuevaCategoria] = useState('');
     const [categoriasLS, setCategoriasLS] = useState([]);
     function obtenerCategoriasLS(){
@@ -50,14 +54,14 @@ function AddCategoriaGastos(){
             <GestorAtajos/>
             <ToastContainer position="bottom-left" />
             <form className="formulario" action="">
-                <h1>Añadir una categoria a mis Gastos</h1>
-                <p>Nombre de la categoria:</p> 
-                <input className="input" type="text" name="" id="" placeholder="Ejemplo: Gastos del hogar" value={nuevaCategoria} onChange={guardarCategoriaIngresos}/>
-                <Boton contenido="Añadir" clase="Btn BtnBlue" onClick={guardarCategoriaLS}/>
+                <h1>{translations[language].addCategoriaGastosH1}</h1>
+                <p>{translations[language].addCategoriaGastosP1}</p> 
+                <input className="input" type="text" name="" id="" placeholder={translations[language].addCategoriaGastosPlaceholder} value={nuevaCategoria} onChange={guardarCategoriaIngresos}/>
+                <Boton contenido={translations[language].añadirBtn} clase="Btn BtnBlue" onClick={guardarCategoriaLS}/>
             </form>
 
             <div className="formulario">
-                <h2>Tus categorías de Gastos</h2>
+                <h2>{translations[language].addCategoriaGastosH2}</h2>
                 <ul>
                     {categoriasLS.map((categoria, index) => (
                         <li key={index}>{categoria}</li>
