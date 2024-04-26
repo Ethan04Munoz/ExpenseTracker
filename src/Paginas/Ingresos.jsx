@@ -6,14 +6,17 @@ import Boton from "../componentes/Boton";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Ingresos.css';
-import { useSelector } from 'react-redux';
 import { obtenerFechaActualFormatoDDMMYYYY } from "../FuncionesGlobales.js";
 import PieChart from "../componentes/PieChart.jsx";
 import { obtenerCategoriaIngresosLS, obtenerIngresosRecurrentesLS, obtenerTodosIngresosLS } from "../FuncionesGlobalesLS.js";
 import PrimeraVez from "../componentes/PrimeraVez.jsx";
 import GestorAtajos from "../componentes/GestorAtajos.jsx";
+import { useSelector, useDispatch } from 'react-redux';
+import translations from '../redux/translations.js';
 
 function Ingresos(){
+    const language = useSelector(state => state.language.language);
+
     const [categoriasLS, setCategoriasLS] = useState([]);
     const [ingresos, setIngresos] = useState([]);
     const [ingreso, setIngreso] = useState('');
@@ -123,12 +126,12 @@ function Ingresos(){
             <GestorAtajos/>
             <ToastContainer position="bottom-left" />
             <form className="formulario" action="">
-                <h1>Añadir un ingreso</h1>
-                <p>Nombre del ingreso:</p>
+                <h1>{translations[language].formularioIngresosTitulo}</h1>
+                <p>{translations[language].formularioIngresosP1}:</p>
                 <input className="input" type="text" name="" id="" onChange={guardarIngreso} value={ingreso} placeholder="Salario, venta del viejo sillón"/>
-                <p>Cantidad:</p>
+                <p>{translations[language].formularioIngresosP2}:</p>
                 <input className="input" type="text" name="" id="" onChange={guardarCantidad} value={cantidad} placeholder="7000"/>
-                <p>Categoría de ingreso:</p>
+                <p>{translations[language].formularioIngresosP3}:</p>
                 <select value={categoria} className='selectConfig' onChange={guardarCategoria}>
                 {categoriasLS.map((categoria, index) => (
                     <option value={categoria} key={index}>{categoria}</option>
@@ -136,19 +139,21 @@ function Ingresos(){
                 </select>
                 <div className="contenerLink">
                     <div></div>
-                    <Link className="linkMenor" to={"/ExpenseTracker/nuevacategoriaingresos"}>Añadir categoría</Link>
+                    <Link className="linkMenor" to={"/ExpenseTracker/nuevacategoriaingresos"}>
+                        {translations[language].formularioGastosIngresosAñadirCategoria}
+                    </Link>
                 </div>
                 <input className="checkBoxRecurrente" type="checkbox" name="checkIngresoRecurrente" id="checkIngresoRecurrente" value={ingresoRecurrenteBool} onChange={guardarIngresoRecurrenteBool}/>
-                <label htmlFor="checkIngresoRecurrente">Es un ingreso recurrente</label>
-                <Boton contenido="Añadir" clase="Btn BtnBlue" onClick={guardarIngresosLS}/>
+                <label htmlFor="checkIngresoRecurrente">{translations[language].formularioIngresosCasillas}</label>
+                <Boton contenido={translations[language].añadirBtn} clase="Btn BtnBlue" onClick={guardarIngresosLS}/>
             </form>
 
             {ingresos.length > 0 && (
                 <div className="containerIngresos">
                     <div className="fila-titulos claseImpar">
-                        <div>Ingreso</div>
-                        <div>Cantidad</div>
-                        <div>Fecha</div>
+                        <div>{translations[language].tituloTablaIngreso}</div>
+                        <div>{translations[language].tituloTablaCantidad}</div>
+                        <div>{translations[language].tituloTablaFecha}</div>
                     </div>
                     {ingresos.map((ingresoElement, index) => (
                         <div key={index} className={index % 2 === 0 ? 'clasePar' : 'claseImpar'}>
@@ -161,6 +166,7 @@ function Ingresos(){
             )}
             {ingresosPorCategoria.length > 0 && (
                 <div className="formulario">
+                    <h1>{translations[language].tituloGraficoIngresos}</h1>
                     <PieChart data={ingresosPorCategoria}/>
                 </div>
             )}

@@ -6,14 +6,17 @@ import { Link } from "react-router-dom";
 import Boton from "../componentes/Boton";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector } from 'react-redux';
 import { obtenerFechaActualFormatoDDMMYYYY } from "../FuncionesGlobales.js";
 import PieChart from "../componentes/PieChart.jsx";
 import { obtenerCategoriasGastosLS, obtenerGastosRecurrentesLS, obtenerTodosGastosLS } from "../FuncionesGlobalesLS.js";
 import PrimeraVez from "../componentes/PrimeraVez.jsx";
 import GestorAtajos from "../componentes/GestorAtajos.jsx";
+import { useSelector, useDispatch } from 'react-redux';
+import translations from '../redux/translations.js';
 
 function Gastos(){
+    const language = useSelector(state => state.language.language);
+
     const [categoriasLS, setCategoriasLS] = useState([]);
     const [gastos, setGastos] = useState([]);
     const [gasto, setGasto] = useState('');
@@ -128,12 +131,12 @@ function Gastos(){
             <GestorAtajos/>
             <ToastContainer position="bottom-left" />
             <form className="formulario" action="">
-                <h1>Añadir un gasto</h1>
-                <p>Nombre del gasto:</p>
+                <h1>{translations[language].formularioGastosTitulo}</h1>
+                <p>{translations[language].formularioGastosP1}:</p>
                 <input className="input" type="text" name="" id="" onChange={guardarGasto} value={gasto} placeholder="Youtube Music, DDLC+"/>
-                <p>Cantidad:</p>
+                <p>{translations[language].formularioGastosP2}:</p>
                 <input className="input" type="text" name="" id="" onChange={guardarCantidad} value={cantidad} placeholder="7000"/>
-                <p>Categoría de gasto:</p>
+                <p>{translations[language].formularioGastosP3}:</p>
                 <select className='selectConfig' value={categoria} onChange={guardarCategoria}>
                 {categoriasLS.map((categoria, index) => (
                     <option value={categoria} key={index}>{categoria}</option>
@@ -141,19 +144,19 @@ function Gastos(){
                 </select>
                 <div className="contenerLink">
                     <div></div>
-                    <Link className="linkMenor" to={"/ExpenseTracker/nuevacategoriagastos"}>Añadir categoría</Link>
+                    <Link className="linkMenor" to={"/ExpenseTracker/nuevacategoriagastos"}>{translations[language].formularioGastosIngresosAñadirCategoria}</Link>
                 </div>
                 <input className="checkBoxRecurrente" type="checkbox" name="checkIngresoRecurrente" id="checkIngresoRecurrente" value={gastoRecurrenteBool} onChange={guardarGastoRecurrenteBool}/>
-                <label htmlFor="checkIngresoRecurrente">Es un gasto recurrente</label>
-                <Boton contenido="Añadir" clase="Btn BtnBlue" onClick={guardarGastoLS}/>
+                <label htmlFor="checkIngresoRecurrente">{translations[language].formularioGastosCasillas}</label>
+                <Boton contenido={translations[language].añadirBtn} clase="Btn BtnBlue" onClick={guardarGastoLS}/>
             </form>
 
             {gastos.length > 0 && (
                 <div className="containerGastos">
                     <div className="fila-titulos claseImpar">
-                        <div>Gasto</div>
-                        <div>Cantidad</div>
-                        <div>Fecha</div>
+                        <div>{translations[language].tituloTablaGasto}</div>
+                        <div>{translations[language].tituloTablaCantidad}</div>
+                        <div>{translations[language].tituloTablaFecha}</div>
                     </div>
                     {gastos.map((gastoElement, index) => (
                         <div key={index} className={index % 2 === 0 ? 'clasePar' : 'claseImpar'}>
@@ -166,6 +169,7 @@ function Gastos(){
             )}
             {gastoPorCategoria.length > 0 && (
                 <div className="formulario">
+                    <h1>{translations[language].tituloGraficoGastos}</h1>
                     <PieChart data={gastoPorCategoria}/>
                 </div>
             )}
