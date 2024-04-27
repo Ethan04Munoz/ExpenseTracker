@@ -32,30 +32,6 @@
 .modalAdv button{
     width: 100%;
 } 
-/*
-.divirSeccionesRecord{
-    width: 16rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.divirSeccionesRecordModal{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    text-align: center;
-}
-
-.divirSeccionesRecord p{
-    font-size: 1.5em;
-    text-align: center;
-    user-select: none;
-}
-
-.divirSeccionesRecordModal p{
-    font-size: 5vh;
-    text-align: center;
-    user-select: none; 
-}*/
 
 .modalAdv .btnCerrarModal {
     margin-top: 1vh;
