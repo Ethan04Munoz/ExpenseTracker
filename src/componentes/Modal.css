@@ -34,7 +34,7 @@
 } 
 
 .modalAdv .btnCerrarModal {
-    margin-top: 1vh;
+    margin-top: 1em;
     background: transparent;
     border: transparent solid 1px;
     color: #f3f8fc;
@@ -42,10 +42,14 @@
     font-size: 4vh;
     font-weight: 600;
     padding-bottom: 2vh;
+    width: 4rem;
+    height: 4rem;
 }
+
 .modalAdv .btnCerrarModal:hover{
     color: #ac0000;
-    border: #7a7a7a4b solid 1px;
+    border: #ac00004b solid 1px;
+    border-radius: 50%;
     font-family: 650;
 }
 
