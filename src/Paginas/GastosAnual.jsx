@@ -52,7 +52,7 @@ const GastosAnual = () => {
       labels: años,
       datasets: [
         {
-          label: 'Gastos',
+          label: translations[language].gastos,
           data: dataGastos,
           borderColor: 'rgb(255, 99, 132)',
           backgroundColor: 'rgba(255, 99, 132, 0.2)',

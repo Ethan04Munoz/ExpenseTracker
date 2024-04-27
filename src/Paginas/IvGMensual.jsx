@@ -47,7 +47,7 @@ function IvGMensual(){
         );
 
         const data = {
-            labels: ['Ingresos', 'Gastos'],
+            labels: [translations[language].ingresos, translations[language].gastos],
             datasets: [
                 ...categoriasIngresos.map((categoria, index) => {
                     const { colorRelleno, colorBorde } = generarDuplaColorPastelBordeRelleno();
