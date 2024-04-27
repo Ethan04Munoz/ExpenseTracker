@@ -23,7 +23,10 @@ function Navbar({enlaceHeader}){
     return(
         <div className="navbar">
             <div className="gridNavBar">
-                <Link to={enlaceHeader} className="titleNavbar"><div className="titleNavbar"> <h1>{translations[language].tituloPrincipalNavbar}</h1></div></Link>
+                <Link to={enlaceHeader} className="gridLogoContainer">
+                    <img src="./webp/expense.webp" alt="" />
+                    <div className="titleNavbar"> <h1>{translations[language].tituloPrincipalNavbar}</h1></div>
+                </Link>
                 <div></div>
                 <ImagenLogoHeader onClick={encenderModalConfiguracion}/>
             </div>

@@ -21,7 +21,16 @@ Link{
     height: 100%;
 }
 
-.titleNavbar{
+.titleNavbar h1{
+    font-size: 4.5vh;
+    font-weight: 600;
+    text-align: center;
+}
+
+.gridLogoContainer{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% 70%;
     height: 100%;
     display: grid;
     align-items: center;
@@ -29,16 +38,13 @@ Link{
     color: #f3f3f3;
 }
 
-.titleNavbar:hover{
+.gridLogoContainer:hover{
     background: #353535;
     text-shadow: 0px 3px 5px #585858;
 }
 
-.titleNavbar h1{
-    font-size: 5vh;
-    font-weight: 650;
-    text-align: center;
-
+.gridLogoContainer img {
+    width: 100%;
 }
 
 @media (max-width: 968px) {
