@@ -28,7 +28,7 @@ function Navbar({enlaceHeader}){
                     <div className="titleNavbar"> <h1>{translations[language].tituloPrincipalNavbar}</h1></div>
                 </Link>
                 <div></div>
-                <ImagenLogoHeader onClick={encenderModalConfiguracion}/>
+                <ImagenLogoHeader clase="imgConfig" onClick={encenderModalConfiguracion}/>
             </div>
             {modalConfiguracion == true && (
                 <Modal tituloModal={translations[language].configuracion} onClickX={apagarModalConfiguracion}/>

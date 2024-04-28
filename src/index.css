@@ -1,16 +1,13 @@
 :root {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-  
     color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
     background-color: #242424;
-  
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: rgba(255, 255, 255, 0.87);
+    font-size: 1rem;
 }
   
 a {
@@ -24,17 +21,15 @@ body {
 }
   
 h1 {
-    font-size: 3.2em;
-    line-height: 1.1;
+    font-size: 3em;
     text-align: center;
 }
 
 h2 {
-  font-size: 2.5em;
-  line-height: 1.1;
+  font-size: 2em;
 }
 
-h2, h3{
+h2 , h3{
   text-align: center;
 }
   
@@ -63,7 +58,7 @@ button {
 .contenerBotonesMainPage{
     width: 60vw;
     margin-left: 20vw;
-    margin-top: 2rem;
+    margin-top: 5vh;
 }
 
 .fechaActual{
@@ -72,7 +67,7 @@ button {
     justify-items: center;
     align-items: center;
     text-align: center;
-    font-size: 3vh;
+    font-size: 2em;
 }
 
 .fechaActual .Btn{
@@ -93,13 +88,13 @@ table {
   width: 100%; 
   border-collapse: collapse; 
   margin-top: 20px; 
-  font-size: 2.5vh;
+  font-size: 1.5em;
 }
 
 th, td {
   border: 1px solid #9046ff; 
   text-align: center; 
-  padding: 1rem; 
+  padding: 1em; 
 }
 
 .tdBtn .Btn{
@@ -153,5 +148,17 @@ th {
 }
 
 li{
-  font-size: 3vh;
+  font-size: 1.5em;
+}
+
+@media (max-width: 968px) {
+    h1 {
+        font-size: 1.5em;
+    }
+    h2 {
+        font-size: 1em;
+    }
+    li {
+        font-size: 0.8em;
+    }
 }

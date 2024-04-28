@@ -1,18 +1,17 @@
-
 .formulario{
     margin-top: 10vh;
     margin-bottom: 10vh;
     width: 40vw;
     margin-left: 30vw;
     background: #383838;
-    border-radius: 1rem 1rem 1rem 1rem;
+    border-radius: 2em 2em 2em 2em;
     box-shadow: rgba(92, 92, 92, 0.2) 0px 3px 9px;
-    padding: 2rem;
+    padding: 2em;
     box-sizing: border-box;
 }
 
 .formulario p, .formulario label{
-    font-size: 3vh;
+    font-size: 1.5em;
     text-align: center;
     user-select: none;
 }
@@ -20,8 +19,8 @@
 .formulario .input{
     box-sizing: border-box;
     width: 100%;
-    font-size: 3vh;
-    padding: 1vh;
+    font-size: 1.5em;
+    padding: 0.5em;
 }
 
 .contenerLink{
@@ -30,11 +29,18 @@
 }
 
 .linkMenor{
-    font-size: 2vh;
+    font-size: 1.5em;
     text-align: right;
 }
 
 .checkBoxRecurrente{
-    width: 2.5vh;
-    height: 2.5vh;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+@media (max-width: 968px) {
+    .formulario{
+        width: 80vw;
+        margin-left: 10vw;
+    }
 }

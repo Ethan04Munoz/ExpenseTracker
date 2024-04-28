@@ -22,7 +22,7 @@ function ImagenLogoHeader(props) {
     }, []);
 
     return (
-        imageSource ? <img src={imageSource} className="" onClick={props.onClick}/> : null
+        imageSource ? <img src={imageSource} className={props.clase} onClick={props.onClick}/> : null
     );
 }
 
