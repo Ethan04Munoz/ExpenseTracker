@@ -108,6 +108,29 @@ function Main(){
         });
     }
     
+    const [contenidoBotonPrevio, setContenidoBotonPrevio] = useState(translations[language].botonNavegacionMesPrevio);
+    const [contenidoBotonSiguiente, setContenidoBotonSiguiente] = useState(translations[language].botonNavegacionMesSiguiente);
+  
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerHeight > window.innerWidth) {
+                // Cambia el contenido a una imagen si el alto es mayor que el ancho
+                setContenidoBotonPrevio(<img className="flechaSvg" src="./public/flechaL.svg" />);
+                setContenidoBotonSiguiente(<img className="flechaSvg" src="./public/flechaR.svg"/>);
+            } else {
+                // Vuelve al texto original si el ancho es mayor que el alto
+                setContenidoBotonPrevio(translations[language].botonNavegacionMesPrevio);
+                setContenidoBotonSiguiente(translations[language].botonNavegacionMesSiguiente);
+            }
+        };
+    
+        // Agrega el listener al montar el componente
+        window.addEventListener('resize', handleResize);
+    
+        handleResize();
+    
+        return () => window.removeEventListener('resize', handleResize);
+    }, [language, translations]);
 
     return (
         <div>
@@ -116,9 +139,9 @@ function Main(){
             <GestorAtajos/>
             <div className="contenerBotonesMainPage">
                 <div className="fechaActual">
-                    <Boton contenido={translations[language].botonNavegacionMesPrevio} clase="Btn BtnDark" onClick={disminuirMesRevision}/>
-                    {obtenerMesLetras(fechaRevision.mes, language)} {language=== 'es' ? 'de' : ''} {fechaRevision.anio}
-                    <Boton contenido={translations[language].botonNavegacionMesSiguiente} clase="Btn BtnDark" onClick={aumentarMesRevision}/>              
+                    <Boton contenido={contenidoBotonPrevio} clase="Btn BtnDark" onClick={disminuirMesRevision}/>
+                    {obtenerMesLetras(fechaRevision.mes, language)} {language === 'es' ? 'de' : ''} {fechaRevision.anio}
+                    <Boton contenido={contenidoBotonSiguiente} clase="Btn BtnDark" onClick={aumentarMesRevision}/>         
                 </div>
                 <ShinyDivider/>
                 <CuadroPrincipal titulo={translations[language].ingresos} cantidad={montoTotalIngresos} url={"ingresos"}/>
