@@ -45,6 +45,15 @@ Link{
 @media (max-width: 968px) {
     .gridNavBar{
         display: grid;
-        grid-template-columns: 50% 25% 25%;
+        grid-template-columns: 60% 20% 20%;
+    }
+
+    .gridLogoContainer{
+        grid-template-columns: 30% 70%;
+        padding: 0.5em;
+    }
+
+    .titleNavbar{
+        font-size: 1.2em;
     }
 }

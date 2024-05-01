@@ -29,3 +29,10 @@
     flex: 1;
     text-align: center;
 }
+
+@media (max-width: 968px) {
+    .containerGastos{
+        width: 80vw;
+        margin-left: 10vw;
+    }
+}
