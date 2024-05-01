@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { logos } from '../rutasLogos';
 
 const imageExists = (url, callback) => {
     const image = new Image();
@@ -9,6 +8,7 @@ const imageExists = (url, callback) => {
 };
 
 function ImagenLogoHeader(props) {
+    const logos = props.logos;
     const [imageSource, setImageSource] = useState(null);
 
     useEffect(() => {
