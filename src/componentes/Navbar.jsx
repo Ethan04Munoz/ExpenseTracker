@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import translations from "../redux/translations";
 import ImagenLogoHeader from "./ImagenLogoHeader";
+import { logos, logotipos } from '../rutasLogos';
 
 function Navbar({enlaceHeader}){
     const language = useSelector(state => state.language.language); // Accede al idioma actual desde el store de Redux
@@ -24,11 +25,11 @@ function Navbar({enlaceHeader}){
         <div className="navbar">
             <div className="gridNavBar">
                 <Link to={enlaceHeader} className="gridLogoContainer">
-                    <img src="./webp/expense.webp" alt="" />
+                <ImagenLogoHeader logos={logotipos}/>
                     <div className="titleNavbar"> <h1>{translations[language].tituloPrincipalNavbar}</h1></div>
                 </Link>
                 <div></div>
-                <ImagenLogoHeader clase="imgConfig" onClick={encenderModalConfiguracion}/>
+                <ImagenLogoHeader logos={logos} clase="imgConfig" onClick={encenderModalConfiguracion}/>
             </div>
             {modalConfiguracion == true && (
                 <Modal tituloModal={translations[language].configuracion} onClickX={apagarModalConfiguracion}/>
