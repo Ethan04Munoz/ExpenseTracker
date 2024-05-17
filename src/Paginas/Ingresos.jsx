@@ -121,7 +121,7 @@ function Ingresos(){
 
     return (
         <div className="ingresosPage">
-            <Navbar enlaceHeader={"/ExpenseTracker/"}/>
+            <Navbar enlaceHeader={"/"}/>
             <PrimeraVez/>
             <GestorAtajos/>
             <ToastContainer position="bottom-left" />
@@ -139,7 +139,7 @@ function Ingresos(){
                 </select>
                 <div className="contenerLink">
                     <div></div>
-                    <Link className="linkMenor" to={"/ExpenseTracker/nuevacategoriaingresos"}>
+                    <Link className="linkMenor" to={"/nuevacategoriaingresos"}>
                         {translations[language].formularioGastosIngresosAñadirCategoria}
                     </Link>
                 </div>

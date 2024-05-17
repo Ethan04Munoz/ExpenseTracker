@@ -51,7 +51,7 @@ function IngresosEsteAño(){
 
     return (
         <div className="ingresosEsteAño">
-            <Navbar enlaceHeader={"/ExpenseTracker/"}/>
+            <Navbar enlaceHeader={"/"}/>
             <PrimeraVez/>
             <GestorAtajos/>
             <h1>{translations[language].ingresosAñoBtnMain}</h1>

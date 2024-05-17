@@ -49,7 +49,7 @@ function AddCategoriaIngresos(){
 
     return (
         <div className="addCategoriaIngresos">
-            <Navbar enlaceHeader={"/ExpenseTracker/"}/>
+            <Navbar enlaceHeader={"/"}/>
             <PrimeraVez/>
             <GestorAtajos/>
             <ToastContainer position="bottom-left" />

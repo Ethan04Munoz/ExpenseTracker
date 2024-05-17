@@ -134,7 +134,7 @@ function Main(){
 
     return (
         <div>
-            <Navbar enlaceHeader={"/ExpenseTracker/"}/>
+            <Navbar enlaceHeader={"/"}/>
             <PrimeraVez/>
             <GestorAtajos/>
             <div className="contenerBotonesMainPage">
@@ -151,18 +151,18 @@ function Main(){
 
                 <h3>{translations[language].mensualesTituloMain}</h3>
 
-                <Boton contenido={translations[language].ivgMensualBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ExpenseTracker/ingresosvsgastos")}}/>
-                <Boton contenido={translations[language].ingresosAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ExpenseTracker/misingresosesteaño")}}/>
-                <Boton contenido={translations[language].gastosAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ExpenseTracker/misgastosesteaño")}}/>
+                <Boton contenido={translations[language].ivgMensualBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ingresosvsgastos")}}/>
+                <Boton contenido={translations[language].ingresosAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/misingresosesteaño")}}/>
+                <Boton contenido={translations[language].gastosAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/misgastosesteaño")}}/>
                 
                 <h3>{translations[language].anualesTituloMain}</h3>
-                <Boton contenido={translations[language].ivgAnualBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ExpenseTracker/ingresosvsgastos/anual")}}/>
-                <Boton contenido={translations[language].ingresosXAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ExpenseTracker/ingresos/anual")}}/>
-                <Boton contenido={translations[language].gastosXAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ExpenseTracker/gastos/anual")}}/>
+                <Boton contenido={translations[language].ivgAnualBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ingresosvsgastos/anual")}}/>
+                <Boton contenido={translations[language].ingresosXAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ingresos/anual")}}/>
+                <Boton contenido={translations[language].gastosXAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/gastos/anual")}}/>
                 
                 <h2>{translations[language].configuracionTituloMain}</h2>
-                <Boton contenido={translations[language].gestionarGastosBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ExpenseTracker/gestionargastos")}}/>
-                <Boton contenido={translations[language].gestionarIngresosBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ExpenseTracker/gestionaringresos")}}/>
+                <Boton contenido={translations[language].gestionarGastosBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/gestionargastos")}}/>
+                <Boton contenido={translations[language].gestionarIngresosBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/gestionaringresos")}}/>
 
                 <ShinyDivider/>
                 <div className="centrar10">

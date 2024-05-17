@@ -1,5 +1,6 @@
-import React from "react";
-import {Route, Routes, BrowserRouter} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
+import * as React from "react";
+import { HashRouter } from "react-router-dom";
 import Main from "./Paginas/Main";
 import Ingresos from "./Paginas/Ingresos";
 import AddCategoriaIngresos from "./Paginas/AddCategoriaIngresos";
@@ -17,24 +18,24 @@ import GestionarGastosRecurrentes from "./Paginas/GestionarGastosRecurrentes";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
-        <Route path="/ExpenseTracker/" element={<Main/>}/>
-        <Route path="/ExpenseTracker/ingresos" element={<Ingresos/>}/>
-        <Route path="/ExpenseTracker/gastos" element={<Gastos/>}/>
-        <Route path="/ExpenseTracker/nuevacategoriaingresos" element={<AddCategoriaIngresos/>}/>
-        <Route path="/ExpenseTracker/nuevacategoriagastos" element={<AddCategoriaGastos/>}/>
-        <Route path="/ExpenseTracker/misingresosesteaño" element={<IngresosEsteAño/>}/>
-        <Route path="/ExpenseTracker/misgastosesteaño" element={<GastosEsteAño/>}/>
-        <Route path="/ExpenseTracker/ingresosvsgastos" element={<IvGMensual/>}/>
-        <Route path="/ExpenseTracker/ingresosvsgastos/anual" element={<IvGAnual/>}/>
-        <Route path="/ExpenseTracker/ingresos/anual" element={<IngresosAnual/>}/>
-        <Route path="/ExpenseTracker/gastos/anual" element={<GastosAnual/>}/>
-        <Route path="/ExpenseTracker/prueba" element={<MyAreaChart/>}/>
-        <Route path="/ExpenseTracker/gestionaringresos" element={<GestionarIngresosRecurrentes/>}/>
-        <Route path="/ExpenseTracker/gestionargastos" element={<GestionarGastosRecurrentes/>}/>
+        <Route path="/" element={<Main/>}/>
+        <Route path="/ingresos" element={<Ingresos/>}/>
+        <Route path="/gastos" element={<Gastos/>}/>
+        <Route path="/nuevacategoriaingresos" element={<AddCategoriaIngresos/>}/>
+        <Route path="/nuevacategoriagastos" element={<AddCategoriaGastos/>}/>
+        <Route path="/misingresosesteaño" element={<IngresosEsteAño/>}/>
+        <Route path="/misgastosesteaño" element={<GastosEsteAño/>}/>
+        <Route path="/ingresosvsgastos" element={<IvGMensual/>}/>
+        <Route path="/ingresosvsgastos/anual" element={<IvGAnual/>}/>
+        <Route path="/ingresos/anual" element={<IngresosAnual/>}/>
+        <Route path="/gastos/anual" element={<GastosAnual/>}/>
+        <Route path="/prueba" element={<MyAreaChart/>}/>
+        <Route path="/gestionaringresos" element={<GestionarIngresosRecurrentes/>}/>
+        <Route path="/gestionargastos" element={<GestionarGastosRecurrentes/>}/>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
