@@ -1,4 +1,4 @@
-import { getRandomInt, getRandomDate, generarGastosIngresosAleatorios } from "./FuncionesGlobales";
+import { getRandomInt, getRandomDate, generarGastosIngresosAleatorios, obtenerCategoriasAleatoriasGastos, obtenerCategoriasAleatoriasIngresos } from "./FuncionesGlobales";
 
 export function obtenerIngresosLS(){
     let ingresos = localStorage.getItem('ingresos');
@@ -100,8 +100,8 @@ export function obtenerPrimeraVezVisitandoSitio(){
 }
 
 export function establecerDatosPrueba() {
-    const categoriasGastos = ["Suscripciones", "Higiene", "Videojuegos", "Mangas"];
-    const categoriasIngresos = ["Acciones", "Anuncios", "Ventas de mangas", "Trabajos Freelancers"];
+    const categoriasGastos = obtenerCategoriasAleatoriasGastos();
+    const categoriasIngresos = obtenerCategoriasAleatoriasIngresos();
 
     const currentDate = new Date();
     const startYear = currentDate.getFullYear() - 1;

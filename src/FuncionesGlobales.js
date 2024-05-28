@@ -28,6 +28,34 @@ export const mesesEN = [
     'December'
 ];
 
+export const categoriasGastos = [
+    'Vivienda',
+    'Alimentos',
+    'Transporte',
+    'Atención médica',
+    'Deudas',
+    'Entretenimiento',
+    'Educación',
+    'Ropa',
+    'Vacaciones',
+    'Ahorros e inversiones',
+    'Impuestos'
+];
+
+export const categoriasIngresos = [
+    'Salario principal',
+    'Trabajos secundarios',
+    'Trabajos Freelancer',
+    'Rentas',
+    'Intereses',
+    'Dividendos',
+    'Beneficios gubernamentales',
+    'Pensiones y jubilaciones',
+    'Ingresos pasivos'
+];
+
+
+
 export function obtenerFechaActualFormatoDDMMYYYY() {
     const fechaActual = new Date();
 
@@ -140,6 +168,36 @@ export function getRandomDate(year, month) {
     return date;
 }
 
+export function obtenerCategoriasAleatoriasGastos() {
+    const categoriasAleatorias = [];
+    const indicesAleatorios = [];
+
+    while (indicesAleatorios.length < 4) {
+        const indiceAleatorio = Math.floor(Math.random() * categoriasGastos.length);
+        if (!indicesAleatorios.includes(indiceAleatorio)) {
+            indicesAleatorios.push(indiceAleatorio);
+            categoriasAleatorias.push(categoriasGastos[indiceAleatorio]);
+        }
+    }
+
+    return categoriasAleatorias;
+}
+
+export function obtenerCategoriasAleatoriasIngresos() {
+    const categoriasAleatorias = [];
+    const indicesAleatorios = [];
+
+    while (indicesAleatorios.length < 4) {
+        const indiceAleatorio = Math.floor(Math.random() * categoriasIngresos.length);
+        if (!indicesAleatorios.includes(indiceAleatorio)) {
+            indicesAleatorios.push(indiceAleatorio);
+            categoriasAleatorias.push(categoriasIngresos[indiceAleatorio]);
+        }
+    }
+
+    return categoriasAleatorias;
+}
+
 export function generarGastosIngresosAleatorios(startYear, endYear, endMonth, categoriasGastos, categoriasIngresos){
     let gastos = [];
     let ingresos = [];
@@ -173,10 +231,6 @@ export function generarGastosIngresosAleatorios(startYear, endYear, endMonth, ca
         }
     }
     return { gastos, ingresos}
-}
-
-export function generarCategoriasAleatorias(){
-
 }
 
 export function generarGastosIngresosRecurrentesAleatorios(){
