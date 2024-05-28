@@ -128,5 +128,10 @@ export function establecerDatosPrueba() {
 
 
 export function eliminarDatos() {
-
+    localStorage.setItem('categoriasGastos', JSON.stringify([]));
+    localStorage.setItem('categoriasIngresos', JSON.stringify([]));
+    localStorage.setItem('gastos', JSON.stringify([]));
+    localStorage.setItem('ingresos', JSON.stringify([]));
+    localStorage.setItem('gastosRecurrentes', JSON.stringify([]));
+    localStorage.setItem('ingresosRecurrentes', JSON.stringify([]));
 }
