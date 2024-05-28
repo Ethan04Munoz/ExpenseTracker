@@ -5,6 +5,7 @@ import translations from '../redux/translations.js';
 import { setCurrency } from '../redux/CurrencyActions.js';
 import monetarySymbols from '../redux/monetarySymbols.js';
 import Switch from './Switch.jsx';
+import { establecerDatosPrueba } from '../FuncionesGlobalesLS.js';
 
 function Modal(props){
     const language = useSelector(state => state.language.language);
@@ -63,7 +64,7 @@ function Modal(props){
                         </div>
                         <div></div>
                         <div></div>
-                        <div></div>
+                        <button onClick={establecerDatosPrueba}>Establecer datos de prueba</button>
                         <a className='github' href="https://github.com/Ethan04Munoz">
                             <div className=''>
                                     <img src="github-Dark.svg" alt="" />

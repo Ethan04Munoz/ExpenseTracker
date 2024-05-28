@@ -1,3 +1,5 @@
+import { getRandomInt, getRandomDate, generarGastosIngresosAleatorios } from "./FuncionesGlobales";
+
 export function obtenerIngresosLS(){
     let ingresos = localStorage.getItem('ingresos');
     ingresos = ingresos ? JSON.parse(ingresos) : [];
@@ -14,6 +16,7 @@ export function obtenerGastosLS(){
 
 export function obtenerIngresosMesEspecificoLS(objFecha) {
     const { mes, anio } = objFecha;
+    console.log("OBJFecha: ", objFecha)
     const mesFormateado = mes < 10 ? `0${mes}` : `${mes}`;
     const ingresosTotales = obtenerIngresosLS();
     const ingresosFiltrados = ingresosTotales.filter(obj => {
@@ -94,4 +97,36 @@ export function obtenerPrimeraVezVisitandoSitio(){
     let primeraVez = localStorage.getItem('primeraVezBool');
     primeraVez = primeraVez ? JSON.parse(primeraVez) : [];
     return primeraVez;
+}
+
+export function establecerDatosPrueba() {
+    const categoriasGastos = ["Suscripciones", "Higiene", "Videojuegos", "Mangas"];
+    const categoriasIngresos = ["Acciones", "Anuncios", "Ventas de mangas", "Trabajos Freelancers"];
+
+    const currentDate = new Date();
+    const startYear = currentDate.getFullYear() - 1;
+    const endYear = currentDate.getFullYear();
+    const endMonth = currentDate.getMonth();
+
+    let { gastos, ingresos} = generarGastosIngresosAleatorios(startYear, endYear, endMonth, categoriasGastos, categoriasIngresos);
+
+    const gastosRecurrentes = [
+        { gasto: "Music", cantidad: "99", categoria: "Suscripciones", activo: true }
+    ];
+
+    const ingresosRecurrentes = [
+        { ingreso: "Music", cantidad: "99", categoria: "Suscripciones", activo: true }
+    ];
+
+    localStorage.setItem('categoriasGastos', JSON.stringify(categoriasGastos));
+    localStorage.setItem('categoriasIngresos', JSON.stringify(categoriasIngresos));
+    localStorage.setItem('gastos', JSON.stringify(gastos));
+    localStorage.setItem('ingresos', JSON.stringify(ingresos));
+    localStorage.setItem('gastosRecurrentes', JSON.stringify(gastosRecurrentes));
+    localStorage.setItem('ingresosRecurrentes', JSON.stringify(ingresosRecurrentes));
+}
+
+
+export function eliminarDatos() {
+
 }

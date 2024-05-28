@@ -48,7 +48,7 @@ function GestionarIngresosRecurrentes() {
                                     <td>{ingreso.categoria}</td>
                                     <td className='tdBtn'>
                                         <Boton 
-                                            contenido={gasto.activo ? translations[language].tituloBtnTablaDesactivar : translations[language].tituloBtnTablaActivar} 
+                                            contenido={ingreso.activo ? translations[language].tituloBtnTablaDesactivar : translations[language].tituloBtnTablaActivar} 
                                             clase={ingreso.activo ? 'Btn BtnRed' : 'Btn BtnGreen'}
                                             onClick={() => {toggleIngresoActivo(index)}}
                                         />

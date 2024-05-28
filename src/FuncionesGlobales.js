@@ -114,3 +114,71 @@ export function convertirFechaFormatoLegibleADate(fechaStr){
     const partes = fechaStr.split('/'); // Divide la fecha en [DD, MM, YYYY]
     return new Date(partes[2], partes[1] - 1, partes[0]); // Año, mes (0-indexado), día
 };
+
+export function formatearDateYYYYMMDDaDDMMYYYY(formato, fecha){
+    let dia = fecha.getDate().toString();
+    let mes = (fecha.getMonth() + 1).toString(); 
+    const anio = fecha.getFullYear().toString();
+
+    if (dia.length < 2) dia = '0' + dia;
+    if (mes.length < 2) mes = '0' + mes;
+    if(formato=="diagonales"){
+        return `${dia}/${mes}/${anio}`;
+    } else { //aqui luego voy a añadir mas formatos con elseifs
+        return `${dia}/${mes}/${anio}`;
+    }
+
+}
+
+export function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export function getRandomDate(year, month) {
+    let date = new Date(year, month, getRandomInt(1, 28));
+    date = formatearDateYYYYMMDDaDDMMYYYY("diagonales", date);
+    return date;
+}
+
+export function generarGastosIngresosAleatorios(startYear, endYear, endMonth, categoriasGastos, categoriasIngresos){
+    let gastos = [];
+    let ingresos = [];
+    for (let year = startYear; year <= endYear; year++) {
+        const startMonth = (year === startYear) ? 0 : 0;
+        const endMonthForYear = (year === endYear) ? endMonth : 11;
+
+        for (let month = startMonth; month <= endMonthForYear; month++) {
+            const numberOfGastos = getRandomInt(3, 10);
+            const numberOfIngresos = getRandomInt(3, 10);
+
+            for (let i = 0; i < numberOfGastos; i++) {
+                const gasto = {
+                    gasto: `Gasto ${i + 1}`,
+                    cantidad: getRandomInt(10, 1000).toString(),
+                    fecha: getRandomDate(year, month),
+                    categoria: categoriasGastos[getRandomInt(0, categoriasGastos.length - 1)]
+                };
+                gastos.push(gasto);
+            }
+
+            for (let i = 0; i < numberOfIngresos; i++) {
+                const ingreso = {
+                    ingreso: `Ingreso ${i + 1}`,
+                    cantidad: getRandomInt(50, 5000).toString(),
+                    fecha: getRandomDate(year, month),
+                    categoria: categoriasIngresos[getRandomInt(0, categoriasIngresos.length - 1)]
+                };
+                ingresos.push(ingreso);
+            }
+        }
+    }
+    return { gastos, ingresos}
+}
+
+export function generarCategoriasAleatorias(){
+
+}
+
+export function generarGastosIngresosRecurrentesAleatorios(){
+
+}
