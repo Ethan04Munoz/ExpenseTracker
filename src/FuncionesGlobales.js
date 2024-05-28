@@ -54,7 +54,52 @@ export const categoriasIngresos = [
     'Ingresos pasivos'
 ];
 
+export const gastosRecurrentes = [
+    { gasto: "Music", cantidad: "99", categoria: "Suscripciones", activo: true },
+    { gasto: "Netflix", cantidad: "112", categoria: "Suscripciones", activo: true },
+    { gasto: "Spotify", cantidad: "109", categoria: "Suscripciones", activo: true },
+    { gasto: "Amazon Prime", cantidad: "112", categoria: "Suscripciones", activo: false },
+    { gasto: "YouTube Premium", cantidad: "111", categoria: "Suscripciones", activo: true },
+    { gasto: "Xbox Live Gold", cantidad: "109", categoria: "Suscripciones", activo: false },
+    { gasto: "Dropbox", cantidad: "111", categoria: "Suscripciones", activo: true },
+    { gasto: "Adobe Creative Cloud", cantidad: "152", categoria: "Suscripciones", activo: true },
+    { gasto: "Hulu", cantidad: "105", categoria: "Suscripciones", activo: false },
+    { gasto: "Tidal", cantidad: "109", categoria: "Suscripciones", activo: true },
+    { gasto: "PlayStation Plus", cantidad: "109", categoria: "Suscripciones", activo: false },
+    { gasto: "New York Times", cantidad: "104", categoria: "Suscripciones", activo: true },
+    { gasto: "Skillshare", cantidad: "108", categoria: "Suscripciones", activo: true },
+    { gasto: "Masterclass", cantidad: "115", categoria: "Suscripciones", activo: false },
+    { gasto: "Scribd", cantidad: "109", categoria: "Suscripciones", activo: true },
+    { gasto: "Twitch Prime", cantidad: "112", categoria: "Suscripciones", activo: false },
+    { gasto: "Calm", cantidad: "114", categoria: "Suscripciones", activo: true },
+    { gasto: "Headspace", cantidad: "112", categoria: "Suscripciones", activo: true },
+    { gasto: "Chegg", cantidad: "114", categoria: "Suscripciones", activo: false },
+    { gasto: "Blinkist", cantidad: "107", categoria: "Suscripciones", activo: true }
+];
 
+
+export const ingresosRecurrentes = [
+    { ingreso: "Dividendos S&P500", cantidad: "99", categoria: "Ingresos pasivos", activo: true },
+    { ingreso: "Interes bonos gubernamentales", cantidad: "99", categoria: "Ingresos pasivos", activo: true },
+    { ingreso: "Alquiler de departamento", cantidad: "1200", categoria: "Ingresos pasivos", activo: false },
+    { ingreso: "Regalías por libro", cantidad: "75", categoria: "Ingresos pasivos", activo: true },
+    { ingreso: "Intereses en cuenta de ahorro", cantidad: "25", categoria: "Ingresos pasivos", activo: true },
+    { ingreso: "Dividendos de acciones tecnológicas", cantidad: "120", categoria: "Ingresos pasivos", activo: true },
+    { ingreso: "Alquiler de estacionamiento", cantidad: "80", categoria: "Ingresos pasivos", activo: false },
+    { ingreso: "Franquicia de restaurante", cantidad: "2000", categoria: "Ingresos pasivos", activo: true },
+    { ingreso: "Intereses de préstamos P2P", cantidad: "50", categoria: "Ingresos pasivos", activo: true },
+    { ingreso: "Dividendos de REITs", cantidad: "150", categoria: "Ingresos pasivos", activo: true },
+    { ingreso: "Ingresos por patentes", cantidad: "300", categoria: "Ingresos pasivos", activo: false },
+    { ingreso: "Regalías por música", cantidad: "80", categoria: "Ingresos pasivos", activo: true },
+    { ingreso: "Intereses de bonos corporativos", cantidad: "75", categoria: "Ingresos pasivos", activo: true },
+    { ingreso: "Alquiler de terreno", cantidad: "500", categoria: "Ingresos pasivos", activo: true },
+    { ingreso: "Dividendos de ETFs", cantidad: "120", categoria: "Ingresos pasivos", activo: false },
+    { ingreso: "Ingresos por publicidad en sitio web", cantidad: "150", categoria: "Ingresos pasivos", activo: true },
+    { ingreso: "Regalías por software", cantidad: "200", categoria: "Ingresos pasivos", activo: true },
+    { ingreso: "Intereses de bonos municipales", cantidad: "60", categoria: "Ingresos pasivos", activo: true },
+    { ingreso: "Alquiler de equipo", cantidad: "300", categoria: "Ingresos pasivos", activo: false },
+    { ingreso: "Dividendos de acciones de energía", cantidad: "90", categoria: "Ingresos pasivos", activo: true }
+];
 
 export function obtenerFechaActualFormatoDDMMYYYY() {
     const fechaActual = new Date();
@@ -233,6 +278,16 @@ export function generarGastosIngresosAleatorios(startYear, endYear, endMonth, ca
     return { gastos, ingresos}
 }
 
-export function generarGastosIngresosRecurrentesAleatorios(){
+export function obtenerElementosAleatorios(arr) {
+    const arrayTemp = [...arr];
+    const resultado = [];
+  
+    // Seleccionamos 5 elementos aleatorios
+    for (let i = 0; i < 5; i++) {
+        const indiceAleatorio = Math.floor(Math.random() * arrayTemp.length);
+        resultado.push(arrayTemp[indiceAleatorio]);
+        arrayTemp.splice(indiceAleatorio, 1);
+    }
 
+    return resultado;
 }

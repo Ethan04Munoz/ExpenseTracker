@@ -1,4 +1,12 @@
-import { getRandomInt, getRandomDate, generarGastosIngresosAleatorios, obtenerCategoriasAleatoriasGastos, obtenerCategoriasAleatoriasIngresos } from "./FuncionesGlobales";
+import { getRandomInt, 
+    getRandomDate, 
+    generarGastosIngresosAleatorios, 
+    obtenerCategoriasAleatoriasGastos, 
+    obtenerCategoriasAleatoriasIngresos, 
+    obtenerElementosAleatorios,
+    ingresosRecurrentes,
+    gastosRecurrentes,
+} from "./FuncionesGlobales";
 
 export function obtenerIngresosLS(){
     let ingresos = localStorage.getItem('ingresos');
@@ -110,20 +118,15 @@ export function establecerDatosPrueba() {
 
     let { gastos, ingresos} = generarGastosIngresosAleatorios(startYear, endYear, endMonth, categoriasGastos, categoriasIngresos);
 
-    const gastosRecurrentes = [
-        { gasto: "Music", cantidad: "99", categoria: "Suscripciones", activo: true }
-    ];
-
-    const ingresosRecurrentes = [
-        { ingreso: "Music", cantidad: "99", categoria: "Suscripciones", activo: true }
-    ];
+    const gastosRecurrentesLcl = obtenerElementosAleatorios(gastosRecurrentes);
+    const ingresosRecurrentesLcl = obtenerElementosAleatorios(ingresosRecurrentes);
 
     localStorage.setItem('categoriasGastos', JSON.stringify(categoriasGastos));
     localStorage.setItem('categoriasIngresos', JSON.stringify(categoriasIngresos));
     localStorage.setItem('gastos', JSON.stringify(gastos));
     localStorage.setItem('ingresos', JSON.stringify(ingresos));
-    localStorage.setItem('gastosRecurrentes', JSON.stringify(gastosRecurrentes));
-    localStorage.setItem('ingresosRecurrentes', JSON.stringify(ingresosRecurrentes));
+    localStorage.setItem('gastosRecurrentes', JSON.stringify(gastosRecurrentesLcl));
+    localStorage.setItem('ingresosRecurrentes', JSON.stringify(ingresosRecurrentesLcl));
 }
 
 
