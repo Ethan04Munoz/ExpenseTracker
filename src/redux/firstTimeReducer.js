@@ -1,5 +1,5 @@
 const initialState = {
-  primeraVez: JSON.parse(localStorage.getItem('primeraVezBool')) || true, 
+  primeraVez: localStorage.getItem('primeraVezBool') || true, 
 };
 
 function firstTimeReducer(state = initialState, action) {
