@@ -17,7 +17,8 @@ import GestorAtajos from "../componentes/GestorAtajos.jsx";
 
 function Main(){
     let navigate = useNavigate();
-    const language = useSelector(state => state.language.language);
+    const language = useSelector(state => state.language.language);    
+    const primeraVez = useSelector(state => state.primeraVez.primeraVez); 
 
     const [mesActual, setMesActual] = useState(0);
     const [mesActualTexto, setMesActualTexto] = useState('');
@@ -78,7 +79,7 @@ function Main(){
         //Obtener ingresos para mostrar en pantalla
         setMontoTotalIngresos(obtenerMontoTotalIngresosMesEspecificoLS(fechaRevision));
         setMontoTotalGastos(obtenerMontoTotalGastosMesEspecificoLS(fechaRevision))
-    }, [fechaRevision]);
+    }, [fechaRevision, primeraVez]);
 
     function aumentarMesRevision() {
         setFechaRevision(fechaActual => {

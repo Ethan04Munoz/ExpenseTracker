@@ -101,12 +101,6 @@ export function obtenerTodosIngresosLS(){
     return gastosProv;
 }
 
-export function obtenerPrimeraVezVisitandoSitio(){
-    let primeraVez = localStorage.getItem('primeraVezBool');
-    primeraVez = primeraVez ? JSON.parse(primeraVez) : [];
-    return primeraVez;
-}
-
 export function establecerDatosPrueba() {
     const categoriasGastos = obtenerCategoriasAleatoriasGastos();
     const categoriasIngresos = obtenerCategoriasAleatoriasIngresos();

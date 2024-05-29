@@ -1,32 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import translations from "../redux/translations";
-import { obtenerPrimeraVezVisitandoSitio } from '../FuncionesGlobalesLS';
 import Modal from './Modal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function PrimeraVez() {
     const [mostrarModal, setMostrarModal] = useState(false);
 
-    const language = useSelector(state => state.language.language); // Accede al idioma actual desde el store de Redux
+    const language = useSelector(state => state.language.language);
+    const primeraVez = useSelector(state => state.primeraVez.primeraVez); 
+
+    const dispatch = useDispatch();
+
+    const setearPrimeraVez = () => {
+        dispatch({ type: 'CHANGE_FIRSTTIME' });
+    };
 
     useEffect(() => {
-        const primeraVez = obtenerPrimeraVezVisitandoSitio();
-        if (primeraVez) {
+        console.log("Primera vez: ", primeraVez)
+        if (primeraVez == true) {
             setMostrarModal(true);
         }
     }, []);
 
     const handleCloseModal = () => {
         setMostrarModal(false);
-        // Marcar que el usuario ya no es nuevo visitante
-        localStorage.setItem('primeraVezBool', JSON.stringify(false));
+        toast.success('¡Los datos de prueba fueron añadidos con éxito!');
+        setearPrimeraVez();
     };
 
     return (
         <div>
-        {mostrarModal && (
-            <Modal tituloModal={translations[language].configuracionFT} onClickX={handleCloseModal}/>
-        )}
+            <ToastContainer position="bottom-left" />
+            {mostrarModal && (
+                <Modal tituloModal={translations[language].configuracionFT} onClickX={handleCloseModal} primeraVez={true} />
+            )}
         </div>
     );
 }
