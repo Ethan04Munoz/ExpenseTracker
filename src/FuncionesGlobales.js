@@ -55,27 +55,27 @@ export const categoriasIngresos = [
 ];
 
 const nombresIngresos = {
-    'Salario principal': ['Sueldo recurrente', 'Horas extras', 'Prima dominical'],
+    'Salario principal': ['Sueldo recurrente', 'Horas extras', 'Prima dominical', 'Bono de puntualidad', 'Bono de asistencia'],
     'Trabajos secundarios': ['Sueldo de segundo empleo', 'Pago por horas extra', 'Comisiones'],
-    'Trabajos Freelancer': ['Pago por proyecto', 'Ingreso freelance', 'Honorarios'],
+    'Trabajos Freelancer': ['Pago por proyecto', 'Ingreso freelance', 'Honorarios', 'Adelanto del pago del proyecto'],
     'Rentas': ['Alquiler de inmuebles', 'Renta de propiedades', 'Ingresos por arrendamiento'],
     'Intereses': ['Intereses bancarios', 'Rendimientos financieros', 'Intereses de inversiones'],
     'Dividendos': ['Distribución de ganancias', 'Dividendos de acciones', 'Pagos por dividendos'],
     'Beneficios gubernamentales': ['Subsidios', 'Ayudas del gobierno', 'Beneficios sociales'],
     'Pensiones y jubilaciones': ['Pensión de retiro', 'Jubilación mensual', 'Ingreso de pensión'],
-    'Ingresos pasivos': ['Royalties', 'Ingresos por licencias', 'Dividendos de fondos']
+    'Ingresos pasivos': ['Royalties', 'Ingresos por licencias', 'Dividendos de fondos mutualistas', 'Dividendos de acciones tecnologicas', 'Dividendos de acciones de energía']
 };
 
 const nombresGastos = {
-    'Vivienda': ['Renta', 'Hipoteca', 'Servicios públicos', 'Mantenimiento'],
-    'Alimentos': ['Supermercado', 'Restaurantes', 'Comida rápida', 'Entregas a domicilio'],
-    'Transporte': ['Gasolina', 'Mantenimiento del coche', 'Transporte público', 'Seguro de coche'],
-    'Atención médica': ['Seguro médico', 'Medicamentos', 'Consultas médicas', 'Tratamientos'],
+    'Vivienda': ['Renta', 'Hipoteca', 'Servicios públicos', 'Mantenimiento recurrente', 'Reparaciones'],
+    'Alimentos': ['Supermercado', 'Restaurantes', 'Comida rápida', 'Entregas a domicilio', 'Frutas', 'Verduras', 'Carnes', 'Despensa', '2kg de manzana'],
+    'Transporte': ['Gasolina', 'Mantenimiento del coche', 'Camión al trabajo', 'Camión a la escuela', 'Camión a la casa', 'Seguro de coche', 'Cambio de aceite carro', 'Cambio de aceite moto'],
+    'Atención médica': ['Seguro médico', 'Seguro de gastos médicos mayores', 'Seguro dental', 'Medicamentos', 'Consultas médicas', 'Tratamientos'],
     'Deudas': ['Pago de tarjeta de crédito', 'Préstamo personal', 'Préstamo estudiantil', 'Préstamo hipotecario'],
-    'Entretenimiento': ['Cine', 'Conciertos', 'Deportes', 'Suscripciones de streaming'],
-    'Educación': ['Colegiatura', 'Libros', 'Cursos en línea', 'Material escolar'],
-    'Ropa': ['Compras de ropa', 'Calzado', 'Accesorios', 'Reparaciones'],
-    'Vacaciones': ['Boletos de avión', 'Alojamiento', 'Tours', 'Comidas en vacaciones'],
+    'Entretenimiento': ['Cine', 'Conciertos', 'Deportes', 'Suscripciones de streaming', 'Youtube Music', 'Spotify', 'Youtube Premium'],
+    'Educación': ['Colegiatura', 'Libros', 'Cursos en línea', 'Materiales escolares de 1ro', 'Materiales escolares de 2do', 'Materiales escolares Nancy'],
+    'Ropa': ['Compras de ropa', 'Calzado', 'Accesorios', 'Reparaciones', 'Camisas', 'Pantalones', 'Sueter rojo', 'Jersey Bayern Munich', 'Nuevos tenis', 'Tenis para correr', 'Traje de baño'],
+    'Vacaciones': ['Boletos de avión', 'Alojamiento', 'Tour Isla Almeja', 'Tour fondo de Bikini', 'Comidas en vacaciones'],
     'Ahorros e inversiones': ['Ahorro para emergencias', 'Inversiones en bolsa', 'Planes de retiro', 'Fondos mutuos'],
     'Impuestos': ['Impuestos federales', 'Impuestos estatales', 'Impuestos locales', 'Contribuciones especiales']
 };
