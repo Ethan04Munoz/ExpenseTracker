@@ -18,6 +18,7 @@ import GestionarGastosRecurrentes from "./Paginas/GestionarGastosRecurrentes";
 import FullGastos from "./Paginas/FullGastos";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import FullIngresos from "./Paginas/FullIngresos";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main/>}/>
         <Route path="/ingresos" element={<Ingresos/>}/>
+        <Route path="/ingresos/detalles" element={<FullIngresos/>}/>
         <Route path="/gastos" element={<Gastos/>}/>
         <Route path="/gastos/detalles" element={<FullGastos/>}/>
         <Route path="/nuevacategoriaingresos" element={<AddCategoriaIngresos/>}/>

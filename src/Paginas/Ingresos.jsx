@@ -150,7 +150,12 @@ function Ingresos(){
             </form>
 
             {ingresos.length > 0 && (
-                <ContenedorTablaGastos transacciones={ingresos} limite = {8} boolGastoIngreso={true}/>
+                <ContenedorTablaGastos 
+                    transacciones={ingresos} 
+                    limite = {8} 
+                    boolGastoIngreso={true}
+                    enlace="/ingresos/detalles"
+                />
             )}
             {ingresosPorCategoria.length > 0 && (
                 <div className="formulario">
