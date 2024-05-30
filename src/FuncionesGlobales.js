@@ -3,12 +3,12 @@ export const mesesES = [
     'Febrero',
     'Marzo',
     'Abril',
-    'Mayo', 
-    'Junio', 
+    'Mayo',
+    'Junio',
     'Julio',
-    'Agosto', 
+    'Agosto',
     'Septiembre',
-    'Octubre', 
+    'Octubre',
     'Noviembre',
     'Diciembre'
 ];
@@ -18,12 +18,12 @@ export const mesesEN = [
     'February',
     'March',
     'April',
-    'May', 
-    'June', 
+    'May',
+    'June',
     'July',
-    'August', 
+    'August',
     'September',
-    'October', 
+    'October',
     'November',
     'December'
 ];
@@ -127,7 +127,7 @@ export function obtenerMesLetras(mesNumero, idioma) {
     return meses[mesNumero - 1];
 }
 
-export function obtenerAnioActual(){
+export function obtenerAnioActual() {
     const fecha = new Date();
     const anio = fecha.getFullYear(); // +1 para ajustar a formato común
     return parseInt(anio);
@@ -138,12 +138,12 @@ export function generarColorPastelAleatorio() {
     // pero manteniéndolos relativamente altos para un efecto pastel.
     const base = 127; // Base para asegurar que los colores son claros
     const mezcla = 128; // Rango de mezcla para generar el pastel
-    
+
     // Generar cada componente de color
     const rojo = Math.floor(Math.random() * mezcla + base);
     const verde = Math.floor(Math.random() * mezcla + base);
     const azul = Math.floor(Math.random() * mezcla + base);
-    
+
     // Convertir los componentes en una cadena hexadecimal
     const colorHex = `#${rojo.toString(16).padStart(2, '0')}${verde.toString(16).padStart(2, '0')}${azul.toString(16).padStart(2, '0')}`;
     console.log("Color barra: ", colorHex)
@@ -153,12 +153,12 @@ export function generarColorPastelAleatorio() {
 export function generarDuplaColorPastelBordeRelleno() {
     const base = 127; // Base para asegurar que los colores son claros
     const mezcla = 128; // Rango de mezcla para generar el pastel
-    
+
     // Generar cada componente de color
     let rojo = Math.floor(Math.random() * mezcla + base);
     let verde = Math.floor(Math.random() * mezcla + base);
     let azul = Math.floor(Math.random() * mezcla + base);
-    
+
     // Elegir un color para ser el dominante
     const dominante = Math.floor(Math.random() * 3);
     switch (dominante) {
@@ -172,10 +172,10 @@ export function generarDuplaColorPastelBordeRelleno() {
             azul = Math.floor(Math.random() * (255 - base) + base);
             break;
     }
-    
+
     // Convertir los componentes en una cadena hexadecimal para el color del borde
     const colorBorde = `rgba(${rojo}, ${verde}, ${azul}, 1)`;
-    
+
     // Crear el color de relleno usando RGBA para incluir la opacidad de 0.3
     const colorRelleno = `rgba(${rojo}, ${verde}, ${azul}, 0.3)`;
 
@@ -183,19 +183,19 @@ export function generarDuplaColorPastelBordeRelleno() {
     return { colorRelleno, colorBorde };
 }
 
-export function convertirFechaFormatoLegibleADate(fechaStr){
+export function convertirFechaFormatoLegibleADate(fechaStr) {
     const partes = fechaStr.split('/'); // Divide la fecha en [DD, MM, YYYY]
     return new Date(partes[2], partes[1] - 1, partes[0]); // Año, mes (0-indexado), día
 };
 
-export function formatearDateYYYYMMDDaDDMMYYYY(formato, fecha){
+export function formatearDateYYYYMMDDaDDMMYYYY(formato, fecha) {
     let dia = fecha.getDate().toString();
-    let mes = (fecha.getMonth() + 1).toString(); 
+    let mes = (fecha.getMonth() + 1).toString();
     const anio = fecha.getFullYear().toString();
 
     if (dia.length < 2) dia = '0' + dia;
     if (mes.length < 2) mes = '0' + mes;
-    if(formato=="diagonales"){
+    if (formato == "diagonales") {
         return `${dia}/${mes}/${anio}`;
     } else { //aqui luego voy a añadir mas formatos con elseifs
         return `${dia}/${mes}/${anio}`;
@@ -243,7 +243,7 @@ export function obtenerCategoriasAleatoriasIngresos() {
     return categoriasAleatorias;
 }
 
-export function generarGastosIngresosAleatorios(startYear, endYear, endMonth, categoriasGastos, categoriasIngresos){
+export function generarGastosIngresosAleatorios(startYear, endYear, endMonth, categoriasGastos, categoriasIngresos) {
     let gastos = [];
     let ingresos = [];
     for (let year = startYear; year <= endYear; year++) {
@@ -275,13 +275,13 @@ export function generarGastosIngresosAleatorios(startYear, endYear, endMonth, ca
             }
         }
     }
-    return { gastos, ingresos}
+    return { gastos, ingresos }
 }
 
 export function obtenerElementosAleatorios(arr) {
     const arrayTemp = [...arr];
     const resultado = [];
-  
+
     // Seleccionamos 5 elementos aleatorios
     for (let i = 0; i < 5; i++) {
         const indiceAleatorio = Math.floor(Math.random() * arrayTemp.length);
@@ -290,4 +290,12 @@ export function obtenerElementosAleatorios(arr) {
     }
 
     return resultado;
+}
+
+export function ordenarGastosIngresos(arreglo) {
+    return arreglo.sort((a, b) => {
+        const fechaA = new Date(a.fecha.split('/').reverse().join('-'));
+        const fechaB = new Date(b.fecha.split('/').reverse().join('-'));
+        return fechaB - fechaA;
+    });
 }

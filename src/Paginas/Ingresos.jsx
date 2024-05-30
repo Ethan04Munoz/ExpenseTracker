@@ -6,13 +6,14 @@ import Boton from "../componentes/Boton";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Ingresos.css';
-import { obtenerFechaActualFormatoDDMMYYYY } from "../FuncionesGlobales.js";
+import { obtenerFechaActualFormatoDDMMYYYY, ordenarGastosIngresos } from "../FuncionesGlobales.js";
 import PieChart from "../componentes/PieChart.jsx";
 import { obtenerCategoriaIngresosLS, obtenerIngresosRecurrentesLS, obtenerTodosIngresosLS } from "../FuncionesGlobalesLS.js";
 import PrimeraVez from "../componentes/PrimeraVez.jsx";
 import GestorAtajos from "../componentes/GestorAtajos.jsx";
 import { useSelector, useDispatch } from 'react-redux';
 import translations from '../redux/translations.js';
+import ContenedorTablaGastos from "../componentes/ContenedorTablaGastos.jsx";
 
 function Ingresos(){
     const language = useSelector(state => state.language.language);
@@ -32,7 +33,7 @@ function Ingresos(){
     }
 
     function obtenerIngresosLS(){
-        const ingresosProv = obtenerTodosIngresosLS();
+        const ingresosProv = ordenarGastosIngresos(obtenerTodosIngresosLS());
         setIngresos(ingresosProv);
         return ingresosProv;
     }
@@ -149,20 +150,7 @@ function Ingresos(){
             </form>
 
             {ingresos.length > 0 && (
-                <div className="containerIngresos">
-                    <div className="fila-titulos claseImpar">
-                        <div>{translations[language].tituloTablaIngreso}</div>
-                        <div>{translations[language].tituloTablaCantidad}</div>
-                        <div>{translations[language].tituloTablaFecha}</div>
-                    </div>
-                    {ingresos.map((ingresoElement, index) => (
-                        <div key={index} className={index % 2 === 0 ? 'clasePar' : 'claseImpar'}>
-                        <div>{ingresoElement.ingreso}</div>
-                        <div>{currentSymbol}{ingresoElement.cantidad}</div>
-                        <div>{ingresoElement.fecha}</div>
-                        </div>
-                    ))}
-                </div>
+                <ContenedorTablaGastos transacciones={ingresos} limite = {8} boolGastoIngreso={true}/>
             )}
             {ingresosPorCategoria.length > 0 && (
                 <div className="formulario">

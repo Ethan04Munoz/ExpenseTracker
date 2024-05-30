@@ -6,13 +6,14 @@ import { Link } from "react-router-dom";
 import Boton from "../componentes/Boton";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { obtenerFechaActualFormatoDDMMYYYY } from "../FuncionesGlobales.js";
+import { obtenerFechaActualFormatoDDMMYYYY, ordenarGastosIngresos } from "../FuncionesGlobales.js";
 import PieChart from "../componentes/PieChart.jsx";
 import { obtenerCategoriasGastosLS, obtenerGastosRecurrentesLS, obtenerTodosGastosLS } from "../FuncionesGlobalesLS.js";
 import PrimeraVez from "../componentes/PrimeraVez.jsx";
 import GestorAtajos from "../componentes/GestorAtajos.jsx";
 import { useSelector, useDispatch } from 'react-redux';
 import translations from '../redux/translations.js';
+import ContenedorTablaGastos from "../componentes/ContenedorTablaGastos.jsx";
 
 function Gastos(){
     const language = useSelector(state => state.language.language);
@@ -25,14 +26,12 @@ function Gastos(){
     const [gastoPorCategoria, setGastoPorCategoria] = useState([])
     const [gastoRecurrenteBool, setGastoRecurrenteBool] = useState(false);
 
-    const currentSymbol = useSelector((state) => state.currency.currencySymbol);
-
     function obtenerCategoriasLS(){
         setCategoriasLS(obtenerCategoriasGastosLS());
     }
 
     function obtenerGastosLS(){
-        const gastosProv = obtenerTodosGastosLS();
+        const gastosProv = ordenarGastosIngresos(obtenerTodosGastosLS());
         setGastos(gastosProv);
         return gastosProv;
     }
@@ -152,20 +151,12 @@ function Gastos(){
             </form>
 
             {gastos.length > 0 && (
-                <div className="containerGastos">
-                    <div className="fila-titulos claseImpar">
-                        <div>{translations[language].tituloTablaGasto}</div>
-                        <div>{translations[language].tituloTablaCantidad}</div>
-                        <div>{translations[language].tituloTablaFecha}</div>
-                    </div>
-                    {gastos.map((gastoElement, index) => (
-                        <div key={index} className={index % 2 === 0 ? 'clasePar' : 'claseImpar'}>
-                        <div>{gastoElement.gasto}</div>
-                        <div>{currentSymbol}{gastoElement.cantidad}</div>
-                        <div>{gastoElement.fecha}</div>
-                        </div>
-                    ))}
-                </div>
+                <ContenedorTablaGastos 
+                    transacciones={gastos} 
+                    limite ={8} 
+                    boolGastoIngreso={false}
+                    enlace="/gastos/detalles"
+                />
             )}
             {gastoPorCategoria.length > 0 && (
                 <div className="formulario">

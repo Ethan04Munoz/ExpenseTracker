@@ -15,6 +15,7 @@ import IngresosAnual from "./Paginas/IngresosAnual";
 import GastosAnual from "./Paginas/GastosAnual";
 import GestionarIngresosRecurrentes from "./Paginas/GestionarIngresosRecurrentes";
 import GestionarGastosRecurrentes from "./Paginas/GestionarGastosRecurrentes";
+import FullGastos from "./Paginas/FullGastos";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" element={<Main/>}/>
         <Route path="/ingresos" element={<Ingresos/>}/>
         <Route path="/gastos" element={<Gastos/>}/>
+        <Route path="/gastos/detalles" element={<FullGastos/>}/>
         <Route path="/nuevacategoriaingresos" element={<AddCategoriaIngresos/>}/>
         <Route path="/nuevacategoriagastos" element={<AddCategoriaGastos/>}/>
         <Route path="/misingresosesteaño" element={<IngresosEsteAño/>}/>
