@@ -54,6 +54,18 @@ export const categoriasIngresos = [
     'Ingresos pasivos'
 ];
 
+const nombresIngresos = {
+    'Salario principal': ['Sueldo recurrente', 'Horas extras', 'Prima dominical'],
+    'Trabajos secundarios': ['Sueldo de segundo empleo', 'Pago por horas extra', 'Comisiones'],
+    'Trabajos Freelancer': ['Pago por proyecto', 'Ingreso freelance', 'Honorarios'],
+    'Rentas': ['Alquiler de inmuebles', 'Renta de propiedades', 'Ingresos por arrendamiento'],
+    'Intereses': ['Intereses bancarios', 'Rendimientos financieros', 'Intereses de inversiones'],
+    'Dividendos': ['Distribución de ganancias', 'Dividendos de acciones', 'Pagos por dividendos'],
+    'Beneficios gubernamentales': ['Subsidios', 'Ayudas del gobierno', 'Beneficios sociales'],
+    'Pensiones y jubilaciones': ['Pensión de retiro', 'Jubilación mensual', 'Ingreso de pensión'],
+    'Ingresos pasivos': ['Royalties', 'Ingresos por licencias', 'Dividendos de fondos']
+};
+
 export const gastosRecurrentes = [
     { gasto: "Music", cantidad: "99", categoria: "Suscripciones", activo: true },
     { gasto: "Netflix", cantidad: "112", categoria: "Suscripciones", activo: true },
@@ -255,21 +267,23 @@ export function generarGastosIngresosAleatorios(startYear, endYear, endMonth, ca
             const numberOfIngresos = getRandomInt(3, 10);
 
             for (let i = 0; i < numberOfGastos; i++) {
+                const categoria = categoriasGastos[getRandomInt(0, categoriasGastos.length - 1)];
                 const gasto = {
                     gasto: `Gasto ${i + 1}`,
                     cantidad: getRandomInt(10, 1000).toString(),
                     fecha: getRandomDate(year, month),
-                    categoria: categoriasGastos[getRandomInt(0, categoriasGastos.length - 1)]
+                    categoria: categoria,
                 };
                 gastos.push(gasto);
             }
 
             for (let i = 0; i < numberOfIngresos; i++) {
+                const categoria = categoriasIngresos[getRandomInt(0, categoriasIngresos.length - 1)];
                 const ingreso = {
-                    ingreso: `Ingreso ${i + 1}`,
+                    ingreso: obtenerIngresoAleatorio(categoria),
                     cantidad: getRandomInt(50, 5000).toString(),
                     fecha: getRandomDate(year, month),
-                    categoria: categoriasIngresos[getRandomInt(0, categoriasIngresos.length - 1)]
+                    categoria: categoria,
                 };
                 ingresos.push(ingreso);
             }
@@ -298,4 +312,13 @@ export function ordenarGastosIngresos(arreglo) {
         const fechaB = new Date(b.fecha.split('/').reverse().join('-'));
         return fechaB - fechaA;
     });
+}
+
+export function obtenerIngresoAleatorio(categoria) {
+    const nombres = nombresIngresos[categoria];
+    if (!nombres) {
+        throw new Error(`Categoría no válida: ${categoria}`);
+    }
+    const indiceAleatorio = Math.floor(Math.random() * nombres.length);
+    return nombres[indiceAleatorio];
 }
