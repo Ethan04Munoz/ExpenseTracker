@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import translations from "../redux/translations";
 import ImagenLogoHeader from "./ImagenLogoHeader";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { logos, logotipos } from '../rutasLogos';
 import { datosVaciosBoolLS } from '../FuncionesGlobalesLS';
@@ -45,7 +45,6 @@ function Navbar({enlaceHeader}){
 
     return(
         <div className="navbar">
-                        <ToastContainer position="bottom-left" />
             <div className="gridNavBar">
                 <Link to={enlaceHeader} className="gridLogoContainer">
                 <ImagenLogoHeader logos={logotipos}/>

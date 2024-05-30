@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import translations from "../redux/translations";
 import Modal from './Modal';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { datosVaciosBoolLS } from '../FuncionesGlobalesLS';
 
@@ -44,7 +44,6 @@ function PrimeraVez() {
 
     return (
         <div>
-            <ToastContainer position="bottom-left" />
             {mostrarModal && (
                 <Modal tituloModal={translations[language].configuracionFT} onClickX={handleCloseModal} primeraVez={mostrarPrimeraVez} />
             )}

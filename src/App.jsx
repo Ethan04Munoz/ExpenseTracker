@@ -15,10 +15,13 @@ import IngresosAnual from "./Paginas/IngresosAnual";
 import GastosAnual from "./Paginas/GastosAnual";
 import GestionarIngresosRecurrentes from "./Paginas/GestionarIngresosRecurrentes";
 import GestionarGastosRecurrentes from "./Paginas/GestionarGastosRecurrentes";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <HashRouter>
+      <ToastContainer position="bottom-left" />
       <Routes>
         <Route path="/" element={<Main/>}/>
         <Route path="/ingresos" element={<Ingresos/>}/>
