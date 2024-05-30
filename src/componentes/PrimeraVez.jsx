@@ -8,7 +8,9 @@ import { datosVaciosBoolLS } from '../FuncionesGlobalesLS';
 
 function PrimeraVez() {
     const [mostrarModal, setMostrarModal] = useState(false);
-    const [mostrarPrimeraVez, setMostrarPrimeraVez] = useState(true);
+    const [mostrarPrimeraVez, setMostrarPrimeraVez] = useState(true);    
+    const [datosAñadidos, setDatosAñadidos] = useState(false);
+
 
     const language = useSelector(state => state.language.language);
     const primeraVez = useSelector(state => state.primeraVez.primeraVez); 
@@ -32,11 +34,22 @@ function PrimeraVez() {
         setMostrarPrimeraVez(mostrarPrimeraVezProv);
     }, []);
 
+    function manejarDatosAñadidos() {
+        setDatosAñadidos(true);
+    }
+
     const handleCloseModal = () => {
         setMostrarModal(false);
-        toast.success('¡Los datos de prueba fueron añadidos con éxito!');
+        console.log("Datos añadidos: ", datosAñadidos)
         setearPrimeraVez();
     };
+
+    useEffect(() => {
+        if (datosAñadidos == true) {
+            toast.success('¡Los datos de prueba fueron añadidos con éxito!');
+            setDatosAñadidos(false);
+        } 
+    }, [datosAñadidos])
 
     useEffect(() => {
         console.log("Mostrar: ", mostrarPrimeraVez)
@@ -45,7 +58,12 @@ function PrimeraVez() {
     return (
         <div>
             {mostrarModal && (
-                <Modal tituloModal={translations[language].configuracionFT} onClickX={handleCloseModal} primeraVez={mostrarPrimeraVez} />
+                <Modal 
+                tituloModal={translations[language].configuracion} 
+                onClickX={handleCloseModal} 
+                primeraVez={mostrarPrimeraVez}
+                onDatosAñadidos={manejarDatosAñadidos}
+            />
             )}
         </div>
     );

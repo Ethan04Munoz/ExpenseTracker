@@ -47,9 +47,10 @@ function Modal(props) {
     const [habilitarBotonEliminar, setHabilitarBotonEliminar] = useState(false);
     const [textoHabilitarBotonEliminar, setTextoHabilitarBotonEliminar] = useState('');
     const [claseBotonEliminar, setClaseBotonEliminar] = useState('Btn BtnDis');
-    const [datosVaciosBool, setDatosVaciosBool] = useState(true);
 
     function establecerDatosPruebaLcl() {
+        props.onDatosAñadidos();
+        console.log("Estado de datosAñadidos")
         establecerDatosPrueba();
         if (props.onClickX) {
             props.onClickX();

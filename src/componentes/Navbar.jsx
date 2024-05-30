@@ -17,6 +17,7 @@ function Navbar({enlaceHeader}){
 
     const [modalConfiguracion, setModalConfiguracion] = useState(false);
     const [mostrarPrimeraVez, setMostrarPrimeraVez] = useState(true);
+    const [datosAñadidos, setDatosAñadidos] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -30,9 +31,20 @@ function Navbar({enlaceHeader}){
 
     function apagarModalConfiguracion(){
         setModalConfiguracion(false);
-        toast.success('¡Los datos de prueba fueron añadidos con éxito!');
+        console.log("Datos añadidos: ", datosAñadidos)
         setearPrimeraVez();
     }
+
+    function manejarDatosAñadidos() {
+        setDatosAñadidos(true);
+    }
+
+    useEffect(() => {
+        if (datosAñadidos == true) {
+            toast.success('¡Los datos de prueba fueron añadidos con éxito!');
+            setDatosAñadidos(false);
+        } 
+    }, [datosAñadidos])
 
     useEffect(() => {
         console.log("Primera vez: ", primeraVez)
@@ -54,7 +66,12 @@ function Navbar({enlaceHeader}){
                 <ImagenLogoHeader logos={logos} clase="imgConfig" onClick={encenderModalConfiguracion}/>
             </div>
             {modalConfiguracion == true && (
-                <Modal tituloModal={translations[language].configuracion} onClickX={apagarModalConfiguracion} primeraVez={mostrarPrimeraVez}/>
+                <Modal 
+                    tituloModal={translations[language].configuracion} 
+                    onClickX={apagarModalConfiguracion} 
+                    primeraVez={mostrarPrimeraVez}
+                    onDatosAñadidos={manejarDatosAñadidos}
+                />
             )}
         </div>
     )
