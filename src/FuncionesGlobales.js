@@ -66,6 +66,20 @@ const nombresIngresos = {
     'Ingresos pasivos': ['Royalties', 'Ingresos por licencias', 'Dividendos de fondos']
 };
 
+const nombresGastos = {
+    'Vivienda': ['Renta', 'Hipoteca', 'Servicios públicos', 'Mantenimiento'],
+    'Alimentos': ['Supermercado', 'Restaurantes', 'Comida rápida', 'Entregas a domicilio'],
+    'Transporte': ['Gasolina', 'Mantenimiento del coche', 'Transporte público', 'Seguro de coche'],
+    'Atención médica': ['Seguro médico', 'Medicamentos', 'Consultas médicas', 'Tratamientos'],
+    'Deudas': ['Pago de tarjeta de crédito', 'Préstamo personal', 'Préstamo estudiantil', 'Préstamo hipotecario'],
+    'Entretenimiento': ['Cine', 'Conciertos', 'Deportes', 'Suscripciones de streaming'],
+    'Educación': ['Colegiatura', 'Libros', 'Cursos en línea', 'Material escolar'],
+    'Ropa': ['Compras de ropa', 'Calzado', 'Accesorios', 'Reparaciones'],
+    'Vacaciones': ['Boletos de avión', 'Alojamiento', 'Tours', 'Comidas en vacaciones'],
+    'Ahorros e inversiones': ['Ahorro para emergencias', 'Inversiones en bolsa', 'Planes de retiro', 'Fondos mutuos'],
+    'Impuestos': ['Impuestos federales', 'Impuestos estatales', 'Impuestos locales', 'Contribuciones especiales']
+};
+
 export const gastosRecurrentes = [
     { gasto: "Music", cantidad: "99", categoria: "Suscripciones", activo: true },
     { gasto: "Netflix", cantidad: "112", categoria: "Suscripciones", activo: true },
@@ -269,7 +283,7 @@ export function generarGastosIngresosAleatorios(startYear, endYear, endMonth, ca
             for (let i = 0; i < numberOfGastos; i++) {
                 const categoria = categoriasGastos[getRandomInt(0, categoriasGastos.length - 1)];
                 const gasto = {
-                    gasto: `Gasto ${i + 1}`,
+                    gasto: obtenerGastoAleatorio(categoria),
                     cantidad: getRandomInt(10, 1000).toString(),
                     fecha: getRandomDate(year, month),
                     categoria: categoria,
@@ -316,6 +330,15 @@ export function ordenarGastosIngresos(arreglo) {
 
 export function obtenerIngresoAleatorio(categoria) {
     const nombres = nombresIngresos[categoria];
+    if (!nombres) {
+        throw new Error(`Categoría no válida: ${categoria}`);
+    }
+    const indiceAleatorio = Math.floor(Math.random() * nombres.length);
+    return nombres[indiceAleatorio];
+}
+
+function obtenerGastoAleatorio(categoria) {
+    const nombres = nombresGastos[categoria];
     if (!nombres) {
         throw new Error(`Categoría no válida: ${categoria}`);
     }
