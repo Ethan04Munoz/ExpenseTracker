@@ -1,0 +1,13 @@
+.contenerEnlaceDerecha{
+    width: 30%;
+    margin-left: 70%;
+}
+
+.enlaceTabla{
+    color: #ffff;
+    text-decoration: underline;
+}
+
+.enlaceTabla:hover{
+    color: blueviolet;
+}
