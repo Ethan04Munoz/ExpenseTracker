@@ -58,6 +58,8 @@ const translations = {
         addCategoriaGastosP1: `Nombre de la categoria:`,
         addCategoriaGastosPlaceholder: `Ejemplo: Gastos del hogar`,
         addCategoriaGastosH2: `Tus categorías de Gastos`,
+        configEstablecerDatosPrueba: `Usar datos de prueba`,
+        configBorrarInfo: `Borrar mi información`,
     },
     en: {
         tituloPrincipalNavbar: `My expense tracker`,
@@ -119,7 +121,8 @@ const translations = {
         addCategoriaGastosP1: `Category Name:`,
         addCategoriaGastosPlaceholder: `Example: Household Expenses`,
         addCategoriaGastosH2: `Your Expense Categories`,
-
+        configEstablecerDatosPrueba: `Use test data`,
+        configBorrarInfo: `Delete my data`,
     },
 }
     
