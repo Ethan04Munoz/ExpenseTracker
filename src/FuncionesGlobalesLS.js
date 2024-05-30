@@ -132,3 +132,28 @@ export function eliminarDatos() {
     localStorage.setItem('gastosRecurrentes', JSON.stringify([]));
     localStorage.setItem('ingresosRecurrentes', JSON.stringify([]));
 }
+
+export function datosVaciosBoolLS() {
+    const categoriasGastos = JSON.parse(localStorage.getItem('categoriasGastos'));
+    const categoriasIngresos = JSON.parse(localStorage.getItem('categoriasIngresos'));
+    const gastos = JSON.parse(localStorage.getItem('gastos'));
+    const ingresos = JSON.parse(localStorage.getItem('ingresos'));
+    const gastosRecurrentes = JSON.parse(localStorage.getItem('gastosRecurrentes'));
+    const ingresosRecurrentes = JSON.parse(localStorage.getItem('ingresosRecurrentes'));
+
+    // Función para verificar si un dato es nulo o un arreglo vacío
+    const esVacioONulo = (dato) => dato === null || (Array.isArray(dato) && dato.length === 0);
+
+    if (
+        esVacioONulo(categoriasGastos) &&
+        esVacioONulo(categoriasIngresos) &&
+        esVacioONulo(gastos) &&
+        esVacioONulo(ingresos) &&
+        esVacioONulo(gastosRecurrentes) &&
+        esVacioONulo(ingresosRecurrentes)
+    ) {
+        return true;
+    } else {
+        return false;
+    }
+}

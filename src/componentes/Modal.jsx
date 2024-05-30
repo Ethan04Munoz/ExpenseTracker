@@ -5,7 +5,7 @@ import translations from '../redux/translations.js';
 import { setCurrency } from '../redux/CurrencyActions.js';
 import monetarySymbols from '../redux/monetarySymbols.js';
 import Switch from './Switch.jsx';
-import { eliminarDatos, establecerDatosPrueba } from '../FuncionesGlobalesLS.js';
+import { datosVaciosBoolLS, eliminarDatos, establecerDatosPrueba } from '../FuncionesGlobalesLS.js';
 import Boton from './Boton.jsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Modal2 from './Modal2.jsx';
@@ -47,7 +47,7 @@ function Modal(props) {
     const [habilitarBotonEliminar, setHabilitarBotonEliminar] = useState(false);
     const [textoHabilitarBotonEliminar, setTextoHabilitarBotonEliminar] = useState('');
     const [claseBotonEliminar, setClaseBotonEliminar] = useState('Btn BtnDis');
-
+    const [datosVaciosBool, setDatosVaciosBool] = useState(true);
 
     function establecerDatosPruebaLcl() {
         establecerDatosPrueba();
@@ -69,12 +69,13 @@ function Modal(props) {
         if (location.pathname == "/") {
             window.location.reload();
         } else {
-            navigate("/")
+            navigate("/");
         }
     }
 
     function guardarTextoHabilitarBoton(e) {
         setTextoHabilitarBotonEliminar(e.target.value)
+        datosVaciosBoolLS();
     }
 
     useEffect(() => {
