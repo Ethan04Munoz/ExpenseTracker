@@ -7,8 +7,13 @@ import monetarySymbols from '../redux/monetarySymbols.js';
 import Switch from './Switch.jsx';
 import { eliminarDatos, establecerDatosPrueba } from '../FuncionesGlobalesLS.js';
 import Boton from './Boton.jsx';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Modal2 from './Modal2.jsx';
 
 function Modal(props) {
+    let navigate = useNavigate();
+    const location = useLocation();
+
     const language = useSelector(state => state.language.language);
     const dispatch = useDispatch();
 
@@ -39,17 +44,48 @@ function Modal(props) {
     }, [props.onClickX]);
 
     const [mostrarModalEstasSeguro, setMostrarModalEstasSeguro] = useState(false);
+    const [habilitarBotonEliminar, setHabilitarBotonEliminar] = useState(false);
+    const [textoHabilitarBotonEliminar, setTextoHabilitarBotonEliminar] = useState('');
+    const [claseBotonEliminar, setClaseBotonEliminar] = useState('Btn BtnDis');
 
-    function establecerDatosPruebaLcl(){
+
+    function establecerDatosPruebaLcl() {
         establecerDatosPrueba();
         if (props.onClickX) {
             props.onClickX();
         }
     }
 
-    function eliminarDatosLcl(){
-
+    function apagarModalEstasSeguro() {
+        setMostrarModalEstasSeguro(false);
     }
+
+    function eliminarDatosLcl() {
+        setMostrarModalEstasSeguro(true);
+    }
+
+    function eliminarDatosLS() {
+        eliminarDatos();
+        if (location.pathname == "/") {
+            window.location.reload();
+        } else {
+            navigate("/")
+        }
+    }
+
+    function guardarTextoHabilitarBoton(e) {
+        setTextoHabilitarBotonEliminar(e.target.value)
+    }
+
+    useEffect(() => {
+        if (textoHabilitarBotonEliminar == "Quiero eliminar mi informacion") {
+            setHabilitarBotonEliminar(false);
+            setClaseBotonEliminar("Btn BtnRed")
+        } else {
+            setHabilitarBotonEliminar(true);
+            setClaseBotonEliminar("Btn BtnDis")
+        }
+    }, [textoHabilitarBotonEliminar])
 
     return (
         <div className="modal">
@@ -94,7 +130,7 @@ function Modal(props) {
                             <div>
                                 <Boton
                                     onClick={eliminarDatosLcl}
-                                    clase="Btn BtnDark"
+                                    clase="Btn BtnRed"
                                     contenido={translations[language].configBorrarInfo}
                                 />
                             </div>
@@ -105,6 +141,15 @@ function Modal(props) {
                     <button className={manejarClaseBotonReiniciar()} onClick={props.onClick}>
                         {translations[language].botonReiniciarJuego}
                     </button>
+                )}
+                {mostrarModalEstasSeguro && (
+                    <Modal2 onClickX={apagarModalEstasSeguro}>
+                        <h2>¿Estás seguro?</h2>
+                        <p>Esto eliminará toda tu información. Esta acción no se puede deshacer.</p>
+                        <p>Para confirmar, escribe <span className='span'>Quiero eliminar mi informacion</span> en el siguiente campo:</p>
+                        <input type="text" name="" id="" className='input' value={textoHabilitarBotonEliminar} onChange={guardarTextoHabilitarBoton} />
+                        <Boton contenido="Eliminar toda mi información" disabled={habilitarBotonEliminar} clase={claseBotonEliminar} onClick={eliminarDatosLS} />
+                    </Modal2>
                 )}
             </div>
         </div>

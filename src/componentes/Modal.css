@@ -141,6 +141,16 @@ Color morado cool:
     width: 100%;
 }
 
+.span{
+    font-weight: 700;
+    color: #c90000;
+}
+
+.input{
+    width: 97%;
+    padding: 0.4rem;
+}
+
 @media (max-width: 968px) {
     .modal-content, .modalAdv {
         background-color: #1e252e;

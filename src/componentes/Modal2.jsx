@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './Modal.css';
+import './Modal2.css';
 
 function Modal2(props) {
     useEffect(() => {
