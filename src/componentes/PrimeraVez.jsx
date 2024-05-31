@@ -63,6 +63,7 @@ function PrimeraVez() {
                 onClickX={handleCloseModal} 
                 primeraVez={mostrarPrimeraVez}
                 onDatosAñadidos={manejarDatosAñadidos}
+                desactivarEscape={true}
             />
             )}
         </div>

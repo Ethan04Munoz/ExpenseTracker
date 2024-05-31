@@ -7,11 +7,12 @@ function GestorAtajos() {
     const [estaCerrado, setEstaCerrado] = useState(false);
 
     const language = useSelector(state => state.language.language);
+    const primeraVez = useSelector(state => state.primeraVez.primeraVez); 
 
     useEffect(() => {
         const handleEscapeKey = (event) => {
             console.log("Clic en tecla, ", event, event.key)
-            if (event.key === 'Escape') {
+            if (event.key === 'Escape' && primeraVez != true) {
                 setEstaCerrado(true);
             }
         };

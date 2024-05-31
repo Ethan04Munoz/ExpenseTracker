@@ -28,10 +28,11 @@ function Modal(props) {
     };
 
     const primeraVez = props.primeraVez;
+    const desactivarEscape = props.desactivarEscape;
 
     useEffect(() => {
         const handleKeyDown = (event) => {
-            if (event.key === 'Escape') {
+            if (event.key === 'Escape' && desactivarEscape != true) {
                 props.onClickX && props.onClickX();
             }
         };
