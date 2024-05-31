@@ -19,6 +19,7 @@ import FullGastos from "./Paginas/FullGastos";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FullIngresos from "./Paginas/FullIngresos";
+import Informacion from "./Paginas/Información";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <Route path="/prueba" element={<MyAreaChart/>}/>
         <Route path="/gestionaringresos" element={<GestionarIngresosRecurrentes/>}/>
         <Route path="/gestionargastos" element={<GestionarGastosRecurrentes/>}/>
+        <Route path="/informacion" element={<Informacion/>}/>
       </Routes>
     </HashRouter>
   )

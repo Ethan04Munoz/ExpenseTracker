@@ -127,6 +127,11 @@ function Modal(props) {
                                     clase="Btn BtnDark"
                                     contenido={translations[language].configEstablecerDatosPrueba}
                                 />
+                                <p>
+                                    Esta aplicación es una demostración o prototipo y no está diseñada para su uso en entornos de producción o con fines críticos. 
+                                    Se recomienda utilizarla únicamente como herramienta de aprendizaje o para fines de prueba, 
+                                    y no confiar en ella para el manejo de información financiera real o sensible.
+                                </p>
                             </div>
                         ) : (
                             <div>

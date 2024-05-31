@@ -15,22 +15,22 @@ import ShinyDivider from "../componentes/ShinyDivider.jsx";
 import PrimeraVez from "../componentes/PrimeraVez.jsx";
 import GestorAtajos from "../componentes/GestorAtajos.jsx";
 
-function Main(){
+function Main() {
     let navigate = useNavigate();
-    const language = useSelector(state => state.language.language);    
-    const primeraVez = useSelector(state => state.primeraVez.primeraVez); 
+    const language = useSelector(state => state.language.language);
+    const primeraVez = useSelector(state => state.primeraVez.primeraVez);
 
     const [mesActual, setMesActual] = useState(0);
     const [mesActualTexto, setMesActualTexto] = useState('');
     const [anioActual, setAnioActual] = useState(0);
-    const [fechaRevision, setFechaRevision] = useState({mes: 0, anio: 0});
+    const [fechaRevision, setFechaRevision] = useState({ mes: 0, anio: 0 });
     const [montoTotalIngresos, setMontoTotalIngresos] = useState(0);
     const [montoTotalGastos, setMontoTotalGastos] = useState(0);
 
     useEffect(() => {
         setMesActual(obtenerMesActual());
         setAnioActual(obtenerAnioActual());
-        setFechaRevision({mes: obtenerMesActual(), anio: obtenerAnioActual()});
+        setFechaRevision({ mes: obtenerMesActual(), anio: obtenerAnioActual() });
     }, []);
 
     useEffect(() => {
@@ -39,7 +39,7 @@ function Main(){
 
     useEffect(() => {
         //Verificar que no son los valores por defecto
-        if(mesActual > 0 && anioActual > 0){
+        if (mesActual > 0 && anioActual > 0) {
             // Verificar si ya se añadieron los gastos recurrentes de este mes
             const ultimaVezGastosRecurrentesAnadidos = JSON.parse(localStorage.getItem('ultimaActualizacionGastosRecurrentes')) || [];
             const fechaActual = { mes: obtenerMesActual(), anio: obtenerAnioActual() };
@@ -52,12 +52,12 @@ function Main(){
                 const gastosRecurrentes = obtenerGastosRecurrentesLS();
                 const gastosActuales = obtenerGastosLS();
                 let gastosRecurrentesAñadir = [];
-                for(let i = 0; i < gastosRecurrentes.length; i++){
+                for (let i = 0; i < gastosRecurrentes.length; i++) {
                     let gastoProv = gastosRecurrentes[i];
                     //gastos: [{"gasto":"DDLC+","cantidad":"99","categoria":"Videojuegos", "fecha":"01/04/2024"}]
                     //recurr: [{"gasto":"Music","cantidad":"99","categoria":"Suscripciones","activo":true}]
                     //Por ende, para convertir un gasto recurrente en gasto hay que añadirle fecha y eliminar el valor de activo
-                    if(JSON.parse(gastoProv.activo) == true){
+                    if (JSON.parse(gastoProv.activo) == true) {
                         delete gastoProv.activo;
                         gastoProv.fecha = obtenerFechaActualFormatoDDMMYYYY();
                         gastosRecurrentesAñadir.push(gastoProv)
@@ -84,7 +84,7 @@ function Main(){
     function aumentarMesRevision() {
         setFechaRevision(fechaActual => {
             let { mes, anio } = fechaActual;
-        
+
             if (mes === 12) {
                 mes = 1;
                 anio += 1;
@@ -94,11 +94,11 @@ function Main(){
             return { mes, anio };
         });
     }
-    
+
     function disminuirMesRevision() {
         setFechaRevision(fechaActual => {
             let { mes, anio } = fechaActual;
-    
+
             if (mes === 1) {
                 mes = 12;
                 anio -= 1;
@@ -108,72 +108,76 @@ function Main(){
             return { mes, anio };
         });
     }
-    
+
     const [contenidoBotonPrevio, setContenidoBotonPrevio] = useState(translations[language].botonNavegacionMesPrevio);
     const [contenidoBotonSiguiente, setContenidoBotonSiguiente] = useState(translations[language].botonNavegacionMesSiguiente);
-  
+
     useEffect(() => {
         const handleResize = () => {
             if (window.innerHeight > window.innerWidth) {
                 // Cambia el contenido a una imagen si el alto es mayor que el ancho
                 setContenidoBotonPrevio(<img className="flechaSvg" src="./public/flechaL.svg" />);
-                setContenidoBotonSiguiente(<img className="flechaSvg" src="./public/flechaR.svg"/>);
+                setContenidoBotonSiguiente(<img className="flechaSvg" src="./public/flechaR.svg" />);
             } else {
                 // Vuelve al texto original si el ancho es mayor que el alto
                 setContenidoBotonPrevio(translations[language].botonNavegacionMesPrevio);
                 setContenidoBotonSiguiente(translations[language].botonNavegacionMesSiguiente);
             }
         };
-    
+
         // Agrega el listener al montar el componente
         window.addEventListener('resize', handleResize);
-    
+
         handleResize();
-    
+
         return () => window.removeEventListener('resize', handleResize);
     }, [language, translations]);
 
     return (
         <div>
-            <Navbar enlaceHeader={"/"}/>
-            <PrimeraVez/>
-            <GestorAtajos/>
+            <Navbar enlaceHeader={"/"} />
+            <PrimeraVez />
+            <GestorAtajos />
             <div className="contenerBotonesMainPage">
                 <div className="fechaActual">
-                    <Boton contenido={contenidoBotonPrevio} clase="Btn BtnDark" onClick={disminuirMesRevision}/>
+                    <Boton contenido={contenidoBotonPrevio} clase="Btn BtnDark" onClick={disminuirMesRevision} />
                     {obtenerMesLetras(fechaRevision.mes, language)} {language === 'es' ? 'de' : ''} {fechaRevision.anio}
-                    <Boton contenido={contenidoBotonSiguiente} clase="Btn BtnDark" onClick={aumentarMesRevision}/>         
+                    <Boton contenido={contenidoBotonSiguiente} clase="Btn BtnDark" onClick={aumentarMesRevision} />
                 </div>
-                <ShinyDivider/>
-                <CuadroPrincipal titulo={translations[language].ingresos} cantidad={montoTotalIngresos} url={"ingresos"}/>
-                <CuadroPrincipal titulo={translations[language].gastos} cantidad={montoTotalGastos} url={"gastos"}/>
-                <ShinyDivider/>
+                <ShinyDivider />
+                <CuadroPrincipal titulo={translations[language].ingresos} cantidad={montoTotalIngresos} url={"ingresos"} />
+                <CuadroPrincipal titulo={translations[language].gastos} cantidad={montoTotalGastos} url={"gastos"} />
+                <ShinyDivider />
                 <h2>{translations[language].graficosTituloMain}</h2>
 
                 <h3>{translations[language].mensualesTituloMain}</h3>
 
-                <Boton contenido={translations[language].ivgMensualBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ingresosvsgastos")}}/>
-                <Boton contenido={translations[language].ingresosAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/misingresosesteaño")}}/>
-                <Boton contenido={translations[language].gastosAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/misgastosesteaño")}}/>
-                
-                <h3>{translations[language].anualesTituloMain}</h3>
-                <Boton contenido={translations[language].ivgAnualBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ingresosvsgastos/anual")}}/>
-                <Boton contenido={translations[language].ingresosXAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/ingresos/anual")}}/>
-                <Boton contenido={translations[language].gastosXAñoBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/gastos/anual")}}/>
-                
-                <h2>{translations[language].configuracionTituloMain}</h2>
-                <Boton contenido={translations[language].gestionarGastosBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/gestionargastos")}}/>
-                <Boton contenido={translations[language].gestionarIngresosBtnMain} clase="Btn BtnBlue" onClick={() => {navigate("/gestionaringresos")}}/>
+                <Boton contenido={translations[language].ivgMensualBtnMain} clase="Btn BtnBlue" onClick={() => { navigate("/ingresosvsgastos") }} />
+                <Boton contenido={translations[language].ingresosAñoBtnMain} clase="Btn BtnBlue" onClick={() => { navigate("/misingresosesteaño") }} />
+                <Boton contenido={translations[language].gastosAñoBtnMain} clase="Btn BtnBlue" onClick={() => { navigate("/misgastosesteaño") }} />
 
-                <ShinyDivider/>
+                <h3>{translations[language].anualesTituloMain}</h3>
+                <Boton contenido={translations[language].ivgAnualBtnMain} clase="Btn BtnBlue" onClick={() => { navigate("/ingresosvsgastos/anual") }} />
+                <Boton contenido={translations[language].ingresosXAñoBtnMain} clase="Btn BtnBlue" onClick={() => { navigate("/ingresos/anual") }} />
+                <Boton contenido={translations[language].gastosXAñoBtnMain} clase="Btn BtnBlue" onClick={() => { navigate("/gastos/anual") }} />
+
+                <h2>{translations[language].configuracionTituloMain}</h2>
+                <Boton contenido={translations[language].gestionarGastosBtnMain} clase="Btn BtnBlue" onClick={() => { navigate("/gestionargastos") }} />
+                <Boton contenido={translations[language].gestionarIngresosBtnMain} clase="Btn BtnBlue" onClick={() => { navigate("/gestionaringresos") }} />
+
+                <ShinyDivider />
                 <div className="centrar10">
                     <div></div>
                     <a className='github' href="https://github.com/Ethan04Munoz">
                         <div className=''>
                             <img src="github-Dark.svg" alt="" />
-                        </div>   
+                        </div>
                     </a>
                     <div></div>
+                </div>
+                <ShinyDivider />
+                <div className="centrar50">
+                    <Link className="enlaceFinal" to={"/informacion"}>Información importante acerca de este sitio.</Link>
                 </div>
                 <div className="espacio"></div>
             </div>

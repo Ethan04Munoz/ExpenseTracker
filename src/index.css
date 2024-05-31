@@ -152,6 +152,15 @@ li{
   font-size: 1.5em;
 }
 
+.centrar50{
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 5vh;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
 @media (max-width: 968px) {
     h1 {
         font-size: 1.5em;
@@ -184,4 +193,9 @@ li{
     .flechaSvg{
       filter: drop-shadow(0 0 0.2em #646cffaa);
     }
+}
+
+.enlaceFinal{
+  color: #dfdfdf;
+  text-align: center;
 }
